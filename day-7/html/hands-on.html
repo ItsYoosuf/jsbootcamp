@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 — Hands-on</title>
+    <link rel="stylesheet" href="../../shared/css/styles.css">
+</head>
+<body data-outline-root="../../" data-outline-day="7" data-outline-page="hands-on">
+    <header class="page-title">
+        <p class="lesson-label">Day 7 · Arrays</p>
+        <h1>Hands-on</h1>
+    </header>
+
+    <details class="exercise" open>
+        <summary>
+            <span class="lesson-task__tag">Task 1</span>
+            <span class="lesson-task__title">Cart manipulation</span>
+        </summary>
+        <div class="lesson-task__body">
+            <ul class="task-spec">
+                <li>Start with: <code>const cart = ["bread", "milk", "eggs"];</code></li>
+                <li>Use <code>push</code> to add <code>"butter"</code>. Then use <code>unshift</code> to add <code>"rice"</code> at the start. Log the cart.</li>
+                <li>Use <code>pop</code> to remove the last item. Log what was removed and the new cart.</li>
+                <li>Use <code>splice(1, 1)</code> to remove one item starting at index 1. Log the result.</li>
+            </ul>
+            <p class="output-label">Reference solution output</p>
+            <pre id="task1Output" class="run-output"></pre>
+        </div>
+    </details>
+
+    <details class="exercise">
+        <summary>
+            <span class="lesson-task__tag">Task 2</span>
+            <span class="lesson-task__title">Filter — passing scores</span>
+        </summary>
+        <div class="lesson-task__body">
+            <ul class="task-spec">
+                <li>Declare: <code>const scores = [88, 42, 75, 60, 91, 39, 55, 70];</code></li>
+                <li>Use <code>filter</code> to create a new array of scores that are <code>&gt;= 60</code> (passing). Log it.</li>
+                <li>Use <code>find</code> to get the <strong>first</strong> failing score. Log it.</li>
+                <li>Use <code>every</code> to check if <strong>all</strong> scores are passing. Log the result.</li>
+                <li>Bonus: use <code>some</code> to check if <strong>any</strong> score is above 90.</li>
+            </ul>
+            <p class="output-label">Reference solution output</p>
+            <pre id="task2Output" class="run-output"></pre>
+        </div>
+    </details>
+
+    <script src="../js/hands-on.js"></script>
+    <script src="../../shared/js/sidebar.js"></script>
+</body>
+</html>
