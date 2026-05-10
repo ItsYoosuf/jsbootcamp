@@ -22,6 +22,12 @@
     --content-max: 42rem;
 }
 
+/* Scrollbar gutter reduces horizontal shift when the vertical scrollbar toggles. */
+html {
+    scrollbar-gutter: stable;
+    overflow-anchor: none;
+}
+
 *,
 *::before,
 *::after {
@@ -37,6 +43,8 @@ body {
     background: var(--bg);
     background-image: linear-gradient(165deg, #e8eef4 0%, #f2f5f8 50%, #ebeff4 100%);
     min-height: 100vh;
+    overflow-anchor: none;
+    overflow-x: clip;
 }
 
 .page-title .lesson-label {
@@ -50,7 +58,7 @@ body {
 
 .page-title h1 {
     margin: 0 0 1rem;
-    font-size: clamp(1.35rem, 2.5vw, 1.55rem);
+    font-size: 1.45rem;
     font-weight: 650;
     letter-spacing: -0.02em;
     color: var(--text);
@@ -69,7 +77,7 @@ body {
     max-width: var(--shell-max);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(12rem, 15.5rem);
+    grid-template-columns: minmax(0, 1fr) 15.5rem;
     gap: 2rem 2.25rem;
     align-items: start;
 }
@@ -122,10 +130,10 @@ body {
     display: inline-block;
     padding: 0.22rem 0.4rem;
     margin: 0.08rem 0;
+    font-weight: 650;
     color: var(--link);
     text-decoration: none;
     border-radius: var(--radius-sm);
-    transition: background 0.12s ease, color 0.12s ease;
 }
 
 .site-outline-tree a:hover {
@@ -134,7 +142,6 @@ body {
 }
 
 .site-outline-tree a[aria-current="page"] {
-    font-weight: 650;
     color: var(--accent-hover);
     background: var(--accent-soft);
 }
@@ -163,7 +170,7 @@ body {
 }
 
 .site-outline-details ul a {
-    font-weight: 500;
+    font-weight: inherit;
 }
 
 @media (max-width: 52rem) {

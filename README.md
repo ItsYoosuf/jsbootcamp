@@ -4,7 +4,9 @@ Materials for a full JavaScript track for beginners through advanced topics, end
 
 ## Browser practice pages
 
-Open **`index.html`** in your browser (double-click or “Open with…” from your editor). Use the **Curriculum** panel on the right to jump between days and pages.
+**Live site:** [https://iamlegendchamp.github.io/JS_Curriculum_Exercises/](https://iamlegendchamp.github.io/JS_Curriculum_Exercises/)
+
+Locally, open **`index.html`** in your browser (double-click or “Open with…” from your editor). Use the **Curriculum** panel on the right to jump between days and pages.
 
 Each published practice day has:
 
@@ -12,9 +14,9 @@ Each published practice day has:
 - **`hands-on.html`** — Short tasks for class time.
 - **`homework.html`** — Take-home practice.
 
-Scripts live next to the HTML under `day-N/js/`. Shared styling is **`shared/css/styles.css`**; the outline is built by **`shared/js/sidebar.js`**.
+Scripts live next to the HTML under `day-N/js/`. Shared styling is **`shared/css/styles.css`**. Each page includes a **`page-shell`** grid and the **Curriculum** links are plain HTML in `<aside class="site-outline">` (no script)—duplicate/update that block on every page when you add a day.
 
-To add another day later: create `day-N/html/` and `day-N/js/`, copy the pattern from an existing day, and add an entry to the `DAYS` array in `shared/js/sidebar.js`.
+To add another practice day: create `day-N/html/` and `day-N/js/` from an existing day, then **edit the Curriculum `<aside>` on every HTML page** (`index.html` and each `day-*/html/*.html`) so the new day appears with correct `href`s, `<details open>` on the first day and on the day being viewed, and **`aria-current="page"`** on the active link only.
 
 ## Markdown worksheets (optional PDFs)
 

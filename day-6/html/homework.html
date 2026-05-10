@@ -4,41 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day 6 — Homework</title>
+    <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
-<body data-outline-root="../../" data-outline-day="6" data-outline-page="homework">
-    <header class="page-title">
-        <p class="lesson-label">Day 6 · Functions</p>
-        <h1>Homework</h1>
-    </header>
+<body>
+    <div class="page-shell">
+        <main class="page-main" id="main-content">
+            <header class="page-title">
+                <p class="lesson-label">Day 6 · Functions</p>
+                <h1>Homework</h1>
+            </header>
 
-    <h2 class="topic homework-unit-title">Conversions &amp; tax</h2>
+            <h2 class="topic homework-unit-title">Conversions &amp; tax</h2>
 
-    <details class="exercise" open>
-        <summary>
-            <span class="lesson-task__tag">Task 1</span>
-            <span class="lesson-task__title"><code>kmToMiles</code></span>
-        </summary>
-        <div class="lesson-task__body">
-            <p class="homework-q">Write a function <code>kmToMiles(km)</code> — formula <code>km * 0.621</code>.</p>
-            <p class="output-label">Reference solution output</p>
-            <pre id="homeworkOut1" class="run-output"></pre>
-        </div>
-    </details>
+            <details class="exercise" open>
+                <summary>
+                    <span class="lesson-task__tag">Task 1</span>
+                    <span class="lesson-task__title"><code>kmToMiles</code></span>
+                </summary>
+                <div class="lesson-task__body">
+                    <p class="homework-q">Write a function <code>kmToMiles(km)</code> — formula <code>km * 0.621</code>.</p>
+                    <p class="output-label">Reference solution output</p>
+                    <pre id="homeworkOut1" class="run-output"></pre>
+                </div>
+            </details>
 
-    <details class="exercise">
-        <summary>
-            <span class="lesson-task__tag">Task 2</span>
-            <span class="lesson-task__title"><code>gstAmount</code></span>
-        </summary>
-        <div class="lesson-task__body">
-            <p class="homework-q">Write a function <code>gstAmount(price, rate = 18)</code> returning the <strong>tax amount</strong> (not the total price).</p>
-            <p class="output-label">Reference solution output</p>
-            <pre id="homeworkOut2" class="run-output"></pre>
-        </div>
-    </details>
-
-    <script src="../js/homework.js"></script>
-    <script src="../../shared/js/sidebar.js"></script>
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Task 2</span>
+                    <span class="lesson-task__title"><code>gstAmount</code></span>
+                </summary>
+                <div class="lesson-task__body">
+                    <p class="homework-q">Write a function <code>gstAmount(price, rate = 18)</code> returning the <strong>tax amount</strong> (not the total price).</p>
+                    <p class="output-label">Reference solution output</p>
+                    <pre id="homeworkOut2" class="run-output"></pre>
+                </div>
+            </details>
+        </main>
+        <aside class="site-outline" aria-label="Curriculum outline">
+            <p class="site-outline-title">Curriculum</p>
+            <ul class="site-outline-tree">
+                <li class="site-outline-item"><a href="../../index.html">Overview</a></li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details" open>
+                        <summary>Day 6 — Functions</summary>
+                        <ul>
+                            <li><a href="../../day-6/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-6/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-6/html/homework.html" aria-current="page">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 7 — Arrays</summary>
+                        <ul>
+                            <li><a href="../../day-7/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-7/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-7/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 8 — Objects</summary>
+                        <ul>
+                            <li><a href="../../day-8/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-8/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-8/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <script defer src="../js/homework.js"></script>
+    <script src="../../shared/js/nav-lock.js"></script>
 </body>
 </html>

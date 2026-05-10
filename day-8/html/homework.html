@@ -4,31 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day 8 — Homework</title>
+    <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
-<body data-outline-root="../../" data-outline-day="8" data-outline-page="homework">
-    <header class="page-title">
-        <p class="lesson-label">Day 8 · Objects</p>
-        <h1>Homework</h1>
-    </header>
+<body>
+    <div class="page-shell">
+        <main class="page-main" id="main-content">
+            <header class="page-title">
+                <p class="lesson-label">Day 8 · Objects</p>
+                <h1>Homework</h1>
+            </header>
 
-    <details class="exercise" open>
-        <summary>
-            <span class="lesson-task__tag">Assignment</span>
-            <span class="lesson-task__title">Book object</span>
-        </summary>
-        <div class="lesson-task__body">
-            <ul class="task-spec">
-                <li>Create an object <code>book</code> with <code>title</code>, <code>author</code>, <code>year</code>, and <code>pages</code>.</li>
-                <li>Log the title using <strong>bracket notation</strong> with a <strong>variable</strong> key.</li>
-                <li>Add a method <code>summary()</code> that returns <code>"&lt;title&gt; by &lt;author&gt; (&lt;year&gt;)"</code> using template literals and <code>this</code>.</li>
+            <details class="exercise" open>
+                <summary>
+                    <span class="lesson-task__tag">Assignment</span>
+                    <span class="lesson-task__title">Book object</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Create an object <code>book</code> with <code>title</code>, <code>author</code>, <code>year</code>, and <code>pages</code>.</li>
+                        <li>Log the title using <strong>bracket notation</strong> with a <strong>variable</strong> key.</li>
+                        <li>Add a method <code>summary()</code> that returns <code>"&lt;title&gt; by &lt;author&gt; (&lt;year&gt;)"</code> using template literals and <code>this</code>.</li>
+                    </ul>
+                    <p class="output-label">Reference solution output</p>
+                    <pre id="homeworkOutput" class="run-output"></pre>
+                </div>
+            </details>
+        </main>
+        <aside class="site-outline" aria-label="Curriculum outline">
+            <p class="site-outline-title">Curriculum</p>
+            <ul class="site-outline-tree">
+                <li class="site-outline-item"><a href="../../index.html">Overview</a></li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details" open>
+                        <summary>Day 6 — Functions</summary>
+                        <ul>
+                            <li><a href="../../day-6/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-6/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-6/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 7 — Arrays</summary>
+                        <ul>
+                            <li><a href="../../day-7/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-7/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-7/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="site-outline-day">
+                    <details class="site-outline-details" open>
+                        <summary>Day 8 — Objects</summary>
+                        <ul>
+                            <li><a href="../../day-8/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-8/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-8/html/homework.html" aria-current="page">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
             </ul>
-            <p class="output-label">Reference solution output</p>
-            <pre id="homeworkOutput" class="run-output"></pre>
-        </div>
-    </details>
-
-    <script src="../js/homework.js"></script>
-    <script src="../../shared/js/sidebar.js"></script>
+        </aside>
+    </div>
+    <script defer src="../js/homework.js"></script>
+    <script src="../../shared/js/nav-lock.js"></script>
 </body>
 </html>
