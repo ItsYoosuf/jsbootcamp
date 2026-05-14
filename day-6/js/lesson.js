@@ -5,25 +5,19 @@ const topic1Snippet = `function greet(name) {
 greet("Priya");   // Hello, Priya!
 greet("Aarav");   // Hello, Aarav!`;
 
-const topic2Snippet = `function add(a, b) {
-    return a + b;
+const topic2Snippet = `const a = "global a";
+function outer() {
+const b = "outer b";
+function inner() {
+const c = "inner c";
+console.log(a); // "global a" ← walked up: inner → outer → global ✓
+console.log(b); // "outer b" ← walked up: inner → outer ✓
+console.log(c); // "inner c" ← found in current scope ✓
 }
-
-const result = add(5, 3);
-console.log(result);        // 8
-
-// Use the return value directly
-console.log(add(10, 20));   // 30
-
-// Compose — one function's output feeds another
-console.log(add(add(1, 2), add(3, 4)));   // 10
-
-// Functions without return give back undefined
-function silent() {
-    console.log("doing stuff");
+inner();
+// console.log(c); // ReferenceError ← outer scope cannot see inner's variables
 }
-const x = silent();
-console.log(x);   // undefined`;
+outer();`;
 
 document.querySelector("#topic1Code code").textContent = topic1Snippet;
 document.querySelector("#topic2Code code").textContent = topic2Snippet;
