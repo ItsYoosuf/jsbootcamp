@@ -23,13 +23,53 @@
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Type the following snippet exactly: a <code>user</code> object with <code>name: "Priya"</code>and a method <code>greet(){ console.log(this.name);}</code> Then call <code>user.greet()</code>.Then assign <code>const g =user.greet </code>and call <code>g()</code>.</li>
+                        <li>Type the following snippet exactly: a <code>user</code> object with
+                            <code>name: "Priya"</code>and a method <code>greet(){ console.log(this.name);}</code> Then
+                            call <code>user.greet()</code>.Then assign <code>const g =user.greet </code>and call
+                            <code>g()</code>.
+                        </li>
                         <li>Predict the output of each call BEFORE running.</li>
                         <li>Run. Note actual output.</li>
                         <li>In a comment, explain why the second call lost the<code>this</code></li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
+                </div>
+            </details>
+            <details class="exercise" open>
+                <summary>
+                    <span class="lesson-task__tag">Task 1</span>
+                    <span class="lesson-task__title">Predict the `this`</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Take the following code:
+                            <code>
+                    class Timer {
+                    constructor() { this.sec = 0; }
+                    tick() {
+                    this.sec++;
+                    console.log(this.sec);
+                    }
+                    }
+                </code>
+                        </li>
+        
+                        <li>Create <code>const t = new Timer();</code> and run <code>setInterval(t.tick, 1000);</code>.
+                        </li>
+        
+                        <li>Run the code and observe the resulting <code>TypeError</code>.</li>
+        
+                        <li>Fix the issue using <code>.bind()</code>.</li>
+        
+                        <li>Fix the same issue using an arrow wrapper function.</li>
+        
+                        <li>Fix the issue a third way using a class field arrow method.</li>
+        
+                        <li>Verify that all three approaches correctly log <code>1, 2, 3, ...</code> continuously.</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task2Output" class="run-output"></pre>
                 </div>
             </details>
         </main>
@@ -214,23 +254,23 @@
                 </li>
 
                 <!-- Day 15 -->
-                 <li class="site-outline-day">
-            <details class="site-outline-details" open>
-                <summary>Day 15 — Advanced Day 3 — The 'this' Keyword</summary>
-                <ul>
-                    <li><a href="../../day-15/html/lesson.html">Lesson</a></li>
-                    <li><a href="../../day-15/html/hands-on.html" aria-current="page">Hands-on</a></li>
-                    <li><a href="../../day-15/html/homework.html">Homework</a></li>
-                </ul>
-            </details>
-        </li>
-        <!-- Day 16 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details" open>
+                        <summary>Day 15 — Advanced Day 3 — The 'this' Keyword</summary>
+                        <ul>
+                            <li><a href="../../day-15/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-15/html/hands-on.html" aria-current="page">Hands-on</a></li>
+                            <li><a href="../../day-15/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 16 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
                         <summary>Day 16 - Advanced Day 4 — Prototypes & the Prototype Chain</summary>
                         <ul>
                             <li><a href="../../day-16/html/lesson.html">Lesson</a></li>
-                            <li><a href="../../day-16/html/hands-on.html" >Hands-on</a></li>
+                            <li><a href="../../day-16/html/hands-on.html">Hands-on</a></li>
                             <li><a href="../../day-16/html/homework.html">Homework</a></li>
                         </ul>
                     </details>

@@ -127,21 +127,25 @@
 // obj.regularFn();  // "Priya"
 // obj.arrowFn();    // undefined (or global's name)
 
-//Hands-on 1
-// const user = {
-//     name: "Priya",
-//     greet: function () {
-//         console.log(this.name);
-//     }
-// }
-// user.greet();
-// const g2 = user.greet.bind(user); //bind permanently sets `this` to user and g2 will be new function
-// console.log("Fix");
-// g2();
-// const g = user.greet; //g is a standalone function and `this` is lost
-// g();
 
+//Hands-on 1
+const task1Lines =`
+const user = {
+    name: "Priya",
+    greet: function () {
+        console.log(this.name);
+    }
+}
+user.greet();
+const g2 = user.greet.bind(user); //bind permanently sets \`this\` to user and g2 will be new function
+console.log("Fix");
+g2();
+const g = user.greet; //g is a standalone function and \`this\` is lost
+g();
+`;
+document.querySelector("#task1Output").textContent = task1Lines;
 //Hands-on 2
+const task2Lines =`
 class Timer { 
     constructor() { 
         this.sec = 0; 
@@ -155,3 +159,5 @@ const t = new Timer();
 const t2 = t.tick.bind(t);
 //setInterval(t.tick,1000);
 setInterval(t2,1000);
+`;
+document.querySelector("#task2Output").textContent = task2Lines;
