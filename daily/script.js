@@ -126,4 +126,3 @@
 0 : {machineType: 'Machine', startMachine: ƒ}
 1: {baseType: 'Base Object', baseInfo: ƒ}
 2: {__defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, __lookupSetter__: ƒ, …} */
-
