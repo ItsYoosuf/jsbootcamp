@@ -1,34 +1,11 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "// string, number, boolean, undefined, null, symbol, bigint\nconst name = \"Priya\";\nconst age = 21;\nconst score = 98.5;\nconst isPassed = true;\nlet city; // undefined until assigned\nconst selected = null;\nconst id = Symbol(\"user\");\nconst big = 9007199254740991n;\nconsole.log(name, age, score, isPassed, city, selected, id, big);";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "console.log(typeof \"Hello\");   // \"string\"\nconsole.log(typeof 42);        // \"number\"\nconsole.log(typeof true);      // \"boolean\"\nconsole.log(typeof undefined); // \"undefined\"\nconsole.log(typeof null);      // \"object\" (historical bug)\nconsole.log(typeof Symbol());  // \"symbol\"\nconsole.log(typeof 10n);       // \"bigint\"";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "console.log(5 + \"3\");   // \"53\" \u2014 + with string joins\nconsole.log(\"10\" - 4);  // 6  \u2014 math tries Number\nconsole.log(true + 1);  // 2  \u2014 true coerces to 1";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "console.log(Number(\"42\"));     // 42\nconsole.log(Number(\"hello\"));    // NaN\nconsole.log(parseInt(\"42px\"));  // 42\nconsole.log(String(99));        // \"99\"\nconsole.log(Boolean(0));         // false\nconsole.log(Boolean(\"0\"));      // true \u2014 any non-empty string is truthy";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "const greeting = \"  Hello, JavaScript!  \";\nconsole.log(greeting.length);\nconsole.log(greeting.trim());\nconsole.log(greeting.trim().toUpperCase());\nconsole.log(greeting.includes(\"JavaScript\"));\nconsole.log(greeting.trim().slice(0, 5));";
+document.querySelector("#topic5Code code").textContent = _topic5;

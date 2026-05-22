@@ -1,39 +1,116 @@
+const topic1Snippet = `const city = "Jaipur";
 
-const topic1Snippet = `const city = "Jaipur";              
 function outer() {
-const language = "Hindi";         
-// lives in the OUTER (global) scope
-// lives in outer's scope
-function inner() {
-const greeting = "Namaste";     
-// lives in inner's scope
-1 / 8
-Day 14 Student Doc.md
-2026-05-08
-console.log(greeting, language, city);  // can see all three — looks outward
+  const language = "Hindi";
+  function inner() {
+    const greeting = "Namaste";
+    console.log(greeting, language, city);
+  }
+  inner();
 }
-inner();
+
+outer();
+// Namaste Hindi Jaipur — scope is decided by where code is written`;
+
+const topic2Snippet = `const a = "global a";
+
+function outer() {
+  const b = "outer b";
+  function inner() {
+    const c = "inner c";
+    console.log(a, b, c);
+  }
+  inner();
 }
-outer();   
-// "Namaste Hindi Jaipur"
-// inner() can reach OUT to language and city because of WHERE it is written —
-// nested inside outer(), which is nested inside the global scope.`;
 
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
+outer();`;
 
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
+const topic3Snippet = `function makeGreeter(name) {
+  return function () {
+    console.log(\`Namaste, \${name}!\`);
+  };
+}
 
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
+const greetPriya = makeGreeter("Priya");
+const greetAarav = makeGreeter("Aarav");
+greetPriya();
+greetAarav();`;
 
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
+const topic4Snippet = `function makeCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
 
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
+const c = makeCounter();
+console.log(c(), c(), c());
+
+function createAccount(initial) {
+  let balance = initial;
+  return {
+    deposit: (amt) => (balance += amt),
+    withdraw: (amt) => (balance -= amt),
+    getBalance: () => balance,
+  };
+}
+
+function memoize(fn) {
+  const cache = {};
+  return function (n) {
+    if (n in cache) return cache[n];
+    cache[n] = fn(n);
+    return cache[n];
+  };
+}`;
+
+const topic5Snippet = `// Bug: one shared i (var is function-scoped)
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 10);
+}
+// Often logs: 3, 3, 3
+
+// Fix: fresh i each loop (let is block-scoped)
+for (let j = 0; j < 3; j++) {
+  setTimeout(() => console.log(j), 20);
+}
+// 0, 1, 2`;
+
+const topic6Snippet = `(function () {
+  const secret = "hidden";
+  console.log("IIFE ran");
+})();
+
+(function (city) {
+  console.log(\`Greetings from \${city}\`);
+})("Jaipur");
+
+(() => {
+  const x = 42;
+  console.log(x);
+})();
+
+const counterModule = (function () {
+  let count = 0;
+  return {
+    inc: () => ++count,
+    get: () => count,
+  };
+})();
+counterModule.inc();
+console.log(counterModule.get());`;
+
+const topic7Snippet = `// Closures appear in:
+// - React hooks (state across renders)
+// - Event handlers that use outer variables
+// - Debounce / throttle timers
+// - Module pattern (private vars)`;
 
 document.querySelector("#topic1Code code").textContent = topic1Snippet;
 document.querySelector("#topic2Code code").textContent = topic2Snippet;
+document.querySelector("#topic3Code code").textContent = topic3Snippet;
+document.querySelector("#topic4Code code").textContent = topic4Snippet;
+document.querySelector("#topic5Code code").textContent = topic5Snippet;
+document.querySelector("#topic6Code code").textContent = topic6Snippet;
+document.querySelector("#topic7Code code").textContent = topic7Snippet;

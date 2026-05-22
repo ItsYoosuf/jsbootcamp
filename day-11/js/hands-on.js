@@ -1,68 +1,53 @@
-// —— Task 1 ——
-const student = {
-    name: "Anaya",
-    age: 21,
-    city: "Jaipur",
-    course: "B.Tech",
-    marks: [82, 76, 91]
-};
+"use strict";
+function mount11() {
+  let r = document.getElementById("dom11-lab");
+  if (!r) {
+    r = document.createElement("div");
+    r.id = "dom11-lab";
+    r.style.position = "fixed";
+    r.style.left = "-9999px";
+    document.body.appendChild(r);
+  }
+  r.innerHTML = `
+<button id="d11-counter-btn">Click me</button>
+<p>Clicks: <span id="d11-count">0</span></p>
+<input id="d11-live-input" placeholder="Type..." />
+<p id="d11-preview"></p>
+<form id="d11-form"><input id="d11-name" placeholder="Your name" /><button type="submit">Submit</button></form>
+<p id="d11-welcome"></p>
+<ul id="d11-todo-list"><li>Buy milk</li><li>Walk dog</li><li>Pay bills</li></ul>
+<style>#d11-todo-list .done{opacity:.5;text-decoration:line-through}</style>`;
+  return r;
+}
+const box = mount11();
+let clicks = 0;
+box.querySelector("#d11-counter-btn").addEventListener("click", () => {
+  clicks++;
+  box.querySelector("#d11-count").textContent = String(clicks);
+});
+document.querySelector("#task1Output").textContent = "counter wired (click in real page to test)";
 
-const task1Lines = [];
+box.querySelector("#d11-live-input").addEventListener("input", (e) => {
+  box.querySelector("#d11-preview").textContent = e.target.value;
+});
+box.querySelector("#d11-live-input").dispatchEvent(new Event("input", { bubbles: true }));
+document.querySelector("#task2Output").textContent = box.querySelector("#d11-preview").textContent;
 
-console.log(student);
-task1Lines.push("1) console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
+box.querySelector("#d11-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const n = box.querySelector("#d11-name").value || "friend";
+  box.querySelector("#d11-welcome").textContent = "Welcome " + n;
+});
+box.querySelector("#d11-name").value = "Anaya";
+box.querySelector("#d11-welcome").textContent =
+  "Welcome " + (box.querySelector("#d11-name").value || "friend");
+document.querySelector("#task3Output").textContent = box.querySelector("#d11-welcome").textContent;
 
-console.log(student.name, student.age, student.marks[0]);
-task1Lines.push("");
-task1Lines.push("2) console.log(name, age, first mark)");
-task1Lines.push(`${student.name} ${student.age} ${student.marks[0]}`);
-
-student.email = "anaya@example.com";
-student.age = 22;
-delete student.city;
-
-console.log(student);
-task1Lines.push("");
-task1Lines.push("3) after email, age update, delete city — console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
-document.querySelector("#task1Output").textContent = task1Lines.join("\n");
-
-// —— Task 2 ——
-const bankAccount = {
-    holder: "Aarav",
-    balance: 5000,
-    deposit(amount) {
-        this.balance += amount;
-        return this.balance;
-    },
-    withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return this.balance;
-        }
-        return "Insufficient funds";
-    }
-};
-
-const task2Lines = [];
-task2Lines.push(`Start: holder = "${bankAccount.holder}", balance = ${bankAccount.balance}`);
-task2Lines.push("");
-
-const afterDeposit = bankAccount.deposit(1000);
-console.log("deposit(1000) →", afterDeposit);
-task2Lines.push(`deposit(1000) → ${afterDeposit}`);
-
-const afterWithdraw1 = bankAccount.withdraw(2000);
-console.log("withdraw(2000) →", afterWithdraw1);
-task2Lines.push(`withdraw(2000) → ${afterWithdraw1}`);
-
-const afterWithdraw2 = bankAccount.withdraw(10000);
-console.log("withdraw(10000) →", afterWithdraw2);
-task2Lines.push(`withdraw(10000) → ${JSON.stringify(afterWithdraw2)}`);
-
-task2Lines.push("");
-task2Lines.push(`Final balance: ${bankAccount.balance}`);
-
-document.querySelector("#task2Output").textContent = task2Lines.join("\n");
+box.querySelector("#d11-todo-list").addEventListener("click", (e) => {
+  const li = e.target.closest("li");
+  if (!li) return;
+  li.classList.toggle("done");
+});
+const first = box.querySelector("#d11-todo-list li");
+first.click();
+document.querySelector("#task4Output").textContent = "first li done? " + first.classList.contains("done");

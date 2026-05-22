@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "const marks = 72;\nif (marks >= 90) console.log(\"A\");\nelse if (marks >= 75) console.log(\"B\");\nelse if (marks >= 60) console.log(\"C\");\nelse console.log(\"F\");";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "const day = \"Wednesday\";\nswitch (day) {\n  case \"Monday\":\n  case \"Tuesday\":\n  case \"Wednesday\":\n  case \"Thursday\":\n  case \"Friday\":\n    console.log(\"Weekday\");\n    break;\n  case \"Saturday\":\n  case \"Sunday\":\n    console.log(\"Weekend\");\n    break;\n  default:\n    console.log(\"Invalid day\");\n}";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "const values = [0, \"0\", \"\", \" \", null, undefined, NaN, [], {}, \"false\"];\nvalues.forEach((v) => {\n  if (v) console.log(JSON.stringify(v), \"truthy\");\n  else console.log(JSON.stringify(v), \"falsy\");\n});";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "function check(user) {\n  if (!user) return;\n  if (!user.isActive) return;\n  if (user.age < 18) return;\n  console.log(\"Access granted\");\n}";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "const score = 40;\nconst label = score >= 50 ? \"pass\" : \"fail\";\nconsole.log(label);";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "// Many branches -> if/else if or switch\n// Many returns from nesting -> guard clauses";
+document.querySelector("#topic6Code code").textContent = _topic6;

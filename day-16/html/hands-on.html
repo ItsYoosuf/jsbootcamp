@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 16 — Hands-on</title>
+    <title>Day 16 — Advanced Day 4 — Prototypes &amp; the Prototype Chain — Hands-on</title>
     <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
-
 <body>
     <div class="page-shell">
         <main class="page-main" id="main-content">
             <header class="page-title">
-                <p class="lesson-label">Day 16 · Advanced Day 4 — Prototypes & the Prototype Chain</p>
+                <p class="lesson-label">Day 16 · Advanced Day 4 — Prototypes &amp; the Prototype Chain</p>
                 <h1>Hands-on</h1>
             </header>
+
             <details class="exercise" open>
                 <summary>
                     <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Inspect a Prototype</span>
+                    <span class="lesson-task__title">Inspect a prototype</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Create <code>const arr = [1, 2, 3];</code> and log <code>Object.getPrototypeOf(arr)</code>.
-                            What does it return?</li>
-
-                        <li>Now log <code>Object.getPrototypeOf(Object.getPrototypeOf(arr))</code>. What do you get at
-                            this level?</li>
-
-                        <li>One more step: log <code>Object.getPrototypeOf(Object.prototype)</code>. What value ends the
-                            prototype chain?</li>
-
-                        <li>In a comment, draw the full prototype chain starting from <code>arr</code> all the way to
-                            <code>null</code>.
-                        </li>
+                        <li>Walk from an array to <code>null</code> with chained <code>Object.getPrototypeOf</code>; comment the chain.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
                 </div>
             </details>
+
+
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 2</span>
@@ -47,32 +38,52 @@
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Create an object <code>vehicle</code> with a method
-                            <code>start() { console.log(\`\${this.name} starting\`); }</code>.</li>
-
-                        <li>Use <code>Object.create(vehicle)</code> to create <code>car</code> and set
-                            <code>car.name = "Tata Nexon"</code>.</li>
-
-                        <li>Create <code>bike</code> the same way using <code>Object.create(vehicle)</code> and set
-                            <code>bike.name = "Royal Enfield"</code>.</li>
-
-                        <li>Call <code>start()</code> on both <code>car</code> and <code>bike</code>.</li>
-
-                        <li>Use <code>hasOwnProperty</code> and <code>in</code> operator to confirm that
-                            <code>name</code> is an own property and <code>start</code> is inherited.</li>
+                        <li>Vehicle <code>start()</code>; <code>car</code> and <code>bike</code> inherit; confirm <code>hasOwnProperty</code> vs <code>in</code>.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task2Output" class="run-output"></pre>
                 </div>
             </details>
-            
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Task 3</span>
+                    <span class="lesson-task__title">Constructor inheritance</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li><code>Person</code> / <code>Student</code> pattern with <code>Object.create</code> on prototypes.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task3Output" class="run-output"></pre>
+                </div>
+            </details>
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Bonus</span>
+                    <span class="lesson-task__title">hasOwnProperty vs in</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Predict five checks on <code>dog</code>; run and match; one-line rule comment.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task4Output" class="run-output"></pre>
+                </div>
+            </details>
+
         </main>
         <aside class="site-outline" aria-label="Curriculum outline">
             <p class="site-outline-title">Curriculum</p>
-
             <ul class="site-outline-tree">
                 <li class="site-outline-item">
-                    <a href="../../index.html">Overview</a>
+                    <a href="../../index.html" >Overview</a>
                 </li>
 
                 <!-- Day 1 -->
@@ -225,11 +236,7 @@
                         <summary>Day 13 — Advanced Day 1 — Execution Context & Hoisting</summary>
                         <ul>
                             <li><a href="../../day-13/html/lesson.html">Lesson</a></li>
-                            <li>
-                                <a href="../../day-13/html/hands-on.html" aria-current="page">
-                                    Hands-on
-                                </a>
-                            </li>
+                            <li><a href="../../day-13/html/hands-on.html">Hands-on</a></li>
                             <li><a href="../../day-13/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
@@ -246,7 +253,6 @@
                         </ul>
                     </details>
                 </li>
-
                 <!-- Day 15 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -258,15 +264,69 @@
                         </ul>
                     </details>
                 </li>
-
                 <!-- Day 16 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details" open>
-                        <summary>Day 16 - Advanced Day 4 — Prototypes & the Prototype Chain</summary>
+                        <summary>Day 16 — Advanced Day 4 — Prototypes & the Prototype Chain</summary>
                         <ul>
                             <li><a href="../../day-16/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-16/html/hands-on.html" aria-current="page">Hands-on</a></li>
                             <li><a href="../../day-16/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 17 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 17 · Advanced Day 5 — Classes & OOP</summary>
+                        <ul>
+                            <li><a href="../../day-17/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-17/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-17/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 18 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 18 — Advanced Day 6 — Callbacks &amp; Promises</summary>
+                        <ul>
+                            <li><a href="../../day-18/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-18/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-18/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 19 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 19 — Advanced Day 7 — Async / Await</summary>
+                        <ul>
+                            <li><a href="../../day-19/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-19/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-19/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 20 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 20 — Advanced Day 8 — Event Loop &amp; Tasks</summary>
+                        <ul>
+                            <li><a href="../../day-20/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-20/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-20/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 21 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 21 — Advanced Day 9 — Immutability &amp; Object Patterns</summary>
+                        <ul>
+                            <li><a href="../../day-21/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-21/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-21/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
@@ -276,5 +336,4 @@
     <script defer src="../js/hands-on.js"></script>
     <script src="../../shared/js/nav-lock.js"></script>
 </body>
-
 </html>

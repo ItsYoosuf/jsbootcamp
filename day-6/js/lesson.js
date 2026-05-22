@@ -1,23 +1,15 @@
-const topic1Snippet = `function greet(name) {
-    console.log("Hello, " + name + "!");
-}
-
-greet("Priya");   // Hello, Priya!
-greet("Aarav");   // Hello, Aarav!`;
-
-const topic2Snippet = `const a = "global a";
-function outer() {
-const b = "outer b";
-function inner() {
-const c = "inner c";
-console.log(a); // "global a" ← walked up: inner → outer → global ✓
-console.log(b); // "outer b" ← walked up: inner → outer ✓
-console.log(c); // "inner c" ← found in current scope ✓
-}
-inner();
-// console.log(c); // ReferenceError ← outer scope cannot see inner's variables
-}
-outer();`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "function greet(name) {\n  console.log(\"Hello, \" + name + \"!\");\n}\ngreet(\"Priya\");";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "function double(n) {\n  return n * 2;\n}\nconsole.log(double(5));";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "const square = function (x) {\n  return x * x;\n};\nconsole.log(square(4));";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "const add = (a, b) => a + b;\nconst sq = (x) => x * x;\nconsole.log(add(2, 3), sq(5));";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "function greet(name = \"Guest\") {\n  return \"Hello, \" + name + \"!\";\n}\nconsole.log(greet(\"Priya\"), greet());";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "const globalA = 1;\nfunction outer() {\n  const b = 2;\n  function inner() {\n    const c = 3;\n    console.log(globalA, b, c);\n  }\n  inner();\n}\nouter();";
+document.querySelector("#topic6Code code").textContent = _topic6;
+const _topic7 = "function pureDouble(n) {\n  return n * 2;\n}\nlet total = 0;\nfunction impureAdd(n) {\n  total += n;\n  return total;\n}\nconsole.log(pureDouble(3), impureAdd(5), impureAdd(5));";
+document.querySelector("#topic7Code code").textContent = _topic7;

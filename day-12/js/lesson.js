@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "try {\n  JSON.parse(\"{\");\n} catch (e) {\n  console.log(\"caught\", e.name);\n} finally {\n  console.log(\"always\");\n}";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "function mustPositive(n) {\n  if (n <= 0) throw new Error(\"n must be positive\");\n  return n;\n}";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "class ValidationError extends Error {\n  constructor(msg) {\n    super(msg);\n    this.name = \"ValidationError\";\n  }\n}";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "// Syntax errors and many async errors need other tools";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "// mathUtils.js\nexport const PI = 3.14;\nexport function add(a, b) {\n  return a + b;\n}\n// app.js\n// import { PI, add } from \"./mathUtils.js\";";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "export default function formatPrice(n) {\n  return \"\u20b9\" + n;\n}";
+document.querySelector("#topic6Code code").textContent = _topic6;

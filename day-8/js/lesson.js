@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "const name = \"Priya\";\nconst user = { name, age: 24 };\nconsole.log(user);";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "const u = { \"fav color\": \"blue\" };\nconsole.log(u.name, u[\"fav color\"]);";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "const acc = {\n  balance: 100,\n  deposit(n) {\n    this.balance += n;\n    return this.balance;\n  },\n};\nconsole.log(acc.deposit(50));";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "const p = { id: 1, title: \"Pen\", price: 10 };\nconst { title, price } = p;\nconsole.log(title, price);";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "const a = { x: 1 };\nconst b = { y: 2, ...a };\nconsole.log(b);";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "const o = { a: 1, b: 2 };\nconsole.log(Object.keys(o));\nconsole.log(Object.values(o));";
+document.querySelector("#topic6Code code").textContent = _topic6;

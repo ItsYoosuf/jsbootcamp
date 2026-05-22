@@ -1,68 +1,78 @@
-// —— Task 1 ——
-const student = {
-    name: "Anaya",
-    age: 21,
-    city: "Jaipur",
-    course: "B.Tech",
-    marks: [82, 76, 91]
-};
-
+// Task 1 — makeCounter (two independent counters)
 const task1Lines = [];
-
-console.log(student);
-task1Lines.push("1) console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
-console.log(student.name, student.age, student.marks[0]);
-task1Lines.push("");
-task1Lines.push("2) console.log(name, age, first mark)");
-task1Lines.push(`${student.name} ${student.age} ${student.marks[0]}`);
-
-student.email = "anaya@example.com";
-student.age = 22;
-delete student.city;
-
-console.log(student);
-task1Lines.push("");
-task1Lines.push("3) after email, age update, delete city — console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
+function makeCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+const a = makeCounter();
+const b = makeCounter();
+task1Lines.push("a(): " + a() + ", a(): " + a());
+task1Lines.push("b(): " + b() + ", b(): " + b());
+task1Lines.push("// count lives in a closure — one closed-over variable per makeCounter() call");
 document.querySelector("#task1Output").textContent = task1Lines.join("\n");
 
-// —— Task 2 ——
-const bankAccount = {
-    holder: "Aarav",
-    balance: 5000,
+// Task 2 — var in loop, then let fix (no real timers in page — show predicted + fixed pattern)
+const task2Lines = `
+Snippet (var):
+for (var i = 1; i <= 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+Predict: 3, 3, 3 (one shared i when callbacks run)
+
+Fix — change var → let:
+for (let i = 1; i <= 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+Predict: 1, 2, 3 (fresh i each iteration)
+
+Why: var is function-scoped so every callback shares the same i.
+let is block-scoped so each iteration gets its own i.
+`;
+document.querySelector("#task2Output").textContent = task2Lines;
+
+// Task 3 — private bank account
+const task3Lines = [];
+function createAccount(initial) {
+  let balance = initial;
+  return {
     deposit(amount) {
-        this.balance += amount;
-        return this.balance;
+      balance += amount;
     },
     withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return this.balance;
-        }
-        return "Insufficient funds";
-    }
+      balance -= amount;
+    },
+    getBalance() {
+      return balance;
+    },
+  };
+}
+const acc = createAccount(1000);
+acc.deposit(500);
+acc.withdraw(200);
+task3Lines.push("balance after deposit 500, withdraw 200: " + acc.getBalance());
+task3Lines.push("acc.balance is: " + acc.balance);
+document.querySelector("#task3Output").textContent = task3Lines.join("\n");
+
+// Bonus — memoize
+const task4Lines = [];
+function memoize(fn) {
+  const cache = {};
+  return function (n) {
+    if (n in cache) return cache[n];
+    cache[n] = fn(n);
+    return cache[n];
+  };
+}
+const expensiveSquare = (n) => {
+  task4Lines.push("computing... for " + n);
+  return n * n;
 };
-
-const task2Lines = [];
-task2Lines.push(`Start: holder = "${bankAccount.holder}", balance = ${bankAccount.balance}`);
-task2Lines.push("");
-
-const afterDeposit = bankAccount.deposit(1000);
-console.log("deposit(1000) →", afterDeposit);
-task2Lines.push(`deposit(1000) → ${afterDeposit}`);
-
-const afterWithdraw1 = bankAccount.withdraw(2000);
-console.log("withdraw(2000) →", afterWithdraw1);
-task2Lines.push(`withdraw(2000) → ${afterWithdraw1}`);
-
-const afterWithdraw2 = bankAccount.withdraw(10000);
-console.log("withdraw(10000) →", afterWithdraw2);
-task2Lines.push(`withdraw(10000) → ${JSON.stringify(afterWithdraw2)}`);
-
-task2Lines.push("");
-task2Lines.push(`Final balance: ${bankAccount.balance}`);
-
-document.querySelector("#task2Output").textContent = task2Lines.join("\n");
+const fastSquare = memoize(expensiveSquare);
+task4Lines.push("first 5: " + fastSquare(5));
+task4Lines.push("second 5: " + fastSquare(5));
+task4Lines.push("10: " + fastSquare(10));
+task4Lines.push("// cache object lives in the closure created by memoize");
+document.querySelector("#task4Output").textContent = task4Lines.join("\n");

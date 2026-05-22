@@ -1,68 +1,42 @@
-// —— Task 1 ——
-const student = {
-    name: "Anaya",
-    age: 21,
-    city: "Jaipur",
-    course: "B.Tech",
-    marks: [82, 76, 91]
-};
+"use strict";
+const t1 = [];
+for (let i = 1; i <= 10; i++) {
+  t1.push(`7 x ${i} = ${7 * i}`);
+}
+const evens = [];
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) evens.push(`7 x ${i} = ${7 * i}`);
+}
+document.querySelector("#task1Output").textContent = t1.join("\n") + "\n--even multipliers--\n" + evens.join("\n");
 
-const task1Lines = [];
+let s = 0;
+let j = 1;
+while (j <= 100) {
+  s += j;
+  j++;
+}
+let odd = 0;
+let k = 1;
+while (k <= 100) {
+  if (k % 2 === 1) odd += k;
+  k++;
+}
+document.querySelector("#task2Output").textContent = "sum1-100=" + s + " oddSum=" + odd;
 
-console.log(student);
-task1Lines.push("1) console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
+const names = ["Priya", "Aarav", "Riya", "Kabir", "Anaya"];
+let long = 0;
+const lines = [];
+for (const n of names) lines.push(n);
+for (const n of names) if (n.length > 4) long++;
+document.querySelector("#task3Output").textContent = lines.join(",") + " | long>4: " + long;
 
-console.log(student.name, student.age, student.marks[0]);
-task1Lines.push("");
-task1Lines.push("2) console.log(name, age, first mark)");
-task1Lines.push(`${student.name} ${student.age} ${student.marks[0]}`);
-
-student.email = "anaya@example.com";
-student.age = 22;
-delete student.city;
-
-console.log(student);
-task1Lines.push("");
-task1Lines.push("3) after email, age update, delete city — console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
-document.querySelector("#task1Output").textContent = task1Lines.join("\n");
-
-// —— Task 2 ——
-const bankAccount = {
-    holder: "Aarav",
-    balance: 5000,
-    deposit(amount) {
-        this.balance += amount;
-        return this.balance;
-    },
-    withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return this.balance;
-        }
-        return "Insufficient funds";
-    }
-};
-
-const task2Lines = [];
-task2Lines.push(`Start: holder = "${bankAccount.holder}", balance = ${bankAccount.balance}`);
-task2Lines.push("");
-
-const afterDeposit = bankAccount.deposit(1000);
-console.log("deposit(1000) →", afterDeposit);
-task2Lines.push(`deposit(1000) → ${afterDeposit}`);
-
-const afterWithdraw1 = bankAccount.withdraw(2000);
-console.log("withdraw(2000) →", afterWithdraw1);
-task2Lines.push(`withdraw(2000) → ${afterWithdraw1}`);
-
-const afterWithdraw2 = bankAccount.withdraw(10000);
-console.log("withdraw(10000) →", afterWithdraw2);
-task2Lines.push(`withdraw(10000) → ${JSON.stringify(afterWithdraw2)}`);
-
-task2Lines.push("");
-task2Lines.push(`Final balance: ${bankAccount.balance}`);
-
-document.querySelector("#task2Output").textContent = task2Lines.join("\n");
+let chars = [];
+for (const ch of "Jaipur") chars.push(ch);
+const student = { name: "Anaya", age: 21, city: "Jaipur", course: "B.Tech" };
+const pairs = [];
+let cnt = 0;
+for (const key in student) {
+  pairs.push(key + ": " + student[key]);
+  cnt++;
+}
+document.querySelector("#task4Output").textContent = chars.join("") + "\n" + pairs.join("\n") + "\ncount=" + cnt;

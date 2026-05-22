@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day4_Student_Doc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+/* Brighter syntax highlighting for code blocks */
+pre code .hljs-string,
+pre code .hljs-attr { color: #FFB86C !important; }      /* strings: warm orange - pops on dark */
+pre code .hljs-number,
+pre code .hljs-literal { color: #FF79C6 !important; }    /* numbers/true/false: pink - clearly distinct */
+pre code .hljs-keyword,
+pre code .hljs-built_in { color: #BD93F9 !important; }   /* const/let/if: purple - readable */
+pre code .hljs-comment { color: #6272A4 !important; font-style: italic; } /* comments: slate - recedes properly */
+pre code .hljs-title.function_,
+pre code .hljs-built_in { color: #8BE9FD !important; }   /* console, log: cyan */
+pre code { color: #F8F8F2 !important; }                  /* default text: warm white */
+pre { background: #282A36 !important; }                  /* slightly lighter bg than pure black */
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0D0D14; color: #F1F5F9; max-width: 900px; margin: auto; padding: 20px; line-height: 1.55; }
+h1 { color: #00E5A0; border-bottom: 3px solid #00E5A0; padding-bottom: 8px; }
+h2 { color: #00E5A0; margin-top: 28px; border-left: 4px solid #00E5A0; padding-left: 10px; }
+h3 { color: #F1F5F9; margin-top: 20px; }
+p, li, td, th { color: #E2E8F0; }
+code { background: #1E1E2E; padding: 2px 6px; border-radius: 3px; font-size: 0.92em; color: #A6E3A1; }
+pre { background: #12121A !important; color: #CDD6F4 !important; padding: 16px; border-radius: 6px; font-size: 1em; font-weight: 500; line-height: 1.6; border: 1px solid #2E2E42; overflow-x: auto; margin: 14px 0; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #16161F; }
+th { background: #00E5A0; color: #0D0D14; padding: 10px 12px; text-align: left; font-size: 0.9em; font-weight: 700; }
+td { padding: 10px 12px; border-bottom: 1px solid #2E2E42; font-size: 0.92em; color: #E2E8F0; }
+tr:nth-child(even) td { background: #1A1A26; }
+.part-banner { background: rgba(0,229,160,0.15); color: #00E5A0; text-align: center; padding: 10px; border-radius: 4px; font-weight: 700; font-size: 0.9em; letter-spacing: 1px; margin: 25px 0 15px; border: 1px solid #00E5A0; }
+.part-orange { background: rgba(255,140,66,0.15); color: #FF8C42; border-color: #FF8C42; }
+.part-purple { background: rgba(192,132,252,0.15); color: #C084FC; border-color: #C084FC; }
+.topic { background: #00E5A0; color: #0D0D14; padding: 12px 16px; border-radius: 6px; margin: 24px 0 15px; font-weight: 700; }
+.topic .n { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-size: 0.85em; color: #F1F5F9; }
+.topic .sub { float: right; opacity: 0.85; font-weight: 400; font-size: 0.88em; }
+.section-pill { display: inline-block; padding: 6px 14px; border-radius: 3px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; margin: 18px 0 12px; color: #0D0D14; }
+.sp-blue { background: #4D9FFF; } .sp-green { background: #00E5A0; } .sp-orange { background: #FF8C42; }
+.sp-red { background: #FF4D6D; } .sp-purple { background: #C084FC; } .sp-yellow { background: #FFD60A; }
+.sp-teal { background: #2DD4BF; }
+.card { background: #16161F; border: 1px solid #2E2E42; border-radius: 6px; padding: 14px; margin: 10px 0; }
+.card.blue { border-left: 4px solid #4D9FFF; }
+.card.yellow { border-left: 4px solid #FFD60A; }
+.card.green { border-left: 4px solid #00E5A0; }
+.card.orange { border-left: 4px solid #FF8C42; }
+.card.purple { border-left: 4px solid #C084FC; }
+.card.red { border-left: 4px solid #FF4D6D; }
+.card.teal { border-left: 4px solid #2DD4BF; }
+.think-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center; margin: 10px 0; }
+.think-row .code { background: #12121A; padding: 12px 14px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #CDD6F4; border: 1px solid #2E2E42; }
+.think-row .arrow { text-align: center; color: #00E5A0; font-weight: 700; font-size: 1.2em; }
+.think-row .blank { background: #0D0D14; padding: 12px 14px; border-radius: 4px; border: 1px dashed #4B5563; color: #6B7280; font-size: 0.85em; font-style: italic; min-height: 18px; }
+.task-card { background: #16161F; padding: 14px 18px; margin: 14px 0; border-radius: 4px; border-left: 4px solid #00E5A0; }
+.task-card.blue { border-left-color: #4D9FFF; }
+.task-card.orange { border-left-color: #FF8C42; }
+.task-card.green { border-left-color: #00E5A0; }
+.task-card.purple { border-left-color: #C084FC; }
+.task-card .title { color: #00E5A0; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.task-card.blue .title { color: #4D9FFF; }
+.task-card.orange .title { color: #FF8C42; }
+.task-card.purple .title { color: #C084FC; }
+.task-card ul { margin: 8px 0; padding-left: 22px; }
+.task-card li { color: #E2E8F0; margin: 5px 0; line-height: 1.5; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.78em; font-weight: 700; color: #0D0D14; margin-right: 8px; }
+.b-blue { background: #4D9FFF; } .b-orange { background: #FF8C42; } .b-green { background: #00E5A0; } .b-purple { background: #C084FC; }
+.cover { background: #16161F; padding: 35px 30px; border-left: 6px solid #00E5A0; margin-bottom: 25px; border-radius: 4px; }
+.cover h1 { color: #00E5A0; font-size: 2.4em; border: none; margin: 0; padding: 0; }
+.cover .sub { color: #9CA3AF; font-size: 1.05em; margin: 10px 0 22px; }
+.meta-cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.meta-cards > div { background: rgba(255,255,255,0.06); padding: 10px 18px; border-radius: 4px; min-width: 90px; }
+.meta-cards strong { color: #00E5A0; font-size: 1.4em; display: block; }
+.meta-cards span { color: #9CA3AF; font-size: 0.72em; letter-spacing: 1px; }
+hr { border: none; border-top: 1px solid #2E2E42; margin: 30px 0; }
+</style>
+<div class="cover">
+<h1>Day 4 — Control Flow</h1>
+<div class="sub">Student Document · Basic JS · Session 4 of 12</div>
+<div class="meta-cards">
+<div><strong>60 min</strong><span>TOTAL</span></div>
+<div><strong>30 min</strong><span>TEACHING</span></div>
+<div><strong>15 min</strong><span>HANDS-ON</span></div>
+<div><strong>15 min</strong><span>Q&amp;A</span></div>
+</div>
+</div>
+<h3 id="todays-topics">Today's Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>The <code>if</code> Statement</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>if / else if / else</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nesting &amp; Why to Avoid It</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>switch</code> Statement</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Truthy &amp; Falsy (DEEP)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Guard Clauses (Clean Code)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner">PART 1 — FOLLOW ALONG WITH YOUR INSTRUCTOR</div>
+<div class="topic"><span class="n">Topic 1</span> The if Statement <span class="sub">if (condition) { ... }</span></div>
+<p><span class="section-pill sp-yellow">VISUAL REFERENCE</span></p>
+<div class="card green">
+<strong>Syntax:</strong> &nbsp; <code>if (condition) { ...code to run if true }</code><br>
+<strong>Rule:</strong> &nbsp; If the condition is true, the block runs. If false, skipped.
+</div>
+<div class="card teal">
+<strong>Always use curly braces</strong> — even for one-liners. Skipping them causes bugs when you later add a second line.
+</div>
+<p><span class="section-pill sp-orange">FOLLOW ALONG — predict each output</span></p>
+<div class="think-row">
+<div class="code">const age = 20;<br>if (age >= 18) console.log("vote");</div>
+<div class="arrow">→</div>
+<div class="blank">your answer</div>
+</div>
+<div class="think-row">
+<div class="code">const score = 30;<br>if (score > 50) console.log("pass");</div>
+<div class="arrow">→</div>
+<div class="blank">your answer</div>
+</div>
+<div class="topic"><span class="n">Topic 2</span> if / else if / else <span class="sub">Decision chains for ranges</span></div>
+<p><span class="section-pill sp-yellow">VISUAL REFERENCE</span></p>
+<div class="card green">
+<strong>Order matters:</strong> JS stops at the FIRST true condition. Always order from most specific to least specific.
+</div>
+<div class="card red">
+<strong>⚠️ Common bug:</strong> Writing <code>marks &gt;= 60</code> before <code>marks &gt;= 90</code> — the second is unreachable because 90 is also &gt;= 60.
+</div>
+<p><span class="section-pill sp-orange">FOLLOW ALONG — what grade does Aarav get?</span></p>
+<div class="think-row">
+<div class="code">marks = 85<br>if (marks >= 90) "A"<br>else if (marks >= 75) "B"<br>else if (marks >= 60) "C"<br>else "F"</div>
+<div class="arrow">→</div>
+<div class="blank">grade?</div>
+</div>
+<div class="think-row">
+<div class="code">marks = 50 → grade?</div>
+<div class="arrow">→</div>
+<div class="blank">your answer</div>
+</div>
+<div class="think-row">
+<div class="code">marks = 95 → grade?</div>
+<div class="arrow">→</div>
+<div class="blank">your answer</div>
+</div>
+<div class="topic"><span class="n">Topic 3</span> Nesting &amp; Why to Avoid It <span class="sub">Code that drifts right is a smell</span></div>
+<div class="card orange">
+<strong>The pyramid of doom:</strong> putting <code>if</code> inside <code>if</code> inside <code>if</code>. Allowed, but hard to read. Each level pushes code right and adds mental effort.
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Hard to follow:</span>
+<span class="hljs-keyword">if</span> (user) {
+  <span class="hljs-keyword">if</span> (user.<span class="hljs-property">isActive</span>) {
+    <span class="hljs-keyword">if</span> (user.<span class="hljs-property">age</span> &gt;= <span class="hljs-number">18</span>) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Access granted&quot;</span>);
+    }
+  }
+}
+</div></code></pre>
+<p>We'll fix this with <strong>guard clauses</strong> in Topic 6.</p>
+<div class="topic"><span class="n">Topic 4</span> switch Statement <span class="sub">Many exact-match values, one variable</span></div>
+<p><span class="section-pill sp-yellow">VISUAL REFERENCE</span></p>
+<div class="card blue">
+<strong>Use when:</strong> comparing ONE variable to many exact values (day name, status code, role).
+</div>
+<div class="card green">
+<strong>3 keywords:</strong> &nbsp; <code>case</code> (match), &nbsp; <code>break</code> (exit), &nbsp; <code>default</code> (fallback).
+</div>
+<div class="card red">
+<strong>⚠️ Forget <code>break</code> → fall-through!</strong> Execution continues into the NEXT case. The #1 switch bug.
+</div>
+<p><span class="section-pill sp-orange">FOLLOW ALONG</span></p>
+<div class="think-row">
+<div class="code">day = "Tuesday"<br>switch (day) { case "Tuesday": "Second day"; ... }</div>
+<div class="arrow">→</div>
+<div class="blank">output?</div>
+</div>
+<div class="think-row">
+<div class="code">day = "Saturday"<br>case "Saturday":<br>case "Sunday": "Weekend"</div>
+<div class="arrow">→</div>
+<div class="blank">output?</div>
+</div>
+<div class="think-row">
+<div class="code">case "5": &nbsp;... &nbsp;value = 5 (number)<br>does it match?</div>
+<div class="arrow">→</div>
+<div class="blank">yes or no?</div>
+</div>
+<div class="topic"><span class="n">Topic 5</span> Truthy &amp; Falsy (DEEP) <span class="sub">The 6 falsy values — memorise!</span></div>
+<p><span class="section-pill sp-red">CRITICAL — MEMORISE THIS</span></p>
+<div class="card red">
+<strong>The 6 falsy values:</strong><br>
+&nbsp; 1. <code>false</code> &nbsp;&nbsp; 2. <code>0</code> &nbsp;&nbsp; 3. <code>""</code> (empty string) &nbsp;&nbsp; 4. <code>null</code> &nbsp;&nbsp; 5. <code>undefined</code> &nbsp;&nbsp; 6. <code>NaN</code><br>
+<strong>Everything else is truthy.</strong>
+</div>
+<div class="card orange">
+<strong>Surprises:</strong> &nbsp; <code>"0"</code> (string) → <strong>truthy</strong> &nbsp; · &nbsp; <code>[]</code> → <strong>truthy</strong> &nbsp; · &nbsp; <code>{}</code> → <strong>truthy</strong> &nbsp; · &nbsp; <code>" "</code> (space) → <strong>truthy</strong>
+</div>
+<p><span class="section-pill sp-orange">FOLLOW ALONG — truthy or falsy?</span></p>
+<div class="think-row">
+<div class="code">if (0) { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="think-row">
+<div class="code">if ("0") { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="think-row">
+<div class="code">if ([]) { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="think-row">
+<div class="code">if (null) { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="think-row">
+<div class="code">if (NaN) { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="think-row">
+<div class="code">if ("false") { ... }</div>
+<div class="arrow">→</div>
+<div class="blank">runs?</div>
+</div>
+<div class="topic"><span class="n">Topic 6</span> Guard Clauses — Clean Code <span class="sub">Flatten nested conditions with early return</span></div>
+<div class="card purple">
+<strong>The pattern:</strong> handle invalid cases at the top with <code>return</code>. The "happy path" sits at the bottom with zero indentation.
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">// BEFORE — nested:</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">checkAccess</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-keyword">if</span> (user) {
+    <span class="hljs-keyword">if</span> (user.<span class="hljs-property">isActive</span>) {
+      <span class="hljs-keyword">if</span> (user.<span class="hljs-property">age</span> &gt;= <span class="hljs-number">18</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Access granted&quot;</span>);
+      }
+    }
+  }
+}
+
+<span class="hljs-comment">// AFTER — guard clauses:</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">checkAccess</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-keyword">if</span> (!user) <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">if</span> (!user.<span class="hljs-property">isActive</span>) <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">if</span> (user.<span class="hljs-property">age</span> &lt; <span class="hljs-number">18</span>) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Access granted&quot;</span>);
+}
+</div></code></pre>
+<div class="card green">
+<strong>Habit:</strong> every time you write <code>if</code> inside <code>if</code> inside <code>if</code>, ask yourself — can I flip and return early?
+</div>
+<hr>
+<div class="part-banner part-orange">PART 2 — HANDS-ON EXERCISE (15 MIN)</div>
+<p>Open <code>index.js</code> or JSFiddle. Predict each output BEFORE running — that's where learning happens.</p>
+<div class="task-card blue">
+<div class="title"><span class="badge b-blue">Task 1</span> Grading System</div>
+<ul>
+<li>Declare a <code>const marks = 72;</code>.</li>
+<li>Use <code>if / else if / else</code> to log a grade based on these ranges:</li>
+<li>90+ → "A", 75–89 → "B", 60–74 → "C", below 60 → "F".</li>
+<li>Test by changing <code>marks</code> to 95, 50, and 75 — confirm each prints the right grade.</li>
+<li>Bonus: add a check at the top — if marks is negative or above 100, log "Invalid marks" and stop.</li>
+</ul>
+</div>
+<div class="task-card orange">
+<div class="title"><span class="badge b-orange">Task 2</span> Day Type with switch</div>
+<ul>
+<li>Declare <code>const day = "Wednesday";</code>.</li>
+<li>Write a <code>switch</code> statement that logs:</li>
+<li>"Weekday" for Monday–Friday</li>
+<li>"Weekend" for Saturday and Sunday</li>
+<li>"Invalid day" for anything else</li>
+<li>Use intentional fall-through to group the weekday cases — don't repeat code.</li>
+<li>Test with: <code>"Monday"</code>, <code>"Saturday"</code>, <code>"Holiday"</code>.</li>
+</ul>
+</div>
+<div class="task-card green">
+<div class="title"><span class="badge b-green">Task 3</span> Truthy / Falsy Detective</div>
+<ul>
+<li>Predict whether each value is <strong>truthy</strong> or <strong>falsy</strong>, write your guess as a comment, then verify with <code>if (value) { ... } else { ... }</code>:</li>
+<li><code>0</code>, <code>"0"</code>, <code>""</code>, <code>" "</code> (single space), <code>null</code>, <code>undefined</code>, <code>NaN</code>, <code>[]</code>, <code>{}</code>, <code>"false"</code></li>
+<li>Below your code, write a short comment listing the 6 falsy values from memory.</li>
+</ul>
+</div>
+<div class="task-card purple">
+<div class="title"><span class="badge b-purple">Bonus</span> Guard Clauses Refactor</div>
+<ul>
+<li>Copy the nested function below into your file. It logs whether a user can post a comment.</li>
+<li>Refactor it using <strong>guard clauses</strong> — flip each condition and <code>return</code> early.</li>
+<li>Test with: a valid user, a user with <code>isBanned = true</code>, and <code>null</code>.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">// Nested version — refactor this:</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">canComment</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-keyword">if</span> (user) {
+    <span class="hljs-keyword">if</span> (!user.<span class="hljs-property">isBanned</span>) {
+      <span class="hljs-keyword">if</span> (user.<span class="hljs-property">age</span> &gt;= <span class="hljs-number">13</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Comment allowed&quot;</span>);
+      }
+    }
+  }
+}
+</div></code></pre>
+</div>
+<hr>
+<div class="part-banner part-purple">PART 3 — VISUAL SUMMARY</div>
+<h3 id="if--else-if--else">if / else if / else</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if (cond) { }</code></td>
+<td>Simple yes/no decision</td>
+</tr>
+<tr>
+<td><code>if / else</code></td>
+<td>Two-way choice</td>
+</tr>
+<tr>
+<td><code>if / else if / else</code></td>
+<td>Multiple ranges or conditions</td>
+</tr>
+<tr>
+<td>Guard clause <code>if (!x) return;</code></td>
+<td>Flatten nested conditions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="switch">switch</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case x:</code></td>
+<td>Match value with <code>===</code></td>
+</tr>
+<tr>
+<td><code>break;</code></td>
+<td>Exit switch (don't forget!)</td>
+</tr>
+<tr>
+<td><code>default:</code></td>
+<td>Catch-all (like <code>else</code>)</td>
+</tr>
+<tr>
+<td>Stacked <code>case</code></td>
+<td>Group cases (intentional fall-through)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="truthy--falsy">Truthy &amp; Falsy</h3>
+<table>
+<thead>
+<tr>
+<th>Falsy (only 6)</th>
+<th>Truthy (everything else)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>false</code></td>
+<td><code>&quot;0&quot;</code> (string)</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>[]</code> (empty array)</td>
+</tr>
+<tr>
+<td><code>&quot;&quot;</code> (empty string)</td>
+<td><code>{}</code> (empty object)</td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><code>&quot; &quot;</code> (space)</td>
+</tr>
+<tr>
+<td><code>undefined</code></td>
+<td><code>&quot;false&quot;</code> (string)</td>
+</tr>
+<tr>
+<td><code>NaN</code></td>
+<td>any non-zero number</td>
+</tr>
+</tbody>
+</table>
+<h3 id="choosing-your-tool">Choosing Your Tool</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One condition, simple action</td>
+<td><code>if</code></td>
+</tr>
+<tr>
+<td>Two paths</td>
+<td><code>if / else</code> or ternary</td>
+</tr>
+<tr>
+<td>Multiple ranges</td>
+<td><code>if / else if / else</code></td>
+</tr>
+<tr>
+<td>One variable, many exact values</td>
+<td><code>switch</code></td>
+</tr>
+<tr>
+<td>Many nested checks</td>
+<td>guard clauses</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

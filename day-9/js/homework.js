@@ -1,22 +1,9 @@
-const book = {
-    title: "The Guide",
-    author: "R. K. Narayan",
-    year: 1958,
-    pages: 240,
-    summary() {
-        return `${this.title} by ${this.author} (${this.year})`;
-    }
-};
-
-const key = "title";
-
-console.log(book[key]);
-
-const lines = [];
-lines.push(`Variable key: ${JSON.stringify(key)}`);
-lines.push(`book[key] (title): ${book[key]}`);
-lines.push("");
-lines.push("summary():");
-lines.push(book.summary());
-
-document.querySelector("#homeworkOutput").textContent = lines.join("\n");
+"use strict";
+document.querySelector("#task1Output").textContent =
+  "Tagged templates let you parse template literal parts with a function — useful for i18n or DSLs.";
+let a = 1,
+  b = 2;
+[a, b] = [b, a];
+document.querySelector("#task2Output").textContent = "swapped " + a + " " + b;
+const add5 = (n) => n + 5;
+document.querySelector("#task3Output").textContent = String(add5(10));

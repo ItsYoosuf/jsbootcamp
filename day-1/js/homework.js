@@ -1,22 +1,12 @@
-const book = {
-    title: "The Guide",
-    author: "R. K. Narayan",
-    year: 1958,
-    pages: 240,
-    summary() {
-        return `${this.title} by ${this.author} (${this.year})`;
-    }
-};
+"use strict";
+const t1 = [
+  "Chrome uses the V8 engine (same family as Node).",
+  "console.log('Favorite site:', 'https://example.com');",
+].join("\n");
+document.querySelector("#task1Output").textContent = t1;
 
-const key = "title";
+const t2 = ["const pi = 3.14159;", "let count = 0; count++;", "log count => 1"].join("\n");
+document.querySelector("#task2Output").textContent = t2;
 
-console.log(book[key]);
-
-const lines = [];
-lines.push(`Variable key: ${JSON.stringify(key)}`);
-lines.push(`book[key] (title): ${book[key]}`);
-lines.push("");
-lines.push("summary():");
-lines.push(book.summary());
-
-document.querySelector("#homeworkOutput").textContent = lines.join("\n");
+document.querySelector("#task3Output").textContent =
+  "Read MDN: var — understand hoisting and why let/const replaced var for most code.";

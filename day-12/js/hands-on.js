@@ -1,68 +1,51 @@
-// —— Task 1 ——
-const student = {
-    name: "Anaya",
-    age: 21,
-    city: "Jaipur",
-    course: "B.Tech",
-    marks: [82, 76, 91]
-};
+"use strict";
+function safeParse(str) {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return null;
+  }
+}
+document.querySelector("#task1Output").textContent =
+  "valid -> " + JSON.stringify(safeParse('{"name":"Priya"}')) + "\nbroken -> " + String(safeParse('{"name":"Priya"'));
 
-const task1Lines = [];
+function setAge(age) {
+  if (typeof age !== "number") throw new Error("Age must be a number");
+  if (age < 0 || age > 120) throw new Error("Age must be 0–120");
+  return age;
+}
+const ages = [];
+function tryAge(a) {
+  try {
+    ages.push(String(setAge(a)));
+  } catch (e) {
+    ages.push(e.message);
+  }
+}
+tryAge(25);
+tryAge("twenty");
+tryAge(200);
+document.querySelector("#task2Output").textContent = ages.join(" | ");
 
-console.log(student);
-task1Lines.push("1) console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
+class ValidationError extends Error {
+  constructor(msg) {
+    super(msg);
+    this.name = "ValidationError";
+  }
+}
+function validateEmail(email) {
+  if (!email.includes("@")) throw new ValidationError("bad email");
+  return "ok";
+}
+let mailOut = [];
+for (const m of ["priya@example.com", "priya-no-at"]) {
+  try {
+    mailOut.push(validateEmail(m));
+  } catch (err) {
+    mailOut.push(err instanceof ValidationError ? "ValidationError: " + err.message : String(err));
+  }
+}
+document.querySelector("#task3Output").textContent = mailOut.join(" | ");
 
-console.log(student.name, student.age, student.marks[0]);
-task1Lines.push("");
-task1Lines.push("2) console.log(name, age, first mark)");
-task1Lines.push(`${student.name} ${student.age} ${student.marks[0]}`);
-
-student.email = "anaya@example.com";
-student.age = 22;
-delete student.city;
-
-console.log(student);
-task1Lines.push("");
-task1Lines.push("3) after email, age update, delete city — console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
-document.querySelector("#task1Output").textContent = task1Lines.join("\n");
-
-// —— Task 2 ——
-const bankAccount = {
-    holder: "Aarav",
-    balance: 5000,
-    deposit(amount) {
-        this.balance += amount;
-        return this.balance;
-    },
-    withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return this.balance;
-        }
-        return "Insufficient funds";
-    }
-};
-
-const task2Lines = [];
-task2Lines.push(`Start: holder = "${bankAccount.holder}", balance = ${bankAccount.balance}`);
-task2Lines.push("");
-
-const afterDeposit = bankAccount.deposit(1000);
-console.log("deposit(1000) →", afterDeposit);
-task2Lines.push(`deposit(1000) → ${afterDeposit}`);
-
-const afterWithdraw1 = bankAccount.withdraw(2000);
-console.log("withdraw(2000) →", afterWithdraw1);
-task2Lines.push(`withdraw(2000) → ${afterWithdraw1}`);
-
-const afterWithdraw2 = bankAccount.withdraw(10000);
-console.log("withdraw(10000) →", afterWithdraw2);
-task2Lines.push(`withdraw(10000) → ${JSON.stringify(afterWithdraw2)}`);
-
-task2Lines.push("");
-task2Lines.push(`Final balance: ${bankAccount.balance}`);
-
-document.querySelector("#task2Output").textContent = task2Lines.join("\n");
+document.querySelector("#task4Output").textContent =
+  "Use mathUtils.js for named exports; use a different filename (e.g. formatUtils.js) for default export of formatPrice — avoid duplicate names.";

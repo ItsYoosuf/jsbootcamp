@@ -1,24 +1,13 @@
-function kmToMiles(km) {
-    return km * 0.621;
+"use strict";
+function repeat(n, fn) {
+  for (let i = 0; i < n; i++) fn();
 }
-
-function gstAmount(price, rate = 18) {
-    return price * (rate / 100);
-}
-
-document.querySelector("#homeworkOut1").textContent =
-    "kmToMiles(10)     → " +
-    kmToMiles(10) +
-    "\n" +
-    "kmToMiles(100)    → " +
-    kmToMiles(100);
-
-document.querySelector("#homeworkOut2").textContent =
-    "gstAmount(1000)       → " +
-    gstAmount(1000) +
-    "   (18% default)\n" +
-    "gstAmount(1000, 12)   → " +
-    gstAmount(1000, 12);
-
-console.log(kmToMiles(10), kmToMiles(100));
-console.log(gstAmount(1000), gstAmount(1000, 12));
+let c = 0;
+repeat(4, () => c++);
+document.querySelector("#task1Output").textContent = "called " + c;
+const maxOf = (...nums) => Math.max(...nums);
+document.querySelector("#task2Output").textContent = String(maxOf(3, 9, 2));
+document.querySelector("#task3Output").textContent = (function () {
+  const secret = 42;
+  return "secret=" + secret;
+})() + " (IIFE hides secret from global scope)";

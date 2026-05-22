@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day11_Student_Doc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+pre code .hljs-string, pre code .hljs-attr { color: #FFB86C !important; }
+pre code .hljs-number, pre code .hljs-literal { color: #FF79C6 !important; }
+pre code .hljs-keyword, pre code .hljs-built_in { color: #BD93F9 !important; }
+pre code .hljs-comment { color: #6272A4 !important; font-style: italic; }
+pre code .hljs-title.function_, pre code .hljs-built_in { color: #8BE9FD !important; }
+pre code { color: #F8F8F2 !important; }
+pre { background: #282A36 !important; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0D0D14; color: #F1F5F9; max-width: 900px; margin: auto; padding: 20px; line-height: 1.55; }
+h1 { color: #4D9FFF; border-bottom: 3px solid #4D9FFF; padding-bottom: 8px; }
+h2 { color: #4D9FFF; margin-top: 28px; border-left: 4px solid #4D9FFF; padding-left: 10px; }
+h3 { color: #F1F5F9; margin-top: 20px; }
+p, li, td, th { color: #E2E8F0; }
+code { background: #1E1E2E; padding: 2px 6px; border-radius: 3px; font-size: 0.92em; color: #A6E3A1; }
+pre { background: #12121A !important; color: #CDD6F4 !important; padding: 16px; border-radius: 6px; font-size: 1em; font-weight: 500; line-height: 1.6; border: 1px solid #2E2E42; overflow-x: auto; margin: 14px 0; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #16161F; }
+th { background: #4D9FFF; color: #0D0D14; padding: 10px 12px; text-align: left; font-size: 0.9em; font-weight: 700; }
+td { padding: 10px 12px; border-bottom: 1px solid #2E2E42; font-size: 0.92em; color: #E2E8F0; }
+tr:nth-child(even) td { background: #1A1A26; }
+.part-banner { background: rgba(77,159,255,0.15); color: #4D9FFF; text-align: center; padding: 10px; border-radius: 4px; font-weight: 700; font-size: 0.9em; letter-spacing: 1px; margin: 25px 0 15px; border: 1px solid #4D9FFF; }
+.part-orange { background: rgba(255,140,66,0.15); color: #FF8C42; border-color: #FF8C42; }
+.part-purple { background: rgba(192,132,252,0.15); color: #C084FC; border-color: #C084FC; }
+.topic { background: #4D9FFF; color: #0D0D14; padding: 12px 16px; border-radius: 6px; margin: 24px 0 15px; font-weight: 700; }
+.topic .n { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-size: 0.85em; color: #F1F5F9; }
+.topic .sub { float: right; opacity: 0.85; font-weight: 400; font-size: 0.88em; }
+.section-pill { display: inline-block; padding: 6px 14px; border-radius: 3px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; margin: 18px 0 12px; color: #0D0D14; }
+.sp-blue { background: #4D9FFF; } .sp-green { background: #00E5A0; } .sp-orange { background: #FF8C42; }
+.sp-red { background: #FF4D6D; color: white; } .sp-purple { background: #C084FC; } .sp-yellow { background: #FFD60A; }
+.sp-teal { background: #2DD4BF; }
+.card { background: #16161F; border: 1px solid #2E2E42; border-radius: 6px; padding: 14px; margin: 10px 0; }
+.card.blue { border-left: 4px solid #4D9FFF; }
+.card.yellow { border-left: 4px solid #FFD60A; }
+.card.green { border-left: 4px solid #00E5A0; }
+.card.orange { border-left: 4px solid #FF8C42; }
+.card.purple { border-left: 4px solid #C084FC; }
+.card.red { border-left: 4px solid #FF4D6D; }
+.card.teal { border-left: 4px solid #2DD4BF; }
+.think-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: start; margin: 10px 0; }
+.think-row .code { background: #12121A; padding: 12px 14px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #CDD6F4; border: 1px solid #2E2E42; line-height: 1.5; }
+.think-row .arrow { text-align: center; color: #4D9FFF; font-weight: 700; font-size: 1.2em; padding-top: 12px; }
+.think-row .blank { background: #0D0D14; padding: 12px 14px; border-radius: 4px; border: 1px dashed #4B5563; color: #6B7280; font-size: 0.85em; font-style: italic; min-height: 18px; }
+.task-card { background: #16161F; padding: 14px 18px; margin: 14px 0; border-radius: 4px; border-left: 4px solid #4D9FFF; }
+.task-card.blue { border-left-color: #4D9FFF; }
+.task-card.orange { border-left-color: #FF8C42; }
+.task-card.green { border-left-color: #00E5A0; }
+.task-card.purple { border-left-color: #C084FC; }
+.task-card .title { color: #4D9FFF; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.task-card.blue .title { color: #4D9FFF; }
+.task-card.orange .title { color: #FF8C42; }
+.task-card.green .title { color: #00E5A0; }
+.task-card.purple .title { color: #C084FC; }
+.task-card ul { margin: 8px 0; padding-left: 22px; }
+.task-card li { color: #E2E8F0; margin: 5px 0; line-height: 1.5; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.78em; font-weight: 700; color: #0D0D14; margin-right: 8px; }
+.b-blue { background: #4D9FFF; } .b-orange { background: #FF8C42; } .b-green { background: #00E5A0; } .b-purple { background: #C084FC; }
+.cover { background: #16161F; padding: 35px 30px; border-left: 6px solid #4D9FFF; margin-bottom: 25px; border-radius: 4px; }
+.cover h1 { color: #4D9FFF; font-size: 2.4em; border: none; margin: 0; padding: 0; }
+.cover .sub { color: #9CA3AF; font-size: 1.05em; margin: 10px 0 22px; }
+.meta-cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.meta-cards > div { background: rgba(255,255,255,0.06); padding: 10px 18px; border-radius: 4px; min-width: 90px; }
+.meta-cards strong { color: #4D9FFF; font-size: 1.4em; display: block; }
+.meta-cards span { color: #9CA3AF; font-size: 0.72em; letter-spacing: 1px; }
+.hw-card { background: #16161F; padding: 16px 22px; border-left: 4px solid #C084FC; border-radius: 4px; margin: 14px 0; }
+.hw-card .title { color: #C084FC; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.hw-card ol { margin: 8px 0; padding-left: 22px; color: #E2E8F0; }
+.hw-card li { margin: 6px 0; line-height: 1.55; }
+hr { border: none; border-top: 1px solid #2E2E42; margin: 30px 0; }
+</style>
+<div class="cover">
+<h1>Day 11 — Events &amp; Event Handling</h1>
+<div class="sub">Student Document · Basic JS · Session 11 of 12</div>
+<div class="meta-cards">
+<div><strong>60 min</strong><span>TOTAL</span></div>
+<div><strong>30 min</strong><span>TEACHING</span></div>
+<div><strong>15 min</strong><span>HANDS-ON</span></div>
+<div><strong>15 min</strong><span>Q&amp;A</span></div>
+</div>
+</div>
+<h3 id="todays-topics">Today's Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>addEventListener</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>The Event Object (<code>target</code>, <code>key</code>, <code>value</code>)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>preventDefault</code> &amp; <code>stopPropagation</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mouse Events</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Keyboard Events</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Bubbling &amp; Event Delegation</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner">PART 1 — FOLLOW ALONG WITH YOUR INSTRUCTOR</div>
+<div class="topic"><span class="n">Topic 1</span> addEventListener <span class="sub">element + event name + handler fn</span></div>
+<div class="card blue">
+<strong>Pattern:</strong> &nbsp; <code>element.addEventListener("eventName", fn)</code><br>
+Multiple listeners allowed. Cleanly removable with named handlers.
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#my-btn&quot;</span>);
+
+btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Button clicked!&quot;</span>);
+});
+
+<span class="hljs-comment">// You can attach multiple listeners — all run</span>
+btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Second handler also fires&quot;</span>);
+});
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// To remove a listener, you need a NAMED handler — not an arrow inline</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Handled&quot;</span>);
+}
+
+btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, handleClick);
+btn.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, handleClick);
+</div></code></pre>
+<div class="topic"><span class="n">Topic 2</span> The Event Object <span class="sub">e.target · e.key · e.target.value</span></div>
+<p><span class="section-pill sp-yellow">VISUAL REFERENCE</span></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>e.type</code></td>
+<td>The event name (<code>&quot;click&quot;</code>)</td>
+</tr>
+<tr>
+<td><code>e.target</code></td>
+<td>The element it happened on</td>
+</tr>
+<tr>
+<td><code>e.target.value</code></td>
+<td>Input's current value</td>
+</tr>
+<tr>
+<td><code>e.target.textContent</code></td>
+<td>Element's text</td>
+</tr>
+<tr>
+<td><code>e.key</code></td>
+<td>Which key (keyboard)</td>
+</tr>
+<tr>
+<td><code>e.clientX / clientY</code></td>
+<td>Mouse coordinates</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#my-btn&quot;</span>);
+
+btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">type</span>);            <span class="hljs-comment">// &quot;click&quot;</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">target</span>);          <span class="hljs-comment">// the &lt;button&gt; element</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">textContent</span>);   <span class="hljs-comment">// its text</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">clientX</span>, e.<span class="hljs-property">clientY</span>);   <span class="hljs-comment">// mouse coordinates</span>
+});
+
+<span class="hljs-comment">// Input — e.target.value is what the user typed</span>
+<span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#name-input&quot;</span>);
+input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;input&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;User typed:&quot;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>);
+});
+
+<span class="hljs-comment">// Keyboard — e.key is which key</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Pressed:&quot;</span>, e.<span class="hljs-property">key</span>);   <span class="hljs-comment">// &quot;a&quot;, &quot;Enter&quot;, &quot;ArrowUp&quot;</span>
+});
+</div></code></pre>
+<p><span class="section-pill sp-orange">FOLLOW ALONG</span></p>
+<div class="think-row">
+<div class="code">
+btn.addEventListener("click", e =&gt; {<br>
+&nbsp;&nbsp;console.log(e.type);<br>
+});
+</div>
+<div class="arrow">→</div>
+<div class="blank">e.type is?</div>
+</div>
+<div class="think-row">
+<div class="code">
+input.addEventListener("input", e =&gt; {<br>
+&nbsp;&nbsp;console.log(e.target.value);<br>
+});
+</div>
+<div class="arrow">→</div>
+<div class="blank">logs what?</div>
+</div>
+<div class="topic"><span class="n">Topic 3</span> preventDefault &amp; stopPropagation <span class="sub">Override default behaviour</span></div>
+<div class="card orange">
+Some elements have <strong>built-in defaults</strong>:<br>
+• Forms submit and reload the page.<br>
+• Links navigate.<br>
+• Right-click opens browser menu.<br>
+<code>e.preventDefault()</code> cancels them.
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#login-form&quot;</span>);
+
+form.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;submit&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  e.<span class="hljs-title function_">preventDefault</span>();     <span class="hljs-comment">// stop the page reload</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Custom form handling here&quot;</span>);
+  <span class="hljs-comment">// ... validate, send via fetch, etc.</span>
+});
+
+<span class="hljs-comment">// Links</span>
+<span class="hljs-keyword">const</span> link = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;a&quot;</span>);
+link.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  e.<span class="hljs-title function_">preventDefault</span>();     <span class="hljs-comment">// don&#x27;t navigate</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Intercepted&quot;</span>);
+});
+
+<span class="hljs-comment">// Right-click — disable browser menu (rarely good UX, but you can)</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;contextmenu&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  e.<span class="hljs-title function_">preventDefault</span>();
+});
+</div></code></pre>
+<div class="topic"><span class="n">Topic 4</span> Mouse Events <span class="sub">click · dblclick · mouseover · contextmenu</span></div>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Fires on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>click</code></td>
+<td>Single click</td>
+</tr>
+<tr>
+<td><code>dblclick</code></td>
+<td>Double click</td>
+</tr>
+<tr>
+<td><code>mouseover</code></td>
+<td>Pointer enters</td>
+</tr>
+<tr>
+<td><code>mouseout</code></td>
+<td>Pointer leaves</td>
+</tr>
+<tr>
+<td><code>contextmenu</code></td>
+<td>Right click</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> box = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#box&quot;</span>);
+
+box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>,        <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;click&quot;</span>));
+box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;dblclick&quot;</span>,     <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;double click&quot;</span>));
+box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;mouseover&quot;</span>,    <span class="hljs-function">() =&gt;</span> box.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;hover&quot;</span>));
+box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;mouseout&quot;</span>,     <span class="hljs-function">() =&gt;</span> box.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&quot;hover&quot;</span>));
+box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;contextmenu&quot;</span>,  <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  e.<span class="hljs-title function_">preventDefault</span>();
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;right-clicked at&quot;</span>, e.<span class="hljs-property">clientX</span>, e.<span class="hljs-property">clientY</span>);
+});
+</div></code></pre>
+<div class="topic"><span class="n">Topic 5</span> Keyboard Events <span class="sub">keydown · keyup · input</span></div>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input</code></td>
+<td>&quot;As you type&quot; — current value</td>
+</tr>
+<tr>
+<td><code>keydown</code></td>
+<td>&quot;Which key was pressed&quot; — Enter, Escape, Ctrl+S</td>
+</tr>
+<tr>
+<td><code>keyup</code></td>
+<td>After release</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#search&quot;</span>);
+
+<span class="hljs-comment">// LIVE — best for &quot;as you type&quot; updates</span>
+input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;input&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Value now:&quot;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>);
+});
+
+<span class="hljs-comment">// Specific keys</span>
+input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Enter&quot;</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Search:&quot;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>);
+  }
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Escape&quot;</span>) {
+    e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span>;
+  }
+});
+
+<span class="hljs-comment">// Modifier keys</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">ctrlKey</span> &amp;&amp; e.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;s&quot;</span>) {
+    e.<span class="hljs-title function_">preventDefault</span>();   <span class="hljs-comment">// override browser save</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Custom save&quot;</span>);
+  }
+});
+</div></code></pre>
+<div class="card red">
+<strong>⚠️ keydown shows the OLD value</strong> — at the moment keydown fires, the input hasn't updated yet. Use <code>input</code> for the current value.
+</div>
+<div class="topic"><span class="n">Topic 6</span> Bubbling &amp; Event Delegation <span class="sub">One listener, many elements</span></div>
+<div class="card purple">
+<strong>Bubbling:</strong> &nbsp; Events fire on the target, then bubble UP through ancestors.<br>
+<strong>Delegation:</strong> &nbsp; Attach ONE listener to a parent. Use <code>e.target</code> to know which child.<br>
+<strong>Bonus:</strong> &nbsp; Works for elements added LATER.
+</div>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;todo-list&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>Buy milk<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span>Walk dog<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;3&quot;</span>&gt;</span>Pay bills<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// WITHOUT delegation — one listener per item, repeated work</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&quot;#todo-list li&quot;</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">li</span> =&gt;</span> {
+  li.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    li.<span class="hljs-property">classList</span>.<span class="hljs-title function_">toggle</span>(<span class="hljs-string">&quot;done&quot;</span>);
+  });
+});
+
+<span class="hljs-comment">// WITH delegation — ONE listener on the parent</span>
+<span class="hljs-keyword">const</span> list = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#todo-list&quot;</span>);
+
+list.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-comment">// Was the click on an &lt;li&gt;?</span>
+  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-property">tagName</span> === <span class="hljs-string">&quot;LI&quot;</span>) {
+    e.<span class="hljs-property">target</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">toggle</span>(<span class="hljs-string">&quot;done&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Toggled item&quot;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">dataset</span>.<span class="hljs-property">id</span>);
+  }
+});
+
+<span class="hljs-comment">// Now even items added LATER work — no extra wiring</span>
+<span class="hljs-keyword">const</span> newLi = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;li&quot;</span>);
+newLi.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;Brand new task&quot;</span>;
+newLi.<span class="hljs-property">dataset</span>.<span class="hljs-property">id</span> = <span class="hljs-string">&quot;4&quot;</span>;
+list.<span class="hljs-title function_">appendChild</span>(newLi);    <span class="hljs-comment">// clicking it just works</span>
+</div></code></pre>
+<hr>
+<div class="part-banner part-orange">PART 2 — HANDS-ON EXERCISE (15 MIN)</div>
+<p>Your HTML setup:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;counter-btn&quot;</span>&gt;</span>Click me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Clicks: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;live-input&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type something...&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;preview&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;reg-form&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name-field&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Your name&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;welcome&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;todo-list&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Buy milk<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Walk dog<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Pay bills<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-class">.done</span> { <span class="hljs-attribute">text-decoration</span>: line-through; <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.5</span>; }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
+<div class="task-card blue">
+<div class="title"><span class="badge b-blue">Task 1</span> Click Counter</div>
+<ul>
+<li>Grab the <code>#counter-btn</code> button and the <code>#count</code> span.</li>
+<li>On every click, increment a counter variable and update the span's textContent.</li>
+<li>Bonus: after 10 clicks, change the button's text to <code>"Stop clicking!"</code>.</li>
+</ul>
+</div>
+<div class="task-card orange">
+<div class="title"><span class="badge b-orange">Task 2</span> Live Input Preview</div>
+<ul>
+<li>Grab the <code>#live-input</code> and <code>#preview</code>.</li>
+<li>On every keystroke, copy the current value into the preview (use the <code>input</code> event).</li>
+<li>Bonus: if the input is empty, show <code>"Start typing..."</code> in the preview.</li>
+</ul>
+</div>
+<div class="task-card green">
+<div class="title"><span class="badge b-green">Task 3</span> Form preventDefault</div>
+<ul>
+<li>Grab the <code>#reg-form</code> form and <code>#name-field</code> input and <code>#welcome</code> paragraph.</li>
+<li>On submit, prevent the default page reload.</li>
+<li>Read the input value, and set the welcome paragraph to <code>"Welcome, &lt;name&gt;!"</code> using template literals.</li>
+<li>Bonus: if the name field is empty, show <code>"Please enter your name"</code> instead.</li>
+</ul>
+</div>
+<div class="task-card purple">
+<div class="title"><span class="badge b-purple">Bonus</span> Event Delegation on List</div>
+<ul>
+<li>Grab the <code>#todo-list</code> parent.</li>
+<li>Attach ONE click listener that toggles the <code>done</code> class on whichever <code>&lt;li&gt;</code> was clicked.</li>
+<li>Use <code>e.target.tagName === "LI"</code> to filter.</li>
+<li>Bonus: programmatically add a new <code>&lt;li&gt;</code> to the list with createElement. Confirm clicking it also toggles correctly — without any extra wiring.</li>
+</ul>
+</div>
+<hr>
+<div class="part-banner part-purple">PART 3 — VISUAL SUMMARY</div>
+<h3 id="listener-pattern">Listener Pattern</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attach</td>
+<td><code>el.addEventListener(&quot;click&quot;, fn)</code></td>
+</tr>
+<tr>
+<td>Remove</td>
+<td><code>el.removeEventListener(&quot;click&quot;, fn)</code></td>
+</tr>
+<tr>
+<td>Inline (avoid)</td>
+<td><code>el.onclick = fn</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="event-object">Event Object</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>e.target</code></td>
+<td>Element fired on</td>
+</tr>
+<tr>
+<td><code>e.target.value</code></td>
+<td>Input value</td>
+</tr>
+<tr>
+<td><code>e.key</code></td>
+<td>Pressed key</td>
+</tr>
+<tr>
+<td><code>e.preventDefault()</code></td>
+<td>Cancel default</td>
+</tr>
+<tr>
+<td><code>e.stopPropagation()</code></td>
+<td>Stop bubble</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mouse-vs-keyboard">Mouse vs Keyboard</h3>
+<table>
+<thead>
+<tr>
+<th>Mouse</th>
+<th>Keyboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>click</code> / <code>dblclick</code></td>
+<td><code>keydown</code> / <code>keyup</code></td>
+</tr>
+<tr>
+<td><code>mouseover</code> / <code>mouseout</code></td>
+<td><code>input</code></td>
+</tr>
+<tr>
+<td><code>contextmenu</code> (right)</td>
+<td>(modifier keys: <code>e.ctrlKey</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delegation-pattern">Delegation Pattern</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Attach ONE listener to parent</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Read <code>e.target</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Filter: <code>if (e.target.tagName === &quot;LI&quot;)</code></td>
+</tr>
+<tr>
+<td>✓</td>
+<td>Works for future items too</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-purple">HOMEWORK</div>
+<div class="hw-card">
+<div class="title">Practice tasks before next class</div>
+<ol>
+<li>Build a button that, when clicked, changes the page background to a random color (use <code>Math.random()</code> for RGB).</li>
+<li>Build an input field that turns red if the value is shorter than 3 characters, green otherwise. Live, on <code>input</code>.</li>
+<li>Build a form with two number inputs and a submit button. On submit (with preventDefault) show their sum below.</li>
+<li>Build a list of 5 items. Use event delegation so clicking any item logs its text. Add a 6th item dynamically and verify it works.</li>
+<li>Read: <code>javascript.info/introduction-browser-events</code> and <code>javascript.info/event-delegation</code>.</li>
+</ol>
+</div>
+
+</body>
+</html>

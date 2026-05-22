@@ -1,0 +1,350 @@
+"""Student-doc-aligned metadata for Advanced days 13–21 (HTML regen; JS preserved on disk)."""
+
+from __future__ import annotations
+
+
+def _b(tag: str, title: str, lines: list[str], open_first: bool = False) -> tuple[str, str, list[str], bool]:
+    return (tag, title, lines, open_first)
+
+
+T7 = "Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js)."
+
+ADV_SPECS: dict[int, dict] = {
+    13: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 1 — Execution Context & Hoisting",
+        topic_titles=[
+            "What is an Execution Context? (Global vs Function)",
+            "The Two Phases — Creation + Execution",
+            "The Call Stack (LIFO)",
+            "Hoisting — what it actually is",
+            "var vs let/const + the Temporal Dead Zone",
+            "Function Declarations vs Function Expressions",
+            "Why this matters in practice",
+        ],
+        topic_snippets=[],
+        hands_label="Day 13 · Advanced Day 1 — Execution Context & Hoisting",
+        hands_blocks=[
+            _b(
+                "Task 1",
+                "Predict the var hoist",
+                [
+                    r'Type: <code>console.log(name); var name = &quot;Priya&quot;; console.log(name);</code>',
+                    "Predict each log before running; explain why the first is <code>undefined</code> and not a <code>ReferenceError</code>.",
+                ],
+                True,
+            ),
+            _b(
+                "Task 2",
+                "Trigger the TDZ",
+                [
+                    r'Type: <code>console.log(city); let city = &quot;Jaipur&quot;;</code>',
+                    "Note the exact error; move the declaration above the log and confirm it runs; define TDZ in a comment.",
+                ],
+            ),
+            _b(
+                "Task 3",
+                "Function declaration vs expression",
+                [
+                    r"Order: <code>sayHi();</code> then <code>greet();</code> then <code>function sayHi() { ... }</code> then <code>var greet = function () { ... };</code>",
+                    "Predict which call works; document hoisting differences in a comment.",
+                ],
+            ),
+            _b(
+                "Bonus",
+                "Trace the call stack",
+                [
+                    "Chain <code>multiply → square → printSquare</code>; call <code>printSquare(5)</code>; add <code>console.trace()</code> inside <code>multiply</code> and read frames.",
+                ],
+            ),
+        ],
+        hands_js="",
+        hw_label="Day 13 · Advanced Day 1 — Execution Context & Hoisting",
+        hw_blocks=[
+            _b(
+                "Task 1",
+                "typeof + var",
+                [
+                    r'Predict <code>console.log(typeof age); var age = 25;</code> before running; compare with actual output.',
+                ],
+                True,
+            ),
+            _b(
+                "Task 2",
+                "TDZ screenshot",
+                [
+                    r"Trigger a <code>let</code> TDZ error and capture the exact console message.",
+                ],
+            ),
+            _b(
+                "Task 3",
+                "Three function forms",
+                [
+                    "Declaration vs <code>var</code> expression vs <code>const</code> arrow — call each before its line; document which errors occur and why.",
+                ],
+            ),
+            _b(
+                "Task 4",
+                "console.trace",
+                [
+                    "Add <code>console.trace()</code> to a small function, run it, and label each stack frame as an execution context.",
+                ],
+            ),
+        ],
+        hw_js="",
+    ),
+    14: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 2 — Scope & Closures",
+        topic_titles=[
+            "Lexical (static) scope",
+            "Global vs function scope",
+            "Closures — functions remember outer variables",
+            "The closure pattern in the wild",
+            "Common closure gotchas (var + loops)",
+            "IIFE and module scope (historical)",
+            "Why closures power modern JS",
+        ],
+        topic_snippets=[],
+        hands_label="Day 14 · Advanced Day 2 — Scope & Closures",
+        hands_blocks=[
+            _b("Task 1", "Build a counter", [r"Implement <code>makeCounter()</code> returning a function that counts from 1 upward; create two independent counters.", T7]),
+            _b(
+                "Task 2",
+                "Fix the var-in-loop bug",
+                [
+                    r"Use <code>for (var i = 1; i &lt;= 3; i++) { setTimeout(() =&gt; console.log(i), 100); }</code> — predict, then fix with <code>let</code>.",
+                    T7,
+                ],
+            ),
+            _b(
+                "Task 3",
+                "Private bank balance",
+                [
+                    r"<code>createAccount(initial)</code> with <code>deposit</code>, <code>withdraw</code>, <code>getBalance</code>; balance must stay private.",
+                    T7,
+                ],
+            ),
+            _b("Bonus", "Memoizer", [r"Implement <code>memoize(fn)</code> with a cache stored in a closure.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 14 · Advanced Day 2 — Scope & Closures",
+        hw_blocks=[
+            _b("Task 1", "multiplier(factor)", ["Return a function; verify <code>double</code> and <code>triple</code> stay independent.", T7], True),
+            _b("Task 2", "var loop redo", ["Redo the timeout loop with <code>for...of</code> over <code>[10,20,30]</code> using <code>let</code>.", T7]),
+            _b("Task 3", "transaction count", ["Extend the bank closure with private <code>transactionCount</code> and <code>getTransactionCount()</code>.", T7]),
+            _b("Task 4", "once(fn)", ["Closure that runs the inner function only once; later calls return the first result.", T7]),
+        ],
+        hw_js="",
+    ),
+    15: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 3 — The this keyword",
+        topic_titles=[
+            "What is the this keyword?",
+            "Default binding",
+            "Implicit binding",
+            "Explicit binding (call / apply / bind)",
+            "new binding",
+            "Arrow functions and lexical this",
+            "Strict vs sloppy mode differences",
+        ],
+        topic_snippets=[],
+        hands_label="Day 15 · Advanced Day 3 — The 'this' Keyword",
+        hands_blocks=[
+            _b("Task 1", "Predict this binding", ["Method vs extracted method — predict logs before running.", T7], True),
+            _b("Task 2", "Fix it three ways", ["Timer / lost receiver — fix with <code>bind</code>, wrapper arrow, and class field arrow.", T7]),
+            _b("Task 3", "call / apply / bind", ["Practice explicit binding on a shared <code>describe</code> function.", T7]),
+            _b("Bonus", "Arrow vs regular method", ["Show how <code>forEach</code> callback <code>this</code> differs for regular vs arrow functions.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 15 · Advanced Day 3 — The 'this' Keyword",
+        hw_blocks=[
+            _b("Task 1", "Explicit binding drill", ["Write three examples using <code>call</code>, <code>apply</code>, and <code>bind</code> on the same function.", T7], True),
+            _b("Task 2", "Object literal method", ["Create an object whose method relies on <code>this</code>; store the method in a variable and repair access.", T7]),
+            _b("Task 3", "Partial application", ["Use <code>bind</code> to create a specialized function from a generic one.", T7]),
+            _b("Task 4", "Read + reflect", ["Skim MDN <code>this</code> — note one rule that surprised you.", T7]),
+        ],
+        hw_js="",
+    ),
+    16: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 4 — Prototypes & the Prototype Chain",
+        topic_titles=[
+            "Every object has a prototype",
+            "Object.create",
+            "The prototype chain & property lookup",
+            "hasOwnProperty vs in",
+            "Constructor functions & pre-ES6 inheritance",
+            "Why modifying built-in prototypes is dangerous",
+            "Mental model — bringing it together",
+        ],
+        topic_snippets=[],
+        hands_label="Day 16 · Advanced Day 4 — Prototypes & the Prototype Chain",
+        hands_blocks=[
+            _b("Task 1", "Inspect a prototype", ["Walk from an array to <code>null</code> with chained <code>Object.getPrototypeOf</code>; comment the chain.", T7], True),
+            _b("Task 2", "Build with Object.create", ["Vehicle <code>start()</code>; <code>car</code> and <code>bike</code> inherit; confirm <code>hasOwnProperty</code> vs <code>in</code>.", T7]),
+            _b("Task 3", "Constructor inheritance", ["<code>Person</code> / <code>Student</code> pattern with <code>Object.create</code> on prototypes.", T7]),
+            _b("Bonus", "hasOwnProperty vs in", ["Predict five checks on <code>dog</code>; run and match; one-line rule comment.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 16 · Advanced Day 4 — Prototypes & the Prototype Chain",
+        hw_blocks=[
+            _b("Task 1", "Three-level chain", ["<code>tool → vehicle → car</code> with <code>Object.create</code>; call all three methods from <code>car</code>.", T7], True),
+            _b("Task 2", "Shape / Circle", ["Constructors + prototypes for <code>describe()</code> and <code>area()</code> as in the student doc.", T7]),
+            _b("Task 3", "Built-in prototype", ["Inspect <code>String.prototype</code> (or similar); document five unfamiliar methods.", T7]),
+            _b("Task 4", "chainOf(obj)", ["Return an array of prototypes up to (but not including) <code>null</code>.", T7]),
+        ],
+        hw_js="",
+    ),
+    17: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 5 — Classes & OOP",
+        topic_titles=[
+            "Class syntax basics",
+            "Getters, setters, and methods",
+            "Inheritance with extends / super",
+            "Private fields with #",
+            "Static members",
+            " instanceof and prototypes under classes",
+            "When classes are (and are not) sugar",
+        ],
+        topic_snippets=[],
+        hands_label="Day 17 · Advanced Day 5 — Classes & OOP",
+        hands_blocks=[
+            _b("Task 1", "Basic class with getter", ["Rectangle with <code>area</code> getter and <code>scale</code> as in the student doc.", T7], True),
+            _b("Task 2", "Inheritance with super", ["<code>Employee</code> / <code>Manager</code> with <code>super</code> in constructor and overridden <code>describe</code>.", T7]),
+            _b("Task 3", "Private field with #", ["Counter with <code>#count</code>, guards on <code>dec()</code>, and try/catch stress loop.", T7]),
+            _b("Bonus", "Custom Error class", ["<code>ValidationError</code> subclass; <code>validateUser</code> throws with <code>field</code>; log in catch.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 17 · Advanced Day 5 — Classes & OOP",
+        hw_blocks=[
+            _b("Task 1", "Vehicle / Car / Bike", ["Inheritance chain with overridden <code>start()</code> as described in homework.", T7], True),
+            _b("Task 2", "Static counter", ["Track how many instances were constructed using a static field.", T7]),
+            _b("Task 3", "Temperature class", ["Private <code>#celsius</code>, getters for C/F, validated setter.", T7]),
+            _b("Task 4", "ValidationError class", ["Promote Day 12 pattern into a real <code>extends Error</code> class; test <code>instanceof</code>.", T7]),
+        ],
+        hw_js="",
+    ),
+    18: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 6 — Callbacks & Promises",
+        topic_titles=[
+            "Sync vs Async",
+            "Callbacks: the original pattern",
+            "Callback hell",
+            "Promise states and creation",
+            ".then / .catch / .finally",
+            "Promise combinators (all / race / allSettled / any)",
+            "Promise.resolve / Promise.reject",
+        ],
+        topic_snippets=[],
+        hands_label="Day 18 · Advanced Day 6 — Callbacks & Promises",
+        hands_blocks=[
+            _b("Task 1", "Sync vs async output", ["Order logs with <code>setTimeout(0)</code> and microtasks — predict before running.", T7], True),
+            _b("Task 2", "Promisify a callback API", ["Wrap a callback-style async function in a Promise.", T7]),
+            _b("Task 3", "Promise.all in action", ["Run parallel fetches/resolved values and handle a single failure path.", T7]),
+            _b("Bonus", "allSettled vs all", ["Compare behaviours when one input promise rejects.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 18 · Advanced Day 6 — Callbacks & Promises",
+        hw_blocks=[
+            _b("Task 1", "Retry with backoff", ["Implement a promise-based retry helper (conceptual) for flaky fetch.", T7], True),
+            _b("Task 2", "Timeout race", ["Race a request promise against a timeout promise.", T7]),
+            _b("Task 3", "Aggregate errors", ["Use <code>allSettled</code> to classify successes vs failures.", T7]),
+            _b("Task 4", "Read", ["Finish javascript.info/promise-basics and note one API nuance.", T7]),
+        ],
+        hw_js="",
+    ),
+    19: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 7 — Async / Await",
+        topic_titles=[
+            "async functions always return a Promise",
+            "await pauses inside an async function",
+            "try / catch for async errors",
+            "Sequential vs parallel awaits",
+            "The forEach trap",
+            "Top-level await",
+            "Mixing async with .then",
+        ],
+        topic_snippets=[],
+        hands_label="Day 19 · Advanced Day 7 — Async / Await",
+        hands_blocks=[
+            _b("Task 1", "Sequential vs parallel", ["Fetch or delay simulations — compare wall-clock when using sequential <code>await</code> vs <code>Promise.all</code>.", T7], True),
+            _b("Task 2", "Error handling", ["Use <code>try/catch</code> around <code>await</code> for rejected promises.", T7]),
+            _b("Task 3", "forEach trap", ["Demonstrate why <code>forEach(async () =&gt; ...)</code> does not await; fix with <code>for...of</code>.", T7]),
+            _b("Bonus", "Async utility", ["Write <code>delay(ms)</code> using Promises and consume it with <code>await</code>.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 19 · Advanced Day 7 — Async / Await",
+        hw_blocks=[
+            _b("Task 1", "Parallel batch", ["Refactor a sequential async loop to parallel with correct error handling.", T7], True),
+            _b("Task 2", "Await + fetch", ["Wrap <code>fetch().json()</code> in async/await with validation.", T7]),
+            _b("Task 3", "Top-level await note", ["Explain when top-level <code>await</code> is allowed and one pitfall.", T7]),
+            _b("Task 4", "Read", ["Skim MDN async function — list two rules about return values.", T7]),
+        ],
+        hw_js="",
+    ),
+    20: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 8 — Event Loop & Tasks (Cheatsheet)",
+        topic_titles=[
+            "Runtime architecture (stack, heap, queues)",
+            "Microtasks vs macrotasks",
+            "Event loop algorithm",
+            "Where different APIs enqueue work",
+            "Classic ordering puzzle",
+            "async/await scheduling",
+            "Further reading",
+        ],
+        topic_snippets=[],
+        hands_label="Day 20 · Advanced Day 8 — Event Loop & Tasks",
+        hands_blocks=[
+            _b("Task 1", "Order console output", ["Predict print order for sync logs + <code>queueMicrotask</code> + <code>setTimeout(0)</code>; run and compare.", T7], True),
+            _b("Task 2", "Promise chain vs timeout", ["Chained <code>.then</code> vs macrotask — predict draining behaviour.", T7]),
+            _b("Task 3", "Nested microtasks", ["Microtasks created while draining still run before the next macrotask.", T7]),
+            _b("Task 4", "Cheat-sheet notes", ["Summarise microtask sources vs macrotask sources in your own words.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 20 · Advanced Day 8 — Event Loop & Tasks",
+        hw_blocks=[
+            _b("Task 1", "Predict classic puzzle", ["Use the cheatsheet ordering rules on the provided snippet.", T7], True),
+            _b("Task 2", "await ordering", ["Predict logs for an <code>async</code> function with <code>await</code> and sync logs around it.", T7]),
+            _b("Task 3", "queueMicrotask", ["Insert <code>queueMicrotask</code> between promises and timeouts; explain order.", T7]),
+            _b("Task 4", "Read", ["javascript.info/event-loop — two takeaways in sentences.", T7]),
+        ],
+        hw_js="",
+    ),
+    21: dict(
+        preserve_all_js=True,
+        topic_line="Advanced Day 9 — Immutability & Object Patterns",
+        topic_titles=[
+            "Shallow vs deep clone",
+            "structuredClone — the modern way",
+            "Object.freeze (and deep-freeze)",
+            "Immutable updates with spread",
+            "Advanced destructuring (defaults / renames / nested)",
+            "Computed keys",
+            "Optional chaining + nullish coalescing on deep data",
+        ],
+        topic_snippets=[],
+        hands_label="Day 21 · Advanced Day 9 — Immutability & Object Patterns",
+        hands_blocks=[
+            _b("Task 1", "Shallow vs deep", ["Demonstrate nested mutation after shallow spread vs <code>structuredClone</code> safety.", T7], True),
+            _b("Task 2", "Immutable state update", ["Nested preferences update without mutating the original tree.", T7]),
+            _b("Task 3", "Freeze caveats", ["Show nested mutation still possible after <code>Object.freeze</code> on the root.", T7]),
+            _b("Bonus", "Selectors", ["Use optional chaining + <code>??</code> to safely read deep paths.", T7]),
+        ],
+        hands_js="",
+        hw_label="Day 21 · Advanced Day 9 — Immutability & Object Patterns",
+        hw_blocks=[
+            _b("Task 1", "Pure reducers", ["Write a small reducer that returns new state objects for ADD vs UPDATE actions.", T7], True),
+            _b("Task 2", "List immutability", ["Return a new array when toggling an item without <code>splice</code> on the original.", T7]),
+            _b("Task 3", "Clone choice", ["Pick shallow vs deep vs structuredClone for three scenarios; justify.", T7]),
+            _b("Task 4", "Read", ["MDN structuredClone limitations — list one unsupported type.", T7]),
+        ],
+        hw_js="",
+    ),
+}

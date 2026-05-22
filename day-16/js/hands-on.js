@@ -1,50 +1,83 @@
-// —— Task 1 ——
-const task1Lines = `
-const arr = [1,2,3];
-console.log(Object.getPrototypeOf(arr)); //Got Array(0) and all the functions of array
-console.log(Object.getPrototypeOf(Object.getPrototypeOf(arr))); //logged built in methods and accessors of Object.getPrototypeOf
-console.log(Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(arr)))); //Printed null because it moved up the protoype chain and reached end (If you do once more you will get error)
-// arr -> Object.prototype -> null
- Console Output
- 
-//[at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]at: ƒ at()concat: ƒ concat()constructor: ƒ Array()copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()find: ƒ find()findIndex: ƒ findIndex()findLast: ƒ findLast()findLastIndex: ƒ findLastIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndexOf: ƒ lastIndexOf()length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toReversed: ƒ toReversed()toSorted: ƒ toSorted()toSpliced: ƒ toSpliced()toString: ƒ toString()unshift: ƒ unshift()values: ƒ values()with: ƒ with()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}[[Prototype]]: Object
+// Task 1 — Inspect prototype chain from an array
+(function () {
+  const arr = [1, 2, 3];
+  const p1 = Object.getPrototypeOf(arr);
+  const p2 = Object.getPrototypeOf(p1);
+  const p3 = Object.getPrototypeOf(p2);
+  const lines = [];
+  lines.push("getPrototypeOf(arr) === Array.prototype → " + (p1 === Array.prototype));
+  lines.push("next === Object.prototype → " + (p2 === Object.prototype));
+  lines.push("next (end of chain) → " + p3);
+  lines.push("// arr → Array.prototype → Object.prototype → null");
+  document.querySelector("#task1Output").textContent = lines.join("\n");
+})();
 
- {__defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, __lookupSetter__: ƒ, …}
+// Task 2 — Object.create + own vs inherited
+(function () {
+  const out = [];
+  const vehicle = {
+    start() {
+      out.push(`${this.name} starting`);
+    },
+  };
+  const car = Object.create(vehicle);
+  car.name = "Tata Nexon";
+  const bike = Object.create(vehicle);
+  bike.name = "Royal Enfield";
+  car.start();
+  bike.start();
+  out.push("car.hasOwnProperty('name') → " + car.hasOwnProperty("name"));
+  out.push("car.hasOwnProperty('start') → " + car.hasOwnProperty("start"));
+  out.push("'start' in car → " + ("start" in car));
+  document.querySelector("#task2Output").textContent = out.join("\n");
+})();
 
- null
-`;
+// Task 3 — Person / Student constructor inheritance
+(function () {
+  const out = [];
+  function Person(name) {
+    this.name = name;
+  }
+  Person.prototype.greet = function () {
+    out.push("Hi, I'm " + this.name);
+  };
 
-const task2Lines = `
-const vehicle = {
-    start : function (name) {
-        console.log(\`${this.name} starting\`);
-    }
-}
+  function Student(name, school) {
+    Person.call(this, name);
+    this.school = school;
+  }
+  Student.prototype = Object.create(Person.prototype);
+  Student.prototype.constructor = Student;
+  Student.prototype.study = function () {
+    out.push(this.name + " studies at " + this.school);
+  };
 
-const car = Object.create(vehicle);
-car.name = "Tata Nexon";
+  const s = new Student("Riya", "IIT Delhi");
+  s.greet();
+  s.study();
+  out.push(
+    "Object.getPrototypeOf(s) === Student.prototype → " +
+      (Object.getPrototypeOf(s) === Student.prototype),
+  );
+  out.push(
+    "Object.getPrototypeOf(Student.prototype) === Person.prototype → " +
+      (Object.getPrototypeOf(Student.prototype) === Person.prototype),
+  );
+  document.querySelector("#task3Output").textContent = out.join("\n");
+})();
 
-const bike = Object.create(vehicle);
-bike.name = "RE";
-
-car.start();
-bike.start();
-
-console.log(car.hasOwnProperty("name"));
-console.log(car.hasOwnProperty("start"));
-console.log("start" in car);
-
-//Output
-Tata Nexon starting
-RE starting
-true
-false
-true
-`;
-document.querySelector("#task1Output").textContent = task1Lines;
-
-document.querySelector("#task2Output").textContent = task2Lines;
-
-/*
-
-*/
+// Bonus — hasOwnProperty vs in
+(function () {
+  const dog = Object.create({ species: "Canis" });
+  dog.name = "Bruno";
+  const lines = [];
+  lines.push('dog.hasOwnProperty("name") → ' + dog.hasOwnProperty("name"));
+  lines.push('dog.hasOwnProperty("species") → ' + dog.hasOwnProperty("species"));
+  lines.push('"name" in dog → ' + ("name" in dog));
+  lines.push('"species" in dog → ' + ("species" in dog));
+  lines.push('"toString" in dog → ' + ("toString" in dog));
+  lines.push(
+    "// hasOwnProperty / Object.hasOwn: only own keys. `in`: own or anywhere on the prototype chain.",
+  );
+  document.querySelector("#task4Output").textContent = lines.join("\n");
+})();

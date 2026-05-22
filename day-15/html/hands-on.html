@@ -1,84 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 13 — Hands-on</title>
+    <title>Day 15 — Advanced Day 3 — The 'this' Keyword — Hands-on</title>
     <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
-
 <body>
     <div class="page-shell">
         <main class="page-main" id="main-content">
             <header class="page-title">
-                <p class="lesson-label">Day 13 · Execution Context & Hoisting</p>
+                <p class="lesson-label">Day 15 · Advanced Day 3 — The &#x27;this&#x27; Keyword</p>
                 <h1>Hands-on</h1>
             </header>
+
             <details class="exercise" open>
                 <summary>
                     <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Predict the `this`</span>
+                    <span class="lesson-task__title">Predict this binding</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Type the following snippet exactly: a <code>user</code> object with
-                            <code>name: "Priya"</code>and a method <code>greet(){ console.log(this.name);}</code> Then
-                            call <code>user.greet()</code>.Then assign <code>const g =user.greet </code>and call
-                            <code>g()</code>.
-                        </li>
-                        <li>Predict the output of each call BEFORE running.</li>
-                        <li>Run. Note actual output.</li>
-                        <li>In a comment, explain why the second call lost the<code>this</code></li>
+                        <li>Method vs extracted method — predict logs before running.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
                 </div>
             </details>
-            <details class="exercise" open>
+
+
+            <details class="exercise">
                 <summary>
-                    <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Predict the `this`</span>
+                    <span class="lesson-task__tag">Task 2</span>
+                    <span class="lesson-task__title">Fix it three ways</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Take the following code:
-                            <code>
-                    class Timer {
-                    constructor() { this.sec = 0; }
-                    tick() {
-                    this.sec++;
-                    console.log(this.sec);
-                    }
-                    }
-                </code>
-                        </li>
-        
-                        <li>Create <code>const t = new Timer();</code> and run <code>setInterval(t.tick, 1000);</code>.
-                        </li>
-        
-                        <li>Run the code and observe the resulting <code>TypeError</code>.</li>
-        
-                        <li>Fix the issue using <code>.bind()</code>.</li>
-        
-                        <li>Fix the same issue using an arrow wrapper function.</li>
-        
-                        <li>Fix the issue a third way using a class field arrow method.</li>
-        
-                        <li>Verify that all three approaches correctly log <code>1, 2, 3, ...</code> continuously.</li>
+                        <li>Timer / lost receiver — fix with <code>bind</code>, wrapper arrow, and class field arrow.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task2Output" class="run-output"></pre>
                 </div>
             </details>
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Task 3</span>
+                    <span class="lesson-task__title">call / apply / bind</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Practice explicit binding on a shared <code>describe</code> function.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task3Output" class="run-output"></pre>
+                </div>
+            </details>
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Bonus</span>
+                    <span class="lesson-task__title">Arrow vs regular method</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Show how <code>forEach</code> callback <code>this</code> differs for regular vs arrow functions.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task4Output" class="run-output"></pre>
+                </div>
+            </details>
+
         </main>
         <aside class="site-outline" aria-label="Curriculum outline">
             <p class="site-outline-title">Curriculum</p>
-
             <ul class="site-outline-tree">
                 <li class="site-outline-item">
-                    <a href="../../index.html">Overview</a>
+                    <a href="../../index.html" >Overview</a>
                 </li>
 
                 <!-- Day 1 -->
@@ -231,11 +236,7 @@
                         <summary>Day 13 — Advanced Day 1 — Execution Context & Hoisting</summary>
                         <ul>
                             <li><a href="../../day-13/html/lesson.html">Lesson</a></li>
-                            <li>
-                                <a href="../../day-13/html/hands-on.html" aria-current="page">
-                                    Hands-on
-                                </a>
-                            </li>
+                            <li><a href="../../day-13/html/hands-on.html">Hands-on</a></li>
                             <li><a href="../../day-13/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
@@ -252,7 +253,6 @@
                         </ul>
                     </details>
                 </li>
-
                 <!-- Day 15 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details" open>
@@ -267,11 +267,66 @@
                 <!-- Day 16 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
-                        <summary>Day 16 - Advanced Day 4 — Prototypes & the Prototype Chain</summary>
+                        <summary>Day 16 — Advanced Day 4 — Prototypes & the Prototype Chain</summary>
                         <ul>
                             <li><a href="../../day-16/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-16/html/hands-on.html">Hands-on</a></li>
                             <li><a href="../../day-16/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 17 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 17 · Advanced Day 5 — Classes & OOP</summary>
+                        <ul>
+                            <li><a href="../../day-17/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-17/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-17/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 18 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 18 — Advanced Day 6 — Callbacks &amp; Promises</summary>
+                        <ul>
+                            <li><a href="../../day-18/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-18/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-18/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 19 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 19 — Advanced Day 7 — Async / Await</summary>
+                        <ul>
+                            <li><a href="../../day-19/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-19/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-19/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 20 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 20 — Advanced Day 8 — Event Loop &amp; Tasks</summary>
+                        <ul>
+                            <li><a href="../../day-20/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-20/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-20/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 21 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 21 — Advanced Day 9 — Immutability &amp; Object Patterns</summary>
+                        <ul>
+                            <li><a href="../../day-21/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-21/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-21/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
@@ -281,5 +336,4 @@
     <script defer src="../js/hands-on.js"></script>
     <script src="../../shared/js/nav-lock.js"></script>
 </body>
-
 </html>

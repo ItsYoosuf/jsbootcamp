@@ -1,38 +1,24 @@
-// —— Task 1 — reference solution ——
-function area(length, width) {
-    return length * width;
+"use strict";
+const area = (length, width) => length * width;
+document.querySelector("#task1Output").textContent = [area(2, 3), area(4, 5), area(1, 10)].join(" | ");
+
+function greet(name = "Guest") {
+  return "Hello, " + name + "!";
 }
+document.querySelector("#task2Output").textContent = [greet("Priya"), greet("Aarav"), greet(), greet(null)].join(" | ");
 
-const areaArrow = (length, width) => length * width;
+const cToF = (c) => (c * 9) / 5 + 32;
+document.querySelector("#task3Output").textContent = [0, 100, 37, 45].map(cToF).join(" | ");
 
-const lines1 = [];
-lines1.push("area(5, 3)  → " + area(5, 3));
-lines1.push("area(10, 4) → " + area(10, 4));
-lines1.push("area(7, 7)  → " + area(7, 7));
-lines1.push("");
-lines1.push("Bonus: areaArrow(8, 6) → " + areaArrow(8, 6));
-
-console.log(area(5, 3));
-console.log(area(10, 4));
-console.log(area(7, 7));
-console.log(areaArrow(8, 6));
-
-document.querySelector("#task1Output").textContent = lines1.join("\n");
-
-// —— Task 2 — reference solution ——
-const greet = (name = "Guest") => `Hello, ${name}!`;
-
-const lines2 = [];
-lines2.push('greet("Priya") → ' + greet("Priya"));
-lines2.push('greet("Aarav") → ' + greet("Aarav"));
-lines2.push("greet()        → " + greet());
-lines2.push("");
-lines2.push("Bonus: greet(null) → " + greet(null));
-lines2.push("(Default runs only for undefined, not null.)");
-
-console.log(greet("Priya"));
-console.log(greet("Aarav"));
-console.log(greet());
-console.log(greet(null));
-
-document.querySelector("#task2Output").textContent = lines2.join("\n");
+function double(n) {
+  return n * 2;
+}
+let total = 0;
+function addToTotal(n) {
+  total += n;
+  return total;
+}
+total = 0;
+const imp = [addToTotal(1), addToTotal(2), addToTotal(3)];
+document.querySelector("#task4Output").textContent =
+  "pure " + [double(2), double(2), double(2)].join(",") + " | impure " + imp.join(",");

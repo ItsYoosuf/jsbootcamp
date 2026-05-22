@@ -1,34 +1,11 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "// HTML = structure, CSS = style, JavaScript = behaviour (interactivity)\nconsole.log(\"JS runs after HTML & CSS in the browser\");";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "// Browser: V8 (Chrome), SpiderMonkey (Firefox), JavaScriptCore (Safari)\n//   Can touch: DOM, window.  Cannot: arbitrary file system.\n// Node.js (2009+): V8 on the server \u2014 file system yes, browser DOM no.\nconsole.log(typeof window); // \"object\" in browser; undefined in pure Node REPL";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "console.log(\"Hello JS!\");\nconsole.log(\"Priya\");\nconsole.log(42);\nconsole.log(true);\nconst name = \"Priya\";\nconsole.log(name);";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "const course = \"B.Tech\"; // cannot reassign course = \"M.Tech\"\nlet score = 0;\nscore = 10; // let can be reassigned\n// var x = 5; // legacy \u2014 avoid in new code\n// Rule: default to const; use let when the value will change.";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "// camelCase for variables, PascalCase for classes, SCREAMING_SNAKE for true constants\nconst maxRetries = 3;\n// Explain WHY in comments, not only WHAT\nconst tax = 0.18; // 18% GST\n/* Multi-line comment when you need a short story */\n\"use strict\"; // catches common mistakes \u2014 use in real files/modules";
+document.querySelector("#topic5Code code").textContent = _topic5;

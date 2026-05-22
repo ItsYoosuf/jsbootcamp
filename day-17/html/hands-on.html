@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 17 — Hands-on</title>
+    <title>Day 17 — Advanced Day 5 — Classes &amp; OOP — Hands-on</title>
     <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
-
 <body>
     <div class="page-shell">
         <main class="page-main" id="main-content">
             <header class="page-title">
-                <p class="lesson-label">Day 17 · Advanced Day 5 — Classes & OOP</p>
+                <p class="lesson-label">Day 17 · Advanced Day 5 — Classes &amp; OOP</p>
                 <h1>Hands-on</h1>
             </header>
-            <!-- Task 1 -->
+
             <details class="exercise" open>
                 <summary>
                     <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Basic Class with Getter</span>
+                    <span class="lesson-task__title">Basic class with getter</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Build a <code>Rectangle</code> class with <code>width</code> and <code>height</code> instance
-                            properties.</li>
-    
-                        <li>Add a <code>get area()</code> getter that returns <code>width * height</code>.</li>
-    
-                        <li>Add a method <code>scale(factor)</code> that multiplies both dimensions in place.</li>
-    
-                        <li>Create a <code>2 × 3</code> rectangle and log its area.</li>
-    
-                        <li>Scale the rectangle by <code>2</code> and log the area again.</li>
+                        <li>Rectangle with <code>area</code> getter and <code>scale</code> as in the student doc.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
                 </div>
             </details>
-            <!-- Task 2 -->
+
+
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 2</span>
@@ -47,62 +38,54 @@
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Build an <code>Employee(name, salary)</code> class.</li>
-    
-                        <li>Add a <code>describe()</code> method that logs:
-                            <code>\${name} earns ₹\${salary}/month</code>
-                        </li>
-    
-                        <li>Build a <code>Manager(name, salary, team)</code> class that extends <code>Employee</code>.</li>
-    
-                        <li>Override <code>describe()</code> to first call <code>super.describe()</code>.</li>
-    
-                        <li>Then log:
-                            <code>Leads team of \${team.length}</code>
-                        </li>
-    
-                        <li>Test with a <code>Manager</code> named <code>"Riya"</code>, salary <code>80000</code>, and team
-                            <code>["Priya", "Aarav", "Anaya"]</code>.
-                        </li>
+                        <li><code>Employee</code> / <code>Manager</code> with <code>super</code> in constructor and overridden <code>describe</code>.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task2Output" class="run-output"></pre>
                 </div>
             </details>
-            <!-- Task 3 -->
+
+
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 3</span>
-                    <span class="lesson-task__title">Private Field with '#'</span>
+                    <span class="lesson-task__title">Private field with #</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Build a <code>Counter</code> class with a private field <code>#count</code> starting at 0. Add
-                            <code>inc()</code>, <code>dec()</code>, and a <code>get value()</code> getter.
-                        </li>
-    
-                        <li>Throw an <code>Error</code> if <code>dec()</code> would make the count negative.</li>
-    
-                        <li>Create a counter, call <code>inc()</code> three times and <code>dec()</code> once, then log the
-                            value.
-                        </li>
-    
-                        <li>Try to call <code>dec()</code> four more times inside a <code>try/catch</code>.</li>
+                        <li>Counter with <code>#count</code>, guards on <code>dec()</code>, and try/catch stress loop.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task3Output" class="run-output"></pre>
                 </div>
             </details>
-    
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Bonus</span>
+                    <span class="lesson-task__title">Custom Error class</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li><code>ValidationError</code> subclass; <code>validateUser</code> throws with <code>field</code>; log in catch.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task4Output" class="run-output"></pre>
+                </div>
+            </details>
+
         </main>
         <aside class="site-outline" aria-label="Curriculum outline">
             <p class="site-outline-title">Curriculum</p>
-        
             <ul class="site-outline-tree">
                 <li class="site-outline-item">
-                    <a href="../../index.html">Overview</a>
+                    <a href="../../index.html" >Overview</a>
                 </li>
-        
+
                 <!-- Day 1 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -114,7 +97,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 2 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -126,7 +109,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 3 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -138,7 +121,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 4 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -150,7 +133,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 5 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -162,7 +145,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 6 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -174,7 +157,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 7 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -186,7 +169,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 8 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -198,7 +181,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 9 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -210,7 +193,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 10 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -222,7 +205,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 11 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -234,7 +217,7 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 12 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -246,23 +229,19 @@
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 13 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
                         <summary>Day 13 — Advanced Day 1 — Execution Context & Hoisting</summary>
                         <ul>
                             <li><a href="../../day-13/html/lesson.html">Lesson</a></li>
-                            <li>
-                                <a href="../../day-13/html/hands-on.html" aria-current="page">
-                                    Hands-on
-                                </a>
-                            </li>
+                            <li><a href="../../day-13/html/hands-on.html">Hands-on</a></li>
                             <li><a href="../../day-13/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
-        
+
                 <!-- Day 14 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -274,7 +253,6 @@
                         </ul>
                     </details>
                 </li>
-        
                 <!-- Day 15 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
@@ -286,11 +264,10 @@
                         </ul>
                     </details>
                 </li>
-        
                 <!-- Day 16 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details">
-                        <summary>Day 16 - Advanced Day 4 — Prototypes & the Prototype Chain</summary>
+                        <summary>Day 16 — Advanced Day 4 — Prototypes & the Prototype Chain</summary>
                         <ul>
                             <li><a href="../../day-16/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-16/html/hands-on.html">Hands-on</a></li>
@@ -301,11 +278,55 @@
                 <!-- Day 17 -->
                 <li class="site-outline-day">
                     <details class="site-outline-details" open>
-                        <summary>Day 17 - Advanced Day 5 — Classes & OOP</summary>
+                        <summary>Day 17 · Advanced Day 5 — Classes & OOP</summary>
                         <ul>
-                            <li><a href="../../day-17/html/lesson.html" aria-current="page">Lesson</a></li>
+                            <li><a href="../../day-17/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-17/html/hands-on.html" aria-current="page">Hands-on</a></li>
                             <li><a href="../../day-17/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 18 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 18 — Advanced Day 6 — Callbacks &amp; Promises</summary>
+                        <ul>
+                            <li><a href="../../day-18/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-18/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-18/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 19 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 19 — Advanced Day 7 — Async / Await</summary>
+                        <ul>
+                            <li><a href="../../day-19/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-19/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-19/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 20 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 20 — Advanced Day 8 — Event Loop &amp; Tasks</summary>
+                        <ul>
+                            <li><a href="../../day-20/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-20/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-20/html/homework.html">Homework</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <!-- Day 21 -->
+                <li class="site-outline-day">
+                    <details class="site-outline-details">
+                        <summary>Day 21 — Advanced Day 9 — Immutability &amp; Object Patterns</summary>
+                        <ul>
+                            <li><a href="../../day-21/html/lesson.html">Lesson</a></li>
+                            <li><a href="../../day-21/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-21/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
@@ -315,5 +336,4 @@
     <script defer src="../js/hands-on.js"></script>
     <script src="../../shared/js/nav-lock.js"></script>
 </body>
-
 </html>

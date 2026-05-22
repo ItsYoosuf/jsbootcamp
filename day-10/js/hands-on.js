@@ -1,68 +1,41 @@
-// —— Task 1 ——
-const student = {
-    name: "Anaya",
-    age: 21,
-    city: "Jaipur",
-    course: "B.Tech",
-    marks: [82, 76, 91]
-};
+"use strict";
+function lab10() {
+  let root = document.getElementById("dom10-lab");
+  if (!root) {
+    root = document.createElement("div");
+    root.id = "dom10-lab";
+    root.style.position = "fixed";
+    root.style.left = "-9999px";
+    root.style.top = "0";
+    document.body.appendChild(root);
+  }
+  root.innerHTML =
+    '<h1 id="d10-title">JS Training</h1><button id="d10-theme-btn">Toggle Theme</button><ul id="d10-names"></ul><button id="d10-add">Add Name</button><div id="d10-cards"></div>';
+  return root;
+}
+const root = lab10();
+const title = root.querySelector("#d10-title");
+title.textContent = "Hello, Priya!";
+title.style.color = "crimson";
+title.style.fontFamily = "Georgia, serif";
+document.querySelector("#task1Output").textContent = title.textContent + " | " + title.style.color;
 
-const task1Lines = [];
+document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
+document.querySelector("#task2Output").textContent = "dark? " + document.body.classList.contains("dark");
 
-console.log(student);
-task1Lines.push("1) console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
+const list = root.querySelector("#d10-names");
+["Priya", "Aarav", "Riya", "Kabir"].forEach((name, i) => {
+  const li = document.createElement("li");
+  li.textContent = i + 1 + ". " + name;
+  li.className = "name-item";
+  list.appendChild(li);
+});
+document.querySelector("#task3Output").textContent = "li count=" + list.children.length;
 
-console.log(student.name, student.age, student.marks[0]);
-task1Lines.push("");
-task1Lines.push("2) console.log(name, age, first mark)");
-task1Lines.push(`${student.name} ${student.age} ${student.marks[0]}`);
-
-student.email = "anaya@example.com";
-student.age = 22;
-delete student.city;
-
-console.log(student);
-task1Lines.push("");
-task1Lines.push("3) after email, age update, delete city — console.log(student)");
-task1Lines.push(JSON.stringify(student, null, 2));
-
-document.querySelector("#task1Output").textContent = task1Lines.join("\n");
-
-// —— Task 2 ——
-const bankAccount = {
-    holder: "Aarav",
-    balance: 5000,
-    deposit(amount) {
-        this.balance += amount;
-        return this.balance;
-    },
-    withdraw(amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return this.balance;
-        }
-        return "Insufficient funds";
-    }
-};
-
-const task2Lines = [];
-task2Lines.push(`Start: holder = "${bankAccount.holder}", balance = ${bankAccount.balance}`);
-task2Lines.push("");
-
-const afterDeposit = bankAccount.deposit(1000);
-console.log("deposit(1000) →", afterDeposit);
-task2Lines.push(`deposit(1000) → ${afterDeposit}`);
-
-const afterWithdraw1 = bankAccount.withdraw(2000);
-console.log("withdraw(2000) →", afterWithdraw1);
-task2Lines.push(`withdraw(2000) → ${afterWithdraw1}`);
-
-const afterWithdraw2 = bankAccount.withdraw(10000);
-console.log("withdraw(10000) →", afterWithdraw2);
-task2Lines.push(`withdraw(10000) → ${JSON.stringify(afterWithdraw2)}`);
-
-task2Lines.push("");
-task2Lines.push(`Final balance: ${bankAccount.balance}`);
-
-document.querySelector("#task2Output").textContent = task2Lines.join("\n");
+const cards = root.querySelector("#d10-cards");
+const product = { name: "Laptop", price: 60000, brand: "Dell" };
+const card = document.createElement("div");
+card.textContent = `${product.brand} ${product.name} ₹${product.price}`;
+cards.appendChild(card);
+document.querySelector("#task4Output").textContent = cards.textContent;

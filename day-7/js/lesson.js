@@ -1,33 +1,13 @@
-const topic1Snippet = `const fruits = ["apple", "banana", "mango"];
-
-console.log(fruits[0]);                   // apple
-console.log(fruits[2]);                   // mango
-console.log(fruits.length);               // 3
-console.log(fruits[fruits.length - 1]);   // mango (last)
-
-// Modify an element
-fruits[1] = "cherry";
-console.log(fruits);                      // ["apple", "cherry", "mango"]
-
-// Negative index? No — undefined
-console.log(fruits[-1]);                  // undefined  (use .at(-1) instead)
-console.log(fruits.at(-1));               // mango`;
-
-const topic2Snippet = `const cart = ["apple", "banana"];
-
-cart.push("mango");        // ["apple", "banana", "mango"]
-cart.pop();                // ["apple", "banana"], returns "mango"
-cart.unshift("orange");    // ["orange", "apple", "banana"]
-cart.shift();              // ["apple", "banana"], returns "orange"
-
-// splice(start, deleteCount, ...itemsToInsert)
-const items = ["a", "b", "c", "d"];
-items.splice(1, 2);        // remove 2 items starting at index 1
-console.log(items);        // ["a", "d"]
-
-const more = ["a", "b", "c"];
-more.splice(1, 0, "X", "Y");   // insert at 1, delete 0
-console.log(more);             // ["a", "X", "Y", "b", "c"]`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "const nums = [1, 2, 3];\nconsole.log(nums[0], nums.at(-1));";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "const cart = [\"bread\"];\ncart.push(\"milk\");\ncart.unshift(\"rice\");\nconst last = cart.pop();\nconsole.log(cart, last);";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "const arr = [10, 20, 30];\nfor (const v of arr) console.log(v);\narr.forEach((v, i) => console.log(i, v));";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "const scores = [40, 82, 55];\nconst passers = scores.filter((s) => s >= 60);\nconst curved = scores.map((s) => s + 5);\nconst sum = scores.reduce((a, b) => a + b, 0);\nconsole.log(passers, curved, sum);";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "const ids = [2, 4, 6];\nconsole.log(ids.find((x) => x > 3));\nconsole.log(ids.some((x) => x % 2 === 1));\nconsole.log(ids.every((x) => x % 2 === 0));";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "const a = [1, 2];\nconst b = [3, ...a];\nconsole.log(b);";
+document.querySelector("#topic6Code code").textContent = _topic6;

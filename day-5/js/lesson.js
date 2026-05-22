@@ -1,34 +1,11 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "for (let i = 1; i <= 3; i++) {\n  console.log(\"tick\", i);\n}";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "let n = 3;\nwhile (n > 0) {\n  console.log(n);\n  n--;\n}";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "const arr = [\"a\", \"b\"];\nfor (const x of arr) console.log(\"of\", x);\nconst obj = { x: 1, y: 2 };\nfor (const k in obj) console.log(\"in\", k, obj[k]);";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "for (let i = 0; i < 5; i++) {\n  if (i === 2) continue;\n  if (i === 4) break;\n  console.log(i);\n}";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "// Always move counter toward exit condition\n// Never leave while(true) without a break inside";
+document.querySelector("#topic5Code code").textContent = _topic5;

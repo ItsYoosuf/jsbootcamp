@@ -1,28 +1,22 @@
 
 const topic1Snippet = `class User {
-constructor(name, city) {            
-constructor + methods
-// runs when you call new User(...)
-this.name = name;                  
-this.city = city;
-greet() {                            
+  constructor(name, city) {
+    this.name = name;
+    this.city = city;
+  }
+  greet() {
+    console.log(\`Hi, I'm \${this.name} from \${this.city}\`);
+  }
 }
-}
-// instance properties — own to each user
-// method — lives on User.prototype (shared)
-console.log(\`Hi, I'm ${this.name} from ${this.city}\`);
+
 const a = new User("Priya", "Jaipur");
 const b = new User("Aarav", "Mumbai");
-a.greet();   
-// "Hi, I'm Priya from Jaipur"
-b.greet();   
-// "Hi, I'm Aarav from Mumbai"
-// Proof that classes ARE functions under the hood:
-console.log(typeof User);                       
-console.log(a.greet === b.greet);              
-// "function"
-// true — shared via prototype
-console.log(Object.getPrototypeOf(a) === User.prototype);  // true (Day 4!)`;
+a.greet();
+b.greet();
+
+console.log(typeof User);
+console.log(a.greet === b.greet);
+console.log(Object.getPrototypeOf(a) === User.prototype);`;
 
 const topic2Snippet = `class Product {
 constructor(name, priceInPaise) {

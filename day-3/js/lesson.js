@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "console.log(10 + 3, 10 - 3, 10 * 3, 10 / 3, 10 % 3, 2 ** 8);\nlet x = 5;\nx += 2; // 7";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "let score = 10;\nscore += 5;\nscore -= 3;\nscore *= 2;\nscore /= 4;\nconsole.log(score);";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "console.log(5 == \"5\", 5 === \"5\");\nconsole.log(0 == false, 0 === false);\nconsole.log(null == undefined, null === undefined);";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "console.log(true && false);\nconsole.log(true || false);\nconsole.log(!true);";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "const age = 17;\nconst mood = age >= 18 ? \"adult\" : \"minor\";\nlet username = null;\nconst display = username ?? \"Guest\";\nconst display2 = username || \"Guest\";\nconsole.log(mood, display, display2);";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "const user = { address: { city: \"Jaipur\" } };\nconsole.log(user.address?.city);\nconsole.log(user.profile?.bio); // undefined, no throw";
+document.querySelector("#topic6Code code").textContent = _topic6;

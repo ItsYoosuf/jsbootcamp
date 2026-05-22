@@ -1,20 +1,9 @@
-const names = ["Priya", "Aarav", "Riya"];
-const greetings = names.map((name) => `Hello, ${name}`);
-
-document.querySelector("#homeworkOut1").textContent =
-    "1) map → greetings:\n" + JSON.stringify(greetings);
-
-const numbers = [3, 8, 4, 11, 6, 9, 2];
-const evens = numbers.filter((n) => n % 2 === 0);
-const evenSum = evens.reduce((sum, n) => sum + n, 0);
-
-document.querySelector("#homeworkOut2").textContent =
-    "2) numbers: " +
-    JSON.stringify(numbers) +
-    "\n   filter (even) → " +
-    JSON.stringify(evens) +
-    "\n   reduce (sum) → " +
-    evenSum;
-
-console.log(greetings);
-console.log(evenSum);
+"use strict";
+const base = [1, 2, 3];
+const extended = [0, ...base];
+document.querySelector("#task1Output").textContent = JSON.stringify(extended);
+const nums = [5, 1, 4, 2];
+document.querySelector("#task2Output").textContent = JSON.stringify([...nums].sort((a, b) => a - b)) + " orig " + JSON.stringify(nums);
+const sents = ["a b", "c"];
+const words = sents.flatMap((s) => s.split(" "));
+document.querySelector("#task3Output").textContent = "words=" + words.length + " " + words.join(",");

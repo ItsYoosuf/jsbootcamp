@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "const item = \"Laptop\";\nconst price = 60000;\nconst tax = 0.18;\nconsole.log(`The ${item} costs \u20b9${price} + \u20b9${price * tax} GST = \u20b9${price + price * tax}`);";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "const scores = [88, 75, 92, 60, 45];\nconst [top, second, ...others] = scores;\nconsole.log(top, second, others);";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "function sumAll(...nums) {\n  return nums.reduce((a, b) => a + b, 0);\n}\nconsole.log(sumAll(1, 2, 3));";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "const defaults = { theme: \"light\", lang: \"en\" };\nconst prefs = { theme: \"dark\", fontSize: 16 };\nconsole.log({ ...defaults, ...prefs });";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "function greet(name = \"Guest\") {\n  return `Hi ${name}`;\n}\nconsole.log(greet());";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "const name = \"Priya\";\nconst city = \"Jaipur\";\nconst user = { name, city };\nconsole.log(user);";
+document.querySelector("#topic6Code code").textContent = _topic6;

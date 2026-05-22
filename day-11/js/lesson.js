@@ -1,34 +1,13 @@
-const user = {
-    name: "Priya",
-    age: 24,
-    city: "Jaipur",
-    isActive: true,
-    hobbies: ["reading", "trekking"],
-    address: {
-        street: "MI Road",
-        pincode: "302001"
-    }
-};
-
-const topic1Snippet = `const user = ${JSON.stringify(user, null, 2)};
-
-console.log(user);`;
-
-const topic2Snippet = `const user = { name: "Priya", age: 24, "favourite color": "blue" };
-
-// Dot — clean
-console.log(user.name);              // Priya
-console.log(user.age);               // 24
-
-// Bracket — when key is dynamic
-const field = "name";
-console.log(user[field]);            // Priya  ← variable
-
-// Bracket — when key has spaces/special chars
-console.log(user["favourite color"]); // blue   (can't do user.favourite color)
-
-// Property doesn't exist? undefined — no error
-console.log(user.email);             // undefined`;
-
-document.querySelector("#topic1Code code").textContent = topic1Snippet;
-document.querySelector("#topic2Code code").textContent = topic2Snippet;
+"use strict";
+const _topic1 = "btn.addEventListener(\"click\", () => {\n  console.log(\"clicked\");\n});";
+document.querySelector("#topic1Code code").textContent = _topic1;
+const _topic2 = "input.addEventListener(\"input\", (e) => {\n  console.log(e.target.value);\n});";
+document.querySelector("#topic2Code code").textContent = _topic2;
+const _topic3 = "form.addEventListener(\"submit\", (e) => {\n  e.preventDefault();\n});";
+document.querySelector("#topic3Code code").textContent = _topic3;
+const _topic4 = "list.addEventListener(\"click\", (e) => {\n  const li = e.target.closest(\"li\");\n  if (!li) return;\n  li.classList.toggle(\"done\");\n});";
+document.querySelector("#topic4Code code").textContent = _topic4;
+const _topic5 = "// Delegation: one listener on parent for many children";
+document.querySelector("#topic5Code code").textContent = _topic5;
+const _topic6 = "// mouseenter, keydown, change, focus, blur \u2014 pick per UX need";
+document.querySelector("#topic6Code code").textContent = _topic6;

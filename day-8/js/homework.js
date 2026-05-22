@@ -1,22 +1,7 @@
-const book = {
-    title: "The Guide",
-    author: "R. K. Narayan",
-    year: 1958,
-    pages: 240,
-    summary() {
-        return `${this.title} by ${this.author} (${this.year})`;
-    }
-};
-
-const key = "title";
-
-console.log(book[key]);
-
-const lines = [];
-lines.push(`Variable key: ${JSON.stringify(key)}`);
-lines.push(`book[key] (title): ${book[key]}`);
-lines.push("");
-lines.push("summary():");
-lines.push(book.summary());
-
-document.querySelector("#homeworkOutput").textContent = lines.join("\n");
+"use strict";
+const user = { name: "Riya", address: { city: "Jaipur", pin: "302001" } };
+document.querySelector("#task1Output").textContent = user.address?.city ?? "unknown";
+const key = "id";
+document.querySelector("#task2Output").textContent = JSON.stringify({ [key]: 7 });
+document.querySelector("#task3Output").textContent =
+  "Object.freeze is shallow: nested objects stay mutable unless frozen separately.";
