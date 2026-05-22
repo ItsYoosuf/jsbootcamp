@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 22 Student Doc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+pre code .hljs-string, pre code .hljs-attr { color: #FFB86C !important; }
+pre code .hljs-number, pre code .hljs-literal { color: #FF79C6 !important; }
+pre code .hljs-keyword, pre code .hljs-built_in { color: #BD93F9 !important; }
+pre code .hljs-comment { color: #6272A4 !important; font-style: italic; }
+pre code .hljs-title.function_, pre code .hljs-built_in { color: #8BE9FD !important; }
+pre code { color: #F8F8F2 !important; }
+pre { background: #282A36 !important; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0D0D14; color: #F1F5F9; max-width: 900px; margin: auto; padding: 20px; line-height: 1.55; }
+h1 { color: #FFD60A; border-bottom: 3px solid #FFD60A; padding-bottom: 8px; }
+h2 { color: #FFD60A; margin-top: 28px; border-left: 4px solid #FFD60A; padding-left: 10px; }
+h3 { color: #F1F5F9; margin-top: 20px; }
+p, li, td, th { color: #E2E8F0; }
+code { background: #1E1E2E; padding: 2px 6px; border-radius: 3px; font-size: 0.92em; color: #A6E3A1; }
+pre { background: #12121A !important; color: #CDD6F4 !important; padding: 16px; border-radius: 6px; font-size: 1em; font-weight: 500; line-height: 1.6; border: 1px solid #2E2E42; overflow-x: auto; margin: 14px 0; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #16161F; }
+th { background: #FFD60A; color: #0D0D14; padding: 10px 12px; text-align: left; font-size: 0.9em; font-weight: 700; }
+td { padding: 10px 12px; border-bottom: 1px solid #2E2E42; font-size: 0.92em; color: #E2E8F0; }
+tr:nth-child(even) td { background: #1A1A26; }
+.part-banner { background: rgba(255,214,10,0.15); color: #FFD60A; text-align: center; padding: 10px; border-radius: 4px; font-weight: 700; font-size: 0.9em; letter-spacing: 1px; margin: 25px 0 15px; border: 1px solid #FFD60A; }
+.part-orange { background: rgba(255,140,66,0.15); color: #FF8C42; border-color: #FF8C42; }
+.part-mint { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: #2DD4BF; }
+.part-purple { background: rgba(192,132,252,0.15); color: #C084FC; border-color: #C084FC; }
+.topic { background: #FFD60A; color: #0D0D14; padding: 12px 16px; border-radius: 6px; margin: 24px 0 15px; font-weight: 700; }
+.topic .n { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-size: 0.85em; color: #F1F5F9; }
+.topic .sub { float: right; opacity: 0.85; font-weight: 400; font-size: 0.88em; }
+.section-pill { display: inline-block; padding: 6px 14px; border-radius: 3px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; margin: 18px 0 12px; color: #0D0D14; }
+.sp-orange { background: #FF8C42; } .sp-yellow { background: #FFD60A; }
+.card { background: #16161F; border: 1px solid #2E2E42; border-radius: 6px; padding: 14px; margin: 10px 0; }
+.card.yellow { border-left: 4px solid #FFD60A; }
+.card.red { border-left: 4px solid #FF4D6D; }
+.think-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: start; margin: 10px 0; }
+.think-row .code { background: #12121A; padding: 12px 14px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #CDD6F4; border: 1px solid #2E2E42; line-height: 1.5; }
+.think-row .arrow { text-align: center; color: #FFD60A; font-weight: 700; font-size: 1.2em; padding-top: 12px; }
+.think-row .blank { background: #0D0D14; padding: 12px 14px; border-radius: 4px; border: 1px dashed #4B5563; color: #6B7280; font-size: 0.85em; font-style: italic; min-height: 18px; }
+.task-card { background: #16161F; padding: 14px 18px; margin: 14px 0; border-radius: 4px; border-left: 4px solid #FFD60A; }
+.task-card.blue { border-left-color: #4D9FFF; }
+.task-card.orange { border-left-color: #FF8C42; }
+.task-card.green { border-left-color: #00E5A0; }
+.task-card.purple { border-left-color: #C084FC; }
+.task-card .title { color: #FFD60A; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.task-card.blue .title { color: #4D9FFF; }
+.task-card.orange .title { color: #FF8C42; }
+.task-card.green .title { color: #00E5A0; }
+.task-card.purple .title { color: #C084FC; }
+.task-card ul { margin: 8px 0; padding-left: 22px; }
+.task-card li { color: #E2E8F0; margin: 5px 0; line-height: 1.5; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.78em; font-weight: 700; color: #0D0D14; margin-right: 8px; }
+.b-blue { background: #4D9FFF; } .b-orange { background: #FF8C42; } .b-green { background: #00E5A0; } .b-purple { background: #C084FC; }
+.cover { background: #16161F; padding: 35px 30px; border-left: 6px solid #FFD60A; margin-bottom: 25px; border-radius: 4px; }
+.cover h1 { color: #FFD60A; font-size: 2.4em; border: none; margin: 0; padding: 0; }
+.cover .sub { color: #9CA3AF; font-size: 1.05em; margin: 10px 0 12px; }
+.cover .end-badge { display: inline-block; background: #FFD60A; color: #0D0D14; padding: 4px 12px; border-radius: 3px; font-size: 0.7em; font-weight: 700; letter-spacing: 1px; margin-bottom: 18px; }
+.meta-cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.meta-cards > div { background: rgba(255,255,255,0.06); padding: 10px 18px; border-radius: 4px; min-width: 90px; }
+.meta-cards strong { color: #FFD60A; font-size: 1.4em; display: block; }
+.meta-cards span { color: #9CA3AF; font-size: 0.72em; letter-spacing: 1px; }
+.hw-card { background: #16161F; padding: 16px 22px; border-left: 4px solid #C084FC; border-radius: 4px; margin: 14px 0; }
+.hw-card .title { color: #C084FC; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.hw-card ol { margin: 8px 0; padding-left: 22px; color: #E2E8F0; }
+.hw-card li { margin: 6px 0; line-height: 1.55; }
+hr { border: none; border-top: 1px solid #2E2E42; margin: 30px 0; }
+</style>
+<div class="cover">
+<h1>Advanced Day 10 — Map / Set / WeakMap / WeakSet</h1>
+<div class="sub">Student Document · Advanced JS · Session 10 of 15</div>
+<div class="end-badge">★ ADVANCED JS — DAY 10 OF 15</div>
+<div class="meta-cards">
+<div><strong>60 min</strong><span>TOTAL</span></div>
+<div><strong>30 min</strong><span>TEACHING</span></div>
+<div><strong>15 min</strong><span>HANDS-ON</span></div>
+<div><strong>15 min</strong><span>Q&amp;A</span></div>
+</div>
+</div>
+<h3 id="todays-topics">Today's Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Map: A Better Object for Keyed Data</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Object ↔ Map Conversion</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Set: Unique Values</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Set Operations (union/intersection/diff)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>When Map/Set vs Object/Array</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WeakMap &amp; WeakSet</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Bringing it Together</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner">PART 1 — FOLLOW ALONG WITH YOUR INSTRUCTOR</div>
+<div class="topic"><span class="n">Topic 1</span> Map — Better Keyed Storage <span class="sub">Any key type · Insertion order</span></div>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Object</th>
+<th>Map</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Key types</td>
+<td>Strings &amp; Symbols only</td>
+<td>ANY type</td>
+</tr>
+<tr>
+<td>Iteration order</td>
+<td>Roughly insertion</td>
+<td>Guaranteed insertion</td>
+</tr>
+<tr>
+<td>Size</td>
+<td><code>Object.keys(o).length</code></td>
+<td><code>map.size</code></td>
+</tr>
+<tr>
+<td>Iteration</td>
+<td>Need <code>Object.keys/entries</code></td>
+<td><code>for...of</code> natively</td>
+</tr>
+<tr>
+<td>Default keys</td>
+<td>Inherits <code>toString</code>, ...</td>
+<td>None — clean</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Fixed shape</td>
+<td>Frequent add/remove</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+
+m.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Priya&quot;</span>);
+m.<span class="hljs-title function_">set</span>(<span class="hljs-number">42</span>, <span class="hljs-string">&quot;the answer&quot;</span>);
+m.<span class="hljs-title function_">set</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;a boolean key&quot;</span>);
+
+<span class="hljs-keyword">const</span> userObj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> };
+m.<span class="hljs-title function_">set</span>(userObj, <span class="hljs-string">&quot;value associated with userObj&quot;</span>);   <span class="hljs-comment">// OBJECT as key — Object can&#x27;t!</span>
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;name&quot;</span>));     <span class="hljs-comment">// &quot;Priya&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-title function_">get</span>(userObj));    <span class="hljs-comment">// &quot;value associated with userObj&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-property">size</span>);            <span class="hljs-comment">// 4</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-title function_">has</span>(<span class="hljs-number">42</span>));         <span class="hljs-comment">// true</span>
+m.<span class="hljs-title function_">delete</span>(<span class="hljs-number">42</span>);
+
+<span class="hljs-comment">// Initialise from an array of pairs</span>
+<span class="hljs-keyword">const</span> m2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([
+  [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">1</span>],
+  [<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-number">2</span>],
+]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m2.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;a&quot;</span>));       <span class="hljs-comment">// 1</span>
+
+<span class="hljs-comment">// Iterate — preserves insertion order</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> m2) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key, value);
+}
+</div></code></pre>
+<div class="topic"><span class="n">Topic 2</span> Object ↔ Map Conversion <span class="sub">entries / fromEntries</span></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Priya&quot;</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">&quot;Jaipur&quot;</span> };
+
+<span class="hljs-comment">// Object → Map</span>
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(obj));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;name&quot;</span>));    <span class="hljs-comment">// &quot;Priya&quot;</span>
+
+<span class="hljs-comment">// Map → Object (keys must be strings/symbols)</span>
+<span class="hljs-keyword">const</span> back = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">fromEntries</span>(map);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(back);                <span class="hljs-comment">// { name: &quot;Priya&quot;, city: &quot;Jaipur&quot; }</span>
+
+<span class="hljs-comment">// Map iteration helpers</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> map.<span class="hljs-title function_">keys</span>())   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;key:&quot;</span>, key);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> val <span class="hljs-keyword">of</span> map.<span class="hljs-title function_">values</span>()) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;val:&quot;</span>, val);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [k, v] <span class="hljs-keyword">of</span> map.<span class="hljs-title function_">entries</span>()) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(k, <span class="hljs-string">&quot;=&quot;</span>, v);
+
+map.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key, <span class="hljs-string">&quot;=&quot;</span>, value));   <span class="hljs-comment">// value FIRST!</span>
+</div></code></pre>
+<p><span class="section-pill sp-orange">FOLLOW ALONG</span></p>
+<div class="think-row">
+<div class="code">
+const m = new Map();<br>
+const k1 = { id: 1 };<br>
+const k2 = { id: 1 };<br>
+m.set(k1, "a");<br>
+m.set(k2, "b");<br>
+console.log(m.size);
+</div>
+<div class="arrow">→</div>
+<div class="blank">size?</div>
+</div>
+<div class="topic"><span class="n">Topic 3</span> Set — Unique Values <span class="sub">add · has · delete · dedup</span></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
+
+s.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);
+s.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;b&quot;</span>);
+s.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);                      <span class="hljs-comment">// duplicate — ignored</span>
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(s.<span class="hljs-property">size</span>);             <span class="hljs-comment">// 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(s.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;a&quot;</span>));         <span class="hljs-comment">// true</span>
+s.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&quot;b&quot;</span>);
+
+<span class="hljs-comment">// Initialise from an array</span>
+<span class="hljs-keyword">const</span> tags = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-string">&quot;js&quot;</span>, <span class="hljs-string">&quot;react&quot;</span>, <span class="hljs-string">&quot;js&quot;</span>, <span class="hljs-string">&quot;node&quot;</span>, <span class="hljs-string">&quot;react&quot;</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(tags.<span class="hljs-property">size</span>);          <span class="hljs-comment">// 3   ← duplicates removed</span>
+
+<span class="hljs-comment">// Most common Set use: deduplicate an array</span>
+<span class="hljs-keyword">const</span> arr   = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+<span class="hljs-keyword">const</span> uniq  = [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr)];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uniq);               <span class="hljs-comment">// [1, 2, 3, 4, 5]</span>
+
+<span class="hljs-comment">// Iterate</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> v <span class="hljs-keyword">of</span> tags) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v);
+
+<span class="hljs-comment">// Object identity, not value equality</span>
+<span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
+set.<span class="hljs-title function_">add</span>({ <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> });
+set.<span class="hljs-title function_">add</span>({ <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> });              <span class="hljs-comment">// DIFFERENT object → both kept</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>);           <span class="hljs-comment">// 2</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 4</span> Set Operations <span class="sub">union · intersection · difference</span></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-keyword">const</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+
+<span class="hljs-comment">// Union — A ∪ B</span>
+<span class="hljs-keyword">const</span> union = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([...a, ...b]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...union]);              <span class="hljs-comment">// [1, 2, 3, 4]</span>
+
+<span class="hljs-comment">// Intersection — A ∩ B</span>
+<span class="hljs-keyword">const</span> inter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([...a].<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> b.<span class="hljs-title function_">has</span>(x)));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...inter]);              <span class="hljs-comment">// [2, 3]</span>
+
+<span class="hljs-comment">// Difference — A − B</span>
+<span class="hljs-keyword">const</span> diff = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([...a].<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> !b.<span class="hljs-title function_">has</span>(x)));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...diff]);               <span class="hljs-comment">// [1]</span>
+
+<span class="hljs-comment">// Modern (ES2025+, where supported):</span>
+<span class="hljs-comment">// a.union(b); a.intersection(b); a.difference(b);</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 5</span> When Each <span class="sub">Decision rules</span></div>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String→value config, fixed shape</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>List of items in order</td>
+<td>Array</td>
+</tr>
+<tr>
+<td>Frequent add/remove with any key type</td>
+<td>Map</td>
+</tr>
+<tr>
+<td>Unique-set membership / dedup</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>Cache keyed by an actual object</td>
+<td>Map (or WeakMap)</td>
+</tr>
+<tr>
+<td>&quot;Has this been seen?&quot;</td>
+<td>Set</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-comment">// Use case: caching by request object</span>
+<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchWithCache</span>(<span class="hljs-params">req</span>) {
+  <span class="hljs-keyword">if</span> (cache.<span class="hljs-title function_">has</span>(req)) <span class="hljs-keyword">return</span> cache.<span class="hljs-title function_">get</span>(req);   <span class="hljs-comment">// hit</span>
+  <span class="hljs-keyword">const</span> result = <span class="hljs-title function_">doFetch</span>(req);
+  cache.<span class="hljs-title function_">set</span>(req, result);                       <span class="hljs-comment">// store</span>
+  <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-comment">// Use case: unique tag list from many posts</span>
+<span class="hljs-keyword">const</span> allTags = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
+posts.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">tags</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> allTags.<span class="hljs-title function_">add</span>(t)));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...allTags]);
+</div></code></pre>
+<div class="topic"><span class="n">Topic 6</span> WeakMap & WeakSet <span class="sub">GC-friendly storage</span></div>
+<div class="card yellow">
+WeakMap/WeakSet hold WEAK references — entries don't prevent GC. When an object key is no longer referenced anywhere else, the entry vanishes automatically. Keys MUST be objects. NOT iterable.
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> wm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
+<span class="hljs-keyword">let</span> user = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Priya&quot;</span> };
+
+wm.<span class="hljs-title function_">set</span>(user, { <span class="hljs-attr">lastSeen</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() });   <span class="hljs-comment">// key MUST be an object</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(wm.<span class="hljs-title function_">get</span>(user));                 <span class="hljs-comment">// { lastSeen: ... }</span>
+
+user = <span class="hljs-literal">null</span>;                                <span class="hljs-comment">// last reference dropped</span>
+<span class="hljs-comment">// Garbage collector eventually removes the entry from wm.</span>
+<span class="hljs-comment">// We cannot observe this directly — that&#x27;s the point.</span>
+
+<span class="hljs-comment">// Practical use: per-DOM-node metadata, no leaks when nodes are removed</span>
+<span class="hljs-keyword">const</span> dataForElement = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">attachData</span>(<span class="hljs-params">el, data</span>) {
+  dataForElement.<span class="hljs-title function_">set</span>(el, data);
+}
+<span class="hljs-comment">// When the element is removed from the DOM AND no other reference exists,</span>
+<span class="hljs-comment">// the WeakMap entry is auto-cleaned. No memory leak.</span>
+
+<span class="hljs-comment">// WeakSet — same idea, just storing object membership</span>
+<span class="hljs-keyword">const</span> seen = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakSet</span>();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">process</span>(<span class="hljs-params">item</span>) {
+  <span class="hljs-keyword">if</span> (seen.<span class="hljs-title function_">has</span>(item)) <span class="hljs-keyword">return</span>;     <span class="hljs-comment">// skip already-processed</span>
+  seen.<span class="hljs-title function_">add</span>(item);
+  <span class="hljs-comment">// ... do work</span>
+}
+</div></code></pre>
+<div class="card red">
+<strong>⚠️ WeakMap is not a cache</strong> — entries can vanish at any time. Use WeakMap when you want metadata "attached" to an object that should die with it.
+</div>
+<div class="topic"><span class="n">Topic 7</span> Pick Your Type <span class="sub">Decision matrix</span></div>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Keys / Values</th>
+<th>Iterable?</th>
+<th>GC-friendly?</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Map</td>
+<td>Any → Any</td>
+<td>Yes</td>
+<td>No</td>
+<td>General keyed data</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>Values only</td>
+<td>Yes</td>
+<td>No</td>
+<td>Uniqueness</td>
+</tr>
+<tr>
+<td>WeakMap</td>
+<td>Object → Any</td>
+<td>No</td>
+<td>Yes</td>
+<td>Per-object metadata</td>
+</tr>
+<tr>
+<td>WeakSet</td>
+<td>Objects only</td>
+<td>No</td>
+<td>Yes</td>
+<td>&quot;Have I seen this object?&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-orange">PART 2 — HANDS-ON EXERCISE (15 MIN)</div>
+<div class="task-card blue">
+<div class="title"><span class="badge b-blue">Task 1</span> Map vs Object</div>
+<ul>
+<li>Build a <code>Map</code> of products: <code>"pen" → 50</code>, <code>"book" → 200</code>, <code>"bag" → 800</code>.</li>
+<li>Iterate with <code>for...of</code> and log each as <code>"item: ₹price"</code>.</li>
+<li>Use <code>.has</code>, <code>.get</code>, <code>.delete</code>, <code>.size</code>.</li>
+<li>Convert it to an Object with <code>Object.fromEntries</code> and back to a Map with <code>new Map(Object.entries(...))</code>.</li>
+</ul>
+</div>
+<div class="task-card orange">
+<div class="title"><span class="badge b-orange">Task 2</span> Deduplicate with Set</div>
+<ul>
+<li>Take an array of student IDs with duplicates: <code>[101, 102, 103, 101, 104, 102, 105]</code>.</li>
+<li>Use a Set to deduplicate. Convert back to an array.</li>
+<li>Now compute the count of UNIQUE IDs.</li>
+<li>Try with mixed types <code>[1, "1", 1, true, 1n]</code> — predict and verify.</li>
+</ul>
+</div>
+<div class="task-card green">
+<div class="title"><span class="badge b-green">Task 3</span> Cache with Map</div>
+<ul>
+<li>Write <code>memoize(fn)</code> from Day 2 — but this time use a <code>Map</code> instead of an object.</li>
+<li>Wrap an <code>expensiveSquare(n)</code> that logs <code>"computing..."</code> and returns <code>n * n</code>.</li>
+<li>Verify that calling it twice with <code>5</code> only logs <code>"computing..."</code> once.</li>
+<li>Then add a <code>cache.size</code> check.</li>
+</ul>
+</div>
+<div class="task-card purple">
+<div class="title"><span class="badge b-purple">Bonus</span> WeakMap for Private Data</div>
+<ul>
+<li>Use a WeakMap to store "metadata" for objects without modifying them.</li>
+<li>Build a tiny attach/get API: <code>attach(obj, data)</code> and <code>get(obj)</code>.</li>
+<li>Test by attaching <code>{ lastClick: Date.now() }</code> to two button objects.</li>
+<li>Drop one of the button references. Conceptually, the WeakMap entry will be GC'd.</li>
+</ul>
+</div>
+<hr>
+<div class="part-banner part-mint">PART 3 — VISUAL SUMMARY</div>
+<h3 id="map-api">Map API</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>m.set(k, v)</code></td>
+<td>Add / update</td>
+</tr>
+<tr>
+<td><code>m.get(k)</code></td>
+<td>Read</td>
+</tr>
+<tr>
+<td><code>m.has(k)</code></td>
+<td>Check</td>
+</tr>
+<tr>
+<td><code>m.delete(k)</code></td>
+<td>Remove</td>
+</tr>
+<tr>
+<td><code>m.size</code></td>
+<td>Count</td>
+</tr>
+<tr>
+<td><code>m.clear()</code></td>
+<td>Empty all</td>
+</tr>
+</tbody>
+</table>
+<h3 id="set-api">Set API</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s.add(v)</code></td>
+<td>Add</td>
+</tr>
+<tr>
+<td><code>s.has(v)</code></td>
+<td>Check</td>
+</tr>
+<tr>
+<td><code>s.delete(v)</code></td>
+<td>Remove</td>
+</tr>
+<tr>
+<td><code>s.size</code></td>
+<td>Count</td>
+</tr>
+</tbody>
+</table>
+<h3 id="conversions">Conversions</h3>
+<table>
+<thead>
+<tr>
+<th>From → To</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object → Map</td>
+<td><code>new Map(Object.entries(o))</code></td>
+</tr>
+<tr>
+<td>Map → Object</td>
+<td><code>Object.fromEntries(m)</code></td>
+</tr>
+<tr>
+<td>Array → Set</td>
+<td><code>new Set(arr)</code></td>
+</tr>
+<tr>
+<td>Set → Array</td>
+<td><code>[...s]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="decision-quick">Decision Quick</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Pick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dedup array</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>Cache by object ref</td>
+<td>Map</td>
+</tr>
+<tr>
+<td>Per-DOM-node data</td>
+<td>WeakMap</td>
+</tr>
+<tr>
+<td>Counter per key</td>
+<td>Map</td>
+</tr>
+<tr>
+<td>Config struct</td>
+<td>Object</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-purple">HOMEWORK</div>
+<div class="hw-card">
+<div class="title">Practice tasks before next class · Advanced Day 10</div>
+<ol>
+<li>Build a "tag counter": given an array of posts each with a <code>.tags</code> array, return a Map of <code>tag → count</code>. Use a Map (not an Object).</li>
+<li>Build a <code>union(a, b)</code>, <code>intersection(a, b)</code>, <code>difference(a, b)</code> set of helpers from scratch using Set + spread.</li>
+<li>Convert a Map of <code>{ name → age }</code> to an array of <code>[name, age]</code> pairs, sorted by age. Use destructuring.</li>
+<li>Write a small DOM event tracker using WeakMap that stores click counts per button. Bonus: explain in a comment why WeakMap is the right choice (vs a plain Map).</li>
+<li>Read: <code>javascript.info/map-set</code> and <code>javascript.info/weakmap-weakset</code>.</li>
+<li><em>(Bonus)</em> Read MDN's article comparing iteration order across Map / Set / Object.</li>
+</ol>
+</div>
+
+</body>
+</html>

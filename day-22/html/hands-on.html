@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 4 — Control Flow — Homework</title>
+    <title>Day 22 — Advanced Day 10 — Map / Set / WeakMap / WeakSet — Hands-on</title>
     <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
@@ -11,18 +11,21 @@
     <div class="page-shell">
         <main class="page-main" id="main-content">
             <header class="page-title">
-                <p class="lesson-label">Day 4 · Control Flow</p>
-                <h1>Homework</h1>
+                <p class="lesson-label">Day 22 · Advanced Day 10 — Map / Set / WeakMap / WeakSet</p>
+                <h1>Hands-on</h1>
             </header>
 
             <details class="exercise" open>
                 <summary>
                     <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Menu router</span>
+                    <span class="lesson-task__title">Map vs Object</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Build a <code>switch</code> on a command string: <code>\"add\"</code>, <code>\"list\"</code>, <code>\"quit\"</code> — log a different message per command and a default for unknown.</li>
+                        <li>Build a <code>Map</code> of products: <code>"pen" → 50</code>, <code>"book" → 200</code>, <code>"bag" → 800</code>.</li>
+                        <li>Iterate with <code>for...of</code> and log each as <code>"item: ₹price"</code>.</li>
+                        <li>Use <code>.has</code>, <code>.get</code>, <code>.delete</code>, <code>.size</code>; round-trip with <code>Object.fromEntries</code> and <code>new Map(Object.entries(...))</code>.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
@@ -33,11 +36,13 @@
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 2</span>
-                    <span class="lesson-task__title">Nested ternary (once)</span>
+                    <span class="lesson-task__title">Deduplicate with Set</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Convert a small <code>if/else if</code> chain for temperature (&lt;0 cold, 0–25 mild, else hot) into a single nested ternary — then comment why an if-chain is clearer.</li>
+                        <li>Deduplicate <code>[101, 102, 103, 101, 104, 102, 105]</code> with a <code>Set</code>; report unique count.</li>
+                        <li>Try mixed types <code>[1, "1", 1, true, 1n]</code> — predict size, then verify.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task2Output" class="run-output"></pre>
@@ -48,14 +53,34 @@
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 3</span>
-                    <span class="lesson-task__title">Guard clause practice</span>
+                    <span class="lesson-task__title">Cache with Map</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Write <code>pay(amount)</code> that returns early if amount is not a finite positive number, else logs <code>Paid</code>.</li>
+                        <li>Implement <code>memoize(fn)</code> using a <code>Map</code> cache (not a plain object).</li>
+                        <li>Wrap <code>expensiveSquare(n)</code> that logs <code>"computing..."</code> and returns <code>n * n</code>.</li>
+                        <li>Call twice with <code>5</code> — only one <code>"computing..."</code>; log <code>cache.size</code>.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task3Output" class="run-output"></pre>
+                </div>
+            </details>
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Bonus</span>
+                    <span class="lesson-task__title">WeakMap for private data</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Use a <code>WeakMap</code> to attach metadata without mutating objects: <code>attach(obj, data)</code> / <code>get(obj)</code>.</li>
+                        <li>Attach <code>{ lastClick: Date.now() }</code> to two plain “button” objects; read values back.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task4Output" class="run-output"></pre>
                 </div>
             </details>
 
@@ -105,12 +130,12 @@
 
                 <!-- Day 4 -->
                 <li class="site-outline-day">
-                    <details class="site-outline-details" open>
+                    <details class="site-outline-details">
                         <summary>Day 4 — Control Flow</summary>
                         <ul>
                             <li><a href="../../day-4/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-4/html/hands-on.html">Hands-on</a></li>
-                            <li><a href="../../day-4/html/homework.html" aria-current="page">Homework</a></li>
+                            <li><a href="../../day-4/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
@@ -313,11 +338,11 @@
                 </li>
                 <!-- Day 22 -->
                 <li class="site-outline-day">
-                    <details class="site-outline-details">
+                    <details class="site-outline-details" open>
                         <summary>Day 22 — Advanced Day 10 — Map / Set / WeakMap / WeakSet</summary>
                         <ul>
                             <li><a href="../../day-22/html/lesson.html">Lesson</a></li>
-                            <li><a href="../../day-22/html/hands-on.html">Hands-on</a></li>
+                            <li><a href="../../day-22/html/hands-on.html" aria-current="page">Hands-on</a></li>
                             <li><a href="../../day-22/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
@@ -325,7 +350,7 @@
             </ul>
         </aside>
     </div>
-    <script defer src="../js/homework.js"></script>
+    <script defer src="../js/hands-on.js"></script>
     <script src="../../shared/js/nav-lock.js"></script>
 </body>
 </html>

@@ -443,22 +443,132 @@ fetchUser(7)
 // console.log("After Block");
 
 //Task 4
-function settingTime()
-  {
-    let i = 0;
-    while(i<5)
-    {
-      console.log(i);
-      setTimeout(() => console.log(i), 0);
-      if(i==4)
-          {
-            Promise.resolve()
-            .then(()=>{console.log("1");})
-            .then(()=>{console.log("2");})
-            .then(()=>{console.log("3");});
-          }
-    i++;
-    }
+// function settingTime()
+//   {
+//     let i = 0;
+//     while(i<5)
+//     {
+//       console.log(i);
+//       setTimeout(() => console.log(i), 0);
+//       if(i==4)
+//           {
+//             Promise.resolve()
+//             .then(()=>{console.log("1");})
+//             .then(()=>{console.log("2");})
+//             .then(()=>{console.log("3");});
+//           }
+//     i++;
+//     }
 
-  }
-  settingTime();
+//   }
+//   settingTime();
+//Day 22 Lesson 1
+// const m = new Map();
+
+// m.set("name", "Priya");
+// m.set(42, "the answer");
+// m.set(true, "a boolean key");
+
+// const userObj = { id: 1 };
+// m.set(userObj, "value associated with userObj");   // OBJECT as key — Object can't!
+// console.log(m.get("name"));     // "Priya"
+// console.log(m.get(userObj));    // "value associated with userObj"
+// console.log(m.size);            // 4
+// console.log(m.has(42));         // true
+// m.delete(42);
+
+// // Initialise from an array of pairs
+// const m2 = new Map([
+//   ["a", 1],
+//   ["b", 2],
+// ]);
+// console.log(m2.get("a"));       // 1
+
+// // Iterate — preserves insertion order
+// for (const [key, value] of m2) {
+//   console.log(key, value);
+//}
+//Lesson 3
+// const s = new Set();
+
+// s.add("a");
+// s.add("b");
+// s.add("a");                      // duplicate — ignored
+
+// console.log(s.size);             // 2
+// console.log(s.has("a"));
+// console.log(s);          // true
+// s.delete("b");
+// console.log(s); 
+// // Initialise from an array
+// const tags = new Set(["js", "react", "js", "node", "react"]);
+// console.log(tags.size);          // 3   ← duplicates removed
+
+// // Most common Set use: deduplicate an array
+// const arr   = [1, 2, 2, 3, 4, 4, 5];
+// const uniq  = [...new Set(arr)];
+// console.log(uniq);               // [1, 2, 3, 4, 5]
+
+// // Iterate
+// for (const v of tags) console.log(v);
+
+// // Object identity, not value equality
+// const set = new Set();
+// set.add({ id: 1 });
+// set.add({ id: 1 });              // DIFFERENT object → both kept
+//console.log(set.size);           // 2
+//Lesson 4
+// const a = new Set([1, 2, 3, 4]);
+// const b = new Set([3, 4, 5, 6]);
+ 
+// // 1. Union - all elements from both
+// console.log(a.union(b));              // Set {1, 2, 3, 4, 5, 6}
+ 
+// // 2. Intersection - common elements
+// console.log(a.intersection(b));       // Set {3, 4}
+ 
+// // 3. Difference - in A but not in B
+// console.log(a.difference(b));         // Set {1, 2}
+ 
+// // 4. Symmetric Difference - in either but not both
+// console.log(a.symmetricDifference(b)); // Set {1, 2, 5, 6}
+ 
+// // 5. Subset - all elements of A are in B
+// console.log(a.isSubsetOf(b));         // false
+ 
+// // 6. Superset - B contains all elements of A
+// console.log(a.isSupersetOf(b));       // false
+ 
+// // 7. Disjoint - no common elements
+// console.log(a.isDisjointFrom(b));     // false
+//Hands on 1
+const products = new Map([
+  ["pen", 50],
+  ["book", 200],
+  ["bag", 800],
+]);
+
+// Iterate
+for (const [item, price] of products) {
+  console.log(`${item}: ₹${price}`);
+}
+
+// has
+console.log(products.has("book")); // true
+
+// get
+console.log(products.get("bag")); // 800
+
+// delete
+products.delete("pen");
+
+// size
+console.log(products.size); // 2
+
+// Map → Object
+const obj = Object.fromEntries(products);
+console.log(obj);
+
+// Object → Map
+const backToMap = new Map(Object.entries(obj));
+console.log(backToMap);

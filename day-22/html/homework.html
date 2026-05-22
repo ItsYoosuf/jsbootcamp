@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 4 — Control Flow — Homework</title>
+    <title>Day 22 — Advanced Day 10 — Map / Set / WeakMap / WeakSet — Homework</title>
     <link rel="preload" href="../../shared/css/styles.css" as="style">
     <link rel="stylesheet" href="../../shared/css/styles.css">
 </head>
@@ -11,18 +11,19 @@
     <div class="page-shell">
         <main class="page-main" id="main-content">
             <header class="page-title">
-                <p class="lesson-label">Day 4 · Control Flow</p>
+                <p class="lesson-label">Day 22 · Advanced Day 10 — Map / Set / WeakMap / WeakSet</p>
                 <h1>Homework</h1>
             </header>
 
             <details class="exercise" open>
                 <summary>
                     <span class="lesson-task__tag">Task 1</span>
-                    <span class="lesson-task__title">Menu router</span>
+                    <span class="lesson-task__title">Tag counter (Map)</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Build a <code>switch</code> on a command string: <code>\"add\"</code>, <code>\"list\"</code>, <code>\"quit\"</code> — log a different message per command and a default for unknown.</li>
+                        <li>Given posts with a <code>.tags</code> array each, return a <code>Map</code> of <code>tag → count</code> (not a plain object).</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task1Output" class="run-output"></pre>
@@ -33,11 +34,12 @@
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 2</span>
-                    <span class="lesson-task__title">Nested ternary (once)</span>
+                    <span class="lesson-task__title">Set helpers</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Convert a small <code>if/else if</code> chain for temperature (&lt;0 cold, 0–25 mild, else hot) into a single nested ternary — then comment why an if-chain is clearer.</li>
+                        <li>Implement <code>union(a, b)</code>, <code>intersection(a, b)</code>, <code>difference(a, b)</code> using <code>Set</code> + spread (arrays in, arrays out).</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task2Output" class="run-output"></pre>
@@ -48,14 +50,33 @@
             <details class="exercise">
                 <summary>
                     <span class="lesson-task__tag">Task 3</span>
-                    <span class="lesson-task__title">Guard clause practice</span>
+                    <span class="lesson-task__title">Sorted age pairs</span>
                 </summary>
                 <div class="lesson-task__body">
                     <ul class="task-spec">
-                        <li>Write <code>pay(amount)</code> that returns early if amount is not a finite positive number, else logs <code>Paid</code>.</li>
+                        <li>Convert a <code>Map</code> of <code>name → age</code> into an array of <code>[name, age]</code> pairs sorted by age (use destructuring in sort).</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
                     </ul>
                     <p class="output-label">Solution output</p>
                     <pre id="task3Output" class="run-output"></pre>
+                </div>
+            </details>
+
+
+            <details class="exercise">
+                <summary>
+                    <span class="lesson-task__tag">Task 4</span>
+                    <span class="lesson-task__title">WeakMap clicks + reading</span>
+                </summary>
+                <div class="lesson-task__body">
+                    <ul class="task-spec">
+                        <li>Sketch a DOM event tracker: <code>WeakMap</code> stores click counts per button element.</li>
+                        <li>Bonus in comments: why <code>WeakMap</code> beats a plain <code>Map</code> for detached nodes.</li>
+                        <li>Read: <code>javascript.info/map-set</code> and <code>javascript.info/weakmap-weakset</code>; optional MDN note on iteration order.</li>
+                        <li>Seven lesson topics — follow the code samples in the Lesson panel (filled by lesson.js).</li>
+                    </ul>
+                    <p class="output-label">Solution output</p>
+                    <pre id="task4Output" class="run-output"></pre>
                 </div>
             </details>
 
@@ -105,12 +126,12 @@
 
                 <!-- Day 4 -->
                 <li class="site-outline-day">
-                    <details class="site-outline-details" open>
+                    <details class="site-outline-details">
                         <summary>Day 4 — Control Flow</summary>
                         <ul>
                             <li><a href="../../day-4/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-4/html/hands-on.html">Hands-on</a></li>
-                            <li><a href="../../day-4/html/homework.html" aria-current="page">Homework</a></li>
+                            <li><a href="../../day-4/html/homework.html">Homework</a></li>
                         </ul>
                     </details>
                 </li>
@@ -313,12 +334,12 @@
                 </li>
                 <!-- Day 22 -->
                 <li class="site-outline-day">
-                    <details class="site-outline-details">
+                    <details class="site-outline-details" open>
                         <summary>Day 22 — Advanced Day 10 — Map / Set / WeakMap / WeakSet</summary>
                         <ul>
                             <li><a href="../../day-22/html/lesson.html">Lesson</a></li>
                             <li><a href="../../day-22/html/hands-on.html">Hands-on</a></li>
-                            <li><a href="../../day-22/html/homework.html">Homework</a></li>
+                            <li><a href="../../day-22/html/homework.html" aria-current="page">Homework</a></li>
                         </ul>
                     </details>
                 </li>
