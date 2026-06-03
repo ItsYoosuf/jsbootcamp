@@ -542,33 +542,364 @@ fetchUser(7)
 // // 7. Disjoint - no common elements
 // console.log(a.isDisjointFrom(b));     // false
 //Hands on 1
-const products = new Map([
-  ["pen", 50],
-  ["book", 200],
-  ["bag", 800],
-]);
+// const products = new Map([
+//   ["pen", 50],
+//   ["book", 200],
+//   ["bag", 800],
+// ]);
 
-// Iterate
-for (const [item, price] of products) {
-  console.log(`${item}: ₹${price}`);
+// // Iterate
+// for (const [item, price] of products) {
+//   console.log(`${item}: ₹${price}`);
+// }
+
+// // has
+// console.log(products.has("book")); // true
+
+// // get
+// console.log(products.get("bag")); // 800
+
+// // delete
+// products.delete("pen");
+
+// // size
+// console.log(products.size); // 2
+
+// // Map → Object
+// const obj = Object.fromEntries(products);
+// console.log(obj);
+
+// // Object → Map
+// const backToMap = new Map(Object.entries(obj));
+// console.log(backToMap);
+
+//Day 23 
+//Lesson 1
+// const arr = ["a", "b", "c"];
+// const it  = arr[Symbol.iterator]();        // get the iterator object
+
+// console.log(it.next());    // { value: "a", done: false }
+// console.log(it.next());    // { value: "b", done: false }
+// console.log(it.next());    // { value: "c", done: false }
+// console.log(it.next());    // { value: undefined, done: true }
+
+// // for...of is sugar over this protocol:
+// for (const ch of arr) {
+//   console.log(ch);
+// }
+
+//Lesson 2
+// const range = {
+//   from: 1,
+//   to: 5,
+
+//   [Symbol.iterator]() {
+//     let current = this.from;
+//     const last = this.to;
+
+//     return {
+//       next() {
+//         if (current <= last) {
+//           return { value: current++, done: false };
+//         }
+//         return { value: undefined, done: true };
+//       },
+//     };
+//   },
+// };
+
+// // Now range works with for...of, spread, destructuring
+// for (const n of range) console.log(n);    // 1, 2, 3, 4, 5
+// console.log([...range]);                  // [1, 2, 3, 4, 5]
+// const [first, ...rest] = range;
+// console.log(first, rest);                 // 1 [2, 3, 4, 5]
+
+//Lesson 3
+// function* simple() {
+//   yield 1;          // pause and return 1
+//   yield 2;          // resume next time, then return 2
+//   yield 3;
+// }
+
+// const g = simple();           // generator object — function NOT yet running
+// console.log(g.next());        // { value: 1, done: false }
+// console.log(g.next());        // { value: 2, done: false }
+// console.log(g.next());        // { value: 3, done: false }
+// console.log(g.next());        // { value: undefined, done: true }
+
+// // Generators are iterables — for...of works directly
+// for (const n of simple()) console.log(n);    // 1, 2, 3
+
+// // Re-do range with a generator — much shorter than Topic 2!
+// function* range(from, to) {
+//   for (let i = from; i <= to; i++) {
+//     yield i;
+//   }
+// }
+
+// console.log([...range(1, 5)]);                // [1, 2, 3, 4, 5]
+
+//Lesspm 7
+// Simulated paged API
+// function fetchPage(page) {
+//   // Imagine an API call returning 3 items per page, up to page 4
+//   const data = {
+//     1: ["pen", "book", "bag"],
+//     2: ["mug", "lamp", "fan"],
+//     3: ["chair", "desk", "rug"],
+//     4: ["plant", "vase"],
+//   };
+//   return Promise.resolve(data[page] || []);
+// }
+
+// async function* paginate() {
+//   let page = 1;
+//   while (true) {
+//     const items = await fetchPage(page);
+//     if (items.length === 0) return;     // no more pages
+//     yield* items;                        // yield each item one by one
+//     page++;
+//   }
+// }
+
+// (async () => {
+//   for await (const item of paginate()) {     // for-await-of — Day 7 callback
+//     console.log(item);
+//   }
+//   // pen, book, bag, mug, lamp, fan, chair, desk, rug, plant, vase
+// })();
+
+//Hands on 1
+// const range = {
+//   from: 3,
+//   to: 7,
+
+//   [Symbol.iterator]() {
+//     let current = this.from;
+//     const last = this.to;
+
+//     return {
+//       next() {
+//         if (current <= last) {
+//           return { value: current++, done: false };
+//         }
+//         return { value: undefined, done: true };
+//       },
+//     };
+//   },
+// };
+
+// // Now range works with for...of, spread, destructuring
+// for (const n of range) console.log(n);    // 1, 2, 3, 4, 5
+// console.log([...range]);                  // [1, 2, 3, 4, 5]
+// const [first, ...rest] = range;
+// console.log(first, rest);                 // 1 [2, 3, 4, 5]
+// import { add, multiply, divide } from "./math/index.js";
+
+// console.log(add(2, 3));
+
+// console.log(multiply(4, 5));
+
+// console.log(divide(10, 2));
+
+//Day 25
+//Lesson 1
+// function add(a, b) { return a + b; }
+// function double(x) { return x * 2; }
+// function withGST(price, rate = 18) { return price * (1 + rate / 100); }
+
+// // IMPURE — depends on external state
+// let multiplier = 2;
+// function impureDouble(x) { return x * multiplier; }   // multiplier could change
+
+// // IMPURE — has side effect
+// function logAndDouble(x) {
+//   console.log(x);          // side effect: writes to console
+//   return x * 2;
+// }
+
+// // IMPURE — mutates argument
+// function addItem(arr, item) {
+//   arr.push(item);          // mutates input!
+//   return arr;
+// }
+
+// // PURE version
+// function addItemPure(arr, item) {
+//   return [...arr, item];   // returns NEW array
+// }
+// console.log(add(3,5));
+// console.log(double(5));
+// console.log(withGST(25));
+// console.log(impureDouble(25));
+// logAndDouble(20);
+// console.log(logAndDouble(25));
+
+//Lessson 4
+// const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+// const pipe    = (...fns) => (x) => fns.reduce     ((acc, fn) => fn(acc), x);
+// // Some small pure functions
+// const trim       = (s) => s.trim();
+// const lower      = (s) => s.toLowerCase();
+// const split      = (s) => s.split(/\s+/);
+// const wordCount  = (arr) => arr.length;
+
+// // Build the pipeline
+// const countWords = pipe(trim, lower, split, wordCount);
+// const countWords1 = compose(wordCount,split,lower,trim);
+// console.log(countWords("  Hello World from Jaipur  "));   // 4
+// console.log(countWords1("  Hello World from Kerala India  ")); 
+
+//Lesson 5
+// function multi(a,b,c){
+//   return a*b*c;
+// }
+// function multiCurry(a)
+//   {
+//     return function(b)
+//       {
+//         return function(c){
+//           return a*b*c;
+//         }
+//       }
+//   }
+
+//  console.log(multiCurry(1)(3)(3));
+
+ // 1. Pure Function
+// same input = same output
+
+// function add(a, b) {
+//   return a + b;
+// }
+
+// console.log(add(2, 3));
+
+
+
+// // 2. Immutability + Side Effects at the Edges
+
+// const nums = [1, 2, 3];
+
+// // make new array instead of changing old one
+// const newNums = [...nums, 4];
+
+// console.log(nums);
+// console.log(newNums);
+
+// // side effect only here
+// console.log("saved to screen");
+
+
+
+// // 3. Higher-Order Function
+// // function using another function
+
+// function doMath(num, fn) {
+//   return fn(num);
+// }
+
+// function double(x) {
+//   return x * 2;
+// }
+
+// console.log(doMath(5, double));
+
+
+
+// // 4. compose and pipe
+
+// const addOne = x => x + 1;
+// const square = x => x * x;
+
+// const pipe = (...fns) => x =>
+//   fns.reduce((v, fn) => fn(v), x);
+
+// const compose = (...fns) => x =>
+//   fns.reduceRight((v, fn) => fn(v), x);
+
+// console.log(pipe(addOne, square)(2));     
+// // (2 + 1)^2 = 9
+
+// console.log(compose(square, addOne)(2)); 
+// // same result
+
+
+
+// // 5. Currying
+
+// function multiply(a) {
+//   return function(b) {
+//     return a * b;
+//   };
+// }
+
+// const doubleNum = multiply(2);
+
+// console.log(doubleNum(5));
+
+
+
+// // 6. Partial Application
+
+// function greet(greeting, name) {
+//   return greeting + " " + name;
+// }
+
+// const sayHi = name => greet("Hi", name);
+
+// console.log(sayHi("Yoosuf"));
+
+
+
+// // 7. Real-World Pipeline
+// // clean shopping prices
+
+// const prices = [100, 200, 300];
+
+// const addTax = x => x + 20;
+// const format = x => "₹" + x;
+
+// const finalPrices = prices
+//   .map(addTax)
+//   .map(format);
+
+// console.log(finalPrices);
+
+//Day 27
+//Hands on 1
+function handleSearch(query) {
+  console.log(
+    `SEARCH FIRED: ${query} at ${Date.now() - start}ms`
+  );
 }
 
-// has
-console.log(products.has("book")); // true
+function debounce(fn, delay) {
+  let timer;
 
-// get
-console.log(products.get("bag")); // 800
+  return function (...args) {
+    // Cancel previous timer
+    console.log(args);
+    clearTimeout(timer);
 
-// delete
-products.delete("pen");
+    // Start a new timer
+    timer = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+}
 
-// size
-console.log(products.size); // 2
+const debouncedSearch = debounce(handleSearch, 200);
 
-// Map → Object
-const obj = Object.fromEntries(products);
-console.log(obj);
+const start = Date.now();
 
-// Object → Map
-const backToMap = new Map(Object.entries(obj));
-console.log(backToMap);
+// First burst: 5 keystrokes, 50ms apart
+setTimeout(() => debouncedSearch("h"), 0);
+setTimeout(() => debouncedSearch("he"), 50);
+setTimeout(() => debouncedSearch("hel"), 100);
+setTimeout(() => debouncedSearch("hell"), 150);
+setTimeout(() => debouncedSearch("hello"), 200);
+
+// 500ms gap, then 2 more keystrokes
+setTimeout(() => debouncedSearch("hello!"), 700);
+setTimeout(() => debouncedSearch("hello!!"), 750);

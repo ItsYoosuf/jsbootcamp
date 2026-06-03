@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 24 Student Doc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+pre code .hljs-string, pre code .hljs-attr { color: #FFB86C !important; }
+pre code .hljs-number, pre code .hljs-literal { color: #FF79C6 !important; }
+pre code .hljs-keyword, pre code .hljs-built_in { color: #BD93F9 !important; }
+pre code .hljs-comment { color: #6272A4 !important; font-style: italic; }
+pre code .hljs-title.function_, pre code .hljs-built_in { color: #8BE9FD !important; }
+pre code { color: #F8F8F2 !important; }
+pre { background: #282A36 !important; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0D0D14; color: #F1F5F9; max-width: 900px; margin: auto; padding: 20px; line-height: 1.55; }
+h1 { color: #FF4D6D; border-bottom: 3px solid #FF4D6D; padding-bottom: 8px; }
+h2 { color: #FF4D6D; margin-top: 28px; border-left: 4px solid #FF4D6D; padding-left: 10px; }
+h3 { color: #F1F5F9; margin-top: 20px; }
+p, li, td, th { color: #E2E8F0; }
+code { background: #1E1E2E; padding: 2px 6px; border-radius: 3px; font-size: 0.92em; color: #A6E3A1; }
+pre { background: #12121A !important; color: #CDD6F4 !important; padding: 16px; border-radius: 6px; font-size: 1em; font-weight: 500; line-height: 1.6; border: 1px solid #2E2E42; overflow-x: auto; margin: 14px 0; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #16161F; }
+th { background: #FF4D6D; color: white; padding: 10px 12px; text-align: left; font-size: 0.9em; font-weight: 700; }
+td { padding: 10px 12px; border-bottom: 1px solid #2E2E42; font-size: 0.92em; color: #E2E8F0; }
+tr:nth-child(even) td { background: #1A1A26; }
+.part-banner { background: rgba(255,77,109,0.15); color: #FF4D6D; text-align: center; padding: 10px; border-radius: 4px; font-weight: 700; font-size: 0.9em; letter-spacing: 1px; margin: 25px 0 15px; border: 1px solid #FF4D6D; }
+.part-orange { background: rgba(255,140,66,0.15); color: #FF8C42; border-color: #FF8C42; }
+.part-yellow { background: rgba(255,214,10,0.15); color: #FFD60A; border-color: #FFD60A; }
+.part-purple { background: rgba(192,132,252,0.15); color: #C084FC; border-color: #C084FC; }
+.topic { background: #FF4D6D; color: white; padding: 12px 16px; border-radius: 6px; margin: 24px 0 15px; font-weight: 700; }
+.topic .n { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-size: 0.85em; color: #F1F5F9; }
+.topic .sub { float: right; opacity: 0.85; font-weight: 400; font-size: 0.88em; }
+.section-pill { display: inline-block; padding: 6px 14px; border-radius: 3px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; margin: 18px 0 12px; color: #0D0D14; }
+.sp-orange { background: #FF8C42; } .sp-yellow { background: #FFD60A; }
+.card { background: #16161F; border: 1px solid #2E2E42; border-radius: 6px; padding: 14px; margin: 10px 0; }
+.card.red { border-left: 4px solid #FF4D6D; }
+.think-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: start; margin: 10px 0; }
+.think-row .code { background: #12121A; padding: 12px 14px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #CDD6F4; border: 1px solid #2E2E42; line-height: 1.5; }
+.think-row .arrow { text-align: center; color: #FF4D6D; font-weight: 700; font-size: 1.2em; padding-top: 12px; }
+.think-row .blank { background: #0D0D14; padding: 12px 14px; border-radius: 4px; border: 1px dashed #4B5563; color: #6B7280; font-size: 0.85em; font-style: italic; min-height: 18px; }
+.task-card { background: #16161F; padding: 14px 18px; margin: 14px 0; border-radius: 4px; border-left: 4px solid #FF4D6D; }
+.task-card.blue { border-left-color: #4D9FFF; }
+.task-card.orange { border-left-color: #FF8C42; }
+.task-card.green { border-left-color: #00E5A0; }
+.task-card.purple { border-left-color: #C084FC; }
+.task-card .title { color: #FF4D6D; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.task-card.blue .title { color: #4D9FFF; }
+.task-card.orange .title { color: #FF8C42; }
+.task-card.green .title { color: #00E5A0; }
+.task-card.purple .title { color: #C084FC; }
+.task-card ul { margin: 8px 0; padding-left: 22px; }
+.task-card li { color: #E2E8F0; margin: 5px 0; line-height: 1.5; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.78em; font-weight: 700; color: #0D0D14; margin-right: 8px; }
+.b-blue { background: #4D9FFF; } .b-orange { background: #FF8C42; } .b-green { background: #00E5A0; } .b-purple { background: #C084FC; }
+.cover { background: #16161F; padding: 35px 30px; border-left: 6px solid #FF4D6D; margin-bottom: 25px; border-radius: 4px; }
+.cover h1 { color: #FF4D6D; font-size: 2.4em; border: none; margin: 0; padding: 0; }
+.cover .sub { color: #9CA3AF; font-size: 1.05em; margin: 10px 0 12px; }
+.cover .end-badge { display: inline-block; background: #FF4D6D; color: white; padding: 4px 12px; border-radius: 3px; font-size: 0.7em; font-weight: 700; letter-spacing: 1px; margin-bottom: 18px; }
+.meta-cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.meta-cards > div { background: rgba(255,255,255,0.06); padding: 10px 18px; border-radius: 4px; min-width: 90px; }
+.meta-cards strong { color: #FF4D6D; font-size: 1.4em; display: block; }
+.meta-cards span { color: #9CA3AF; font-size: 0.72em; letter-spacing: 1px; }
+.hw-card { background: #16161F; padding: 16px 22px; border-left: 4px solid #C084FC; border-radius: 4px; margin: 14px 0; }
+.hw-card .title { color: #C084FC; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.hw-card ol { margin: 8px 0; padding-left: 22px; color: #E2E8F0; }
+.hw-card li { margin: 6px 0; line-height: 1.55; }
+hr { border: none; border-top: 1px solid #2E2E42; margin: 30px 0; }
+</style>
+<div class="cover">
+<h1>Advanced Day 12 — ES Modules in Depth</h1>
+<div class="sub">Student Document · Advanced JS · Session 12 of 15</div>
+<div class="end-badge">★ ADVANCED JS — DAY 12 OF 15</div>
+<div class="meta-cards">
+<div><strong>60 min</strong><span>TOTAL</span></div>
+<div><strong>30 min</strong><span>TEACHING</span></div>
+<div><strong>15 min</strong><span>HANDS-ON</span></div>
+<div><strong>15 min</strong><span>Q&amp;A</span></div>
+</div>
+</div>
+<h3 id="todays-topics">Today's Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Named vs Default Exports — Best Practices</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Aliasing &amp; Namespace Imports</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Re-exports &amp; Barrel Files</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Dynamic <code>import()</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Module Singletons &amp; Live Bindings</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Circular Dependencies</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Bundlers — Webpack, Vite, Rollup</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner">PART 1 — FOLLOW ALONG WITH YOUR INSTRUCTOR</div>
+<div class="topic"><span class="n">Topic 1</span> Named vs Default <span class="sub">Best practices</span></div>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Named</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-completable</td>
+<td>✓</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>Renaming</td>
+<td>Tracked</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td>Tree-shaking</td>
+<td>Better</td>
+<td>Slightly worse</td>
+</tr>
+<tr>
+<td>Multiple per file</td>
+<td>Many</td>
+<td>Only one</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Utilities, hooks, helpers</td>
+<td>A single hero per file</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-comment">// utils.js — named exports</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">formatPrice</span>(<span class="hljs-params">p</span>) { <span class="hljs-keyword">return</span> <span class="hljs-string">`₹<span class="hljs-subst">${p}</span>`</span>; }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">gst</span>(<span class="hljs-params">p, rate = <span class="hljs-number">18</span></span>) { <span class="hljs-keyword">return</span> p * rate / <span class="hljs-number">100</span>; }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">TAX_RATE</span> = <span class="hljs-number">18</span>;
+
+<span class="hljs-comment">// main.js</span>
+<span class="hljs-keyword">import</span> { formatPrice, gst, <span class="hljs-variable constant_">TAX_RATE</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// Card.js — single hero default</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Card</span>(<span class="hljs-params">{ title }</span>) { <span class="hljs-comment">/* ... */</span> }
+
+<span class="hljs-comment">// main.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Card</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Card.js&quot;</span>;        <span class="hljs-comment">// any name works — common bug source!</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Whatever</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Card.js&quot;</span>;    <span class="hljs-comment">// also valid — confusing!</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 2</span> Aliasing & Namespace <span class="sub">as · import *</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Rename on import</span>
+<span class="hljs-keyword">import</span> { formatPrice <span class="hljs-keyword">as</span> fp } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;
+<span class="hljs-title function_">fp</span>(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// Rename on export</span>
+<span class="hljs-keyword">export</span> { formatPrice <span class="hljs-keyword">as</span> format } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;
+
+<span class="hljs-comment">// Namespace import — pull EVERYTHING under one object</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(utils.<span class="hljs-title function_">formatPrice</span>(<span class="hljs-number">100</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(utils.<span class="hljs-title function_">gst</span>(<span class="hljs-number">100</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(utils.<span class="hljs-property">TAX_RATE</span>);
+
+<span class="hljs-comment">// Useful when:</span>
+<span class="hljs-comment">// - many exports of similar nature (e.g., math.add, math.subtract)</span>
+<span class="hljs-comment">// - dynamic key lookup: utils[someName]</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Downside: defeats tree-shaking — bundlers can&#x27;t drop unused exports</span>
+<span class="hljs-comment">// when accessed by computed key.</span>
+</div></code></pre>
+<p><span class="section-pill sp-orange">FOLLOW ALONG</span></p>
+<div class="think-row">
+<div class="code">
+// utils.js<br>
+export const a = 1;<br>
+export const b = 2;<br>
+<br>
+// main.js<br>
+import * as u from "./utils.js";<br>
+console.log(u.a + u.b);<br>
+console.log(u.c);
+</div>
+<div class="arrow">→</div>
+<div class="blank">first?<br>second?</div>
+</div>
+<div class="topic"><span class="n">Topic 3</span> Barrels — Single Import Path <span class="sub">index.js re-exports</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// components/index.js — the barrel</span>
+<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">Button</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Button.js&quot;</span>;
+<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">Card</span> }   <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Card.js&quot;</span>;
+<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">Modal</span> }  <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Modal.js&quot;</span>;
+
+<span class="hljs-comment">// You can also re-export named exports:</span>
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./hooks.js&quot;</span>;              <span class="hljs-comment">// re-export ALL named</span>
+<span class="hljs-keyword">export</span> { useForm, useDebounce } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./hooks.js&quot;</span>;   <span class="hljs-comment">// selective</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// App.js — clean, single-line imports</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Button</span>, <span class="hljs-title class_">Card</span>, <span class="hljs-title class_">Modal</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./components&quot;</span>;
+
+<span class="hljs-comment">// Without the barrel:</span>
+<span class="hljs-comment">// import Button from &quot;./components/Button.js&quot;;</span>
+<span class="hljs-comment">// import Card   from &quot;./components/Card.js&quot;;</span>
+<span class="hljs-comment">// import Modal  from &quot;./components/Modal.js&quot;;</span>
+</div></code></pre>
+<div class="card red">
+<strong>⚠️ Barrels and bundle size</strong> — A poorly tree-shaken barrel can pull in code you didn't use. Modern bundlers usually handle it; watch out in libraries.
+</div>
+<div class="topic"><span class="n">Topic 4</span> Dynamic import() <span class="sub">Code splitting · Lazy loading</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Static — loaded immediately, before this script runs</span>
+<span class="hljs-keyword">import</span> { gst } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./utils.js&quot;</span>;
+
+<span class="hljs-comment">// Dynamic — loaded ON DEMAND</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">showSettings</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> { <span class="hljs-title class_">Settings</span> } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&quot;./Settings.js&quot;</span>);   <span class="hljs-comment">// returns a Promise</span>
+  <span class="hljs-title class_">Settings</span>.<span class="hljs-title function_">render</span>();
+}
+
+<span class="hljs-comment">// Conditional load — only fetch big-chart library if user clicks &quot;Show chart&quot;</span>
+button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-title function_">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Chart</span> = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&quot;./BigChartLibrary.js&quot;</span>);
+  <span class="hljs-title class_">Chart</span>.<span class="hljs-title function_">draw</span>();
+});
+
+<span class="hljs-comment">// React route splitting (you&#x27;ll see this every day)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Settings</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&quot;./Settings.js&quot;</span>));
+<span class="hljs-comment">// React.lazy uses dynamic import() under the hood</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 5</span> Live Bindings <span class="sub">Singletons · Read-only imports</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// counter.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">inc</span>(<span class="hljs-params"></span>) { count++; }
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// main.js</span>
+<span class="hljs-keyword">import</span> { count, inc } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./counter.js&quot;</span>;
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count);    <span class="hljs-comment">// 0</span>
+<span class="hljs-title function_">inc</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count);    <span class="hljs-comment">// 1   ← updated! It&#x27;s a live binding.</span>
+
+<span class="hljs-comment">// You CANNOT reassign imported bindings:</span>
+<span class="hljs-comment">// count = 99;          // TypeError — imports are read-only</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// Singleton pattern — a single shared cache across the whole app</span>
+<span class="hljs-comment">// cache.js</span>
+<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> cache;
+
+<span class="hljs-comment">// Anywhere — they all share the SAME map</span>
+<span class="hljs-keyword">import</span> cache <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./cache.js&quot;</span>;
+cache.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>);
+</div></code></pre>
+<div class="topic"><span class="n">Topic 6</span> Circular Deps <span class="sub">A↔B problem</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// a.js</span>
+<span class="hljs-keyword">import</span> { fromB } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./b.js&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fromA = <span class="hljs-string">&quot;I am A&quot;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;a sees fromB =&quot;</span>, fromB);   <span class="hljs-comment">// may be undefined at first run</span>
+
+<span class="hljs-comment">// b.js</span>
+<span class="hljs-keyword">import</span> { fromA } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./a.js&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fromB = <span class="hljs-string">&quot;I am B&quot;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;b sees fromA =&quot;</span>, fromA);   <span class="hljs-comment">// may be undefined</span>
+
+<span class="hljs-comment">// Symptom: one of the imports reads as undefined.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Fixes:</span>
+<span class="hljs-comment">// 1. Refactor — extract shared bits to a third module both depend on.</span>
+<span class="hljs-comment">// 2. Lazy access — read the value inside a function, not at module top level.</span>
+<span class="hljs-comment">// 3. Use TypeScript / ESLint plugins (import/no-cycle) to catch them early.</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 7</span> Bundlers <span class="sub">Webpack · Vite · Rollup</span></div>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best for</th>
+<th>Strengths</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vite</td>
+<td>Modern frontends</td>
+<td>Lightning-fast dev (esbuild), Rollup prod build</td>
+</tr>
+<tr>
+<td>Webpack</td>
+<td>Established big apps</td>
+<td>Mature, plugin-rich</td>
+</tr>
+<tr>
+<td>Rollup</td>
+<td>Libraries</td>
+<td>Cleanest tree-shaking, smallest output</td>
+</tr>
+<tr>
+<td>esbuild</td>
+<td>Speed</td>
+<td>Insanely fast, simpler config</td>
+</tr>
+<tr>
+<td>Parcel</td>
+<td>Zero-config simple apps</td>
+<td>Auto-discovery</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What bundlers do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Read entry file</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Walk import graph</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Tree-shake unused exports</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Combine + minify</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Split chunks at <code>import()</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Generate sourcemaps</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-yellow">PART 2 — HANDS-ON EXERCISE (15 MIN)</div>
+<div class="task-card blue">
+<div class="title"><span class="badge b-blue">Task 1</span> Multiple Named Exports + Barrel</div>
+<ul>
+<li>Create three files in a folder <code>math/</code>: <code>add.js</code>, <code>multiply.js</code>, <code>divide.js</code>. Each exports a named function.</li>
+<li>Create <code>math/index.js</code> that re-exports all three.</li>
+<li>In <code>app.js</code>, import all three from <code>"./math"</code> in a single line. Use them.</li>
+</ul>
+</div>
+<div class="task-card orange">
+<div class="title"><span class="badge b-orange">Task 2</span> Default + Named in Same File</div>
+<ul>
+<li>Create <code>Button.js</code> that has a default export <code>function Button(...)</code> and a named export <code>const ButtonStyles = { ... }</code>.</li>
+<li>Import the default and the named export in another file, in a single import statement.</li>
+</ul>
+</div>
+<div class="task-card green">
+<div class="title"><span class="badge b-green">Task 3</span> Dynamic import()</div>
+<ul>
+<li>Create a <code>heavy.js</code> that exports a <code>compute()</code> function returning the string <code>"computed!"</code>.</li>
+<li>In <code>main.js</code>, write a function <code>loadAndRun()</code> that uses <code>await import("./heavy.js")</code> to load the module on demand, then calls <code>compute()</code>.</li>
+<li>Call <code>loadAndRun()</code>. Confirm in DevTools Network tab that <code>heavy.js</code> is fetched only when called (in a real bundler setup).</li>
+</ul>
+</div>
+<div class="task-card purple">
+<div class="title"><span class="badge b-purple">Bonus</span> Singleton Cache</div>
+<ul>
+<li>Create <code>cache.js</code> exporting a single shared <code>Map</code> as default.</li>
+<li>Create <code>userService.js</code> that imports the cache and writes user objects keyed by id.</li>
+<li>Create <code>productService.js</code> that imports the cache and writes product objects.</li>
+<li>In <code>main.js</code>, import the cache directly. Confirm both services' writes are visible.</li>
+</ul>
+</div>
+<hr>
+<div class="part-banner part-orange">PART 3 — VISUAL SUMMARY</div>
+<h3 id="export-forms">Export Forms</h3>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named</td>
+<td><code>export function f() {}</code></td>
+</tr>
+<tr>
+<td>Multiple</td>
+<td><code>export { a, b, c }</code></td>
+</tr>
+<tr>
+<td>Default</td>
+<td><code>export default Card</code></td>
+</tr>
+<tr>
+<td>Re-export</td>
+<td><code>export { x } from &quot;./y.js&quot;</code></td>
+</tr>
+<tr>
+<td>Re-export all</td>
+<td><code>export * from &quot;./y.js&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="import-forms">Import Forms</h3>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named</td>
+<td><code>import { a, b } from &quot;...&quot;</code></td>
+</tr>
+<tr>
+<td>Default</td>
+<td><code>import X from &quot;...&quot;</code></td>
+</tr>
+<tr>
+<td>Both</td>
+<td><code>import X, { a } from &quot;...&quot;</code></td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td><code>import * as ns from &quot;...&quot;</code></td>
+</tr>
+<tr>
+<td>Side effect</td>
+<td><code>import &quot;...&quot;</code></td>
+</tr>
+<tr>
+<td>Dynamic</td>
+<td><code>await import(&quot;...&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="live-bindings">Live Bindings</h3>
+<table>
+<thead>
+<tr>
+<th>Imported</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code> (let)</td>
+<td>Sees latest value</td>
+</tr>
+<tr>
+<td><code>count</code> (reassign)</td>
+<td>TypeError (read-only)</td>
+</tr>
+<tr>
+<td>Object methods</td>
+<td>Mutations visible</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-reach-for">When to Reach For</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Many small utils</td>
+<td>Named exports</td>
+</tr>
+<tr>
+<td>One main thing per file</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>Big lib, dynamic keys</td>
+<td>Namespace</td>
+</tr>
+<tr>
+<td>Many files, one path</td>
+<td>Barrel</td>
+</tr>
+<tr>
+<td>Lazy-load feature</td>
+<td><code>import()</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-purple">HOMEWORK</div>
+<div class="hw-card">
+<div class="title">Practice tasks before next class · Advanced Day 12</div>
+<ol>
+<li>Take a folder of three small modules and write a barrel <code>index.js</code> for it. Use both named re-exports and <code>export *</code>.</li>
+<li>Add a dynamic <code>import()</code> for a feature in a small Vite app. Open DevTools Network tab and watch the chunk load only when triggered.</li>
+<li>Build a tiny circular dependency on purpose (a.js↔b.js with a value used at top level). Observe the bug. Refactor to fix it.</li>
+<li>Read the docs page for Vite or Webpack — pick one. List 3 things you learned.</li>
+<li>Read: <code>javascript.info/modules-intro</code> and <code>javascript.info/modules-dynamic-imports</code>.</li>
+<li><em>(Bonus)</em> Read the V8 blog post "JavaScript modules" to see the spec-level mechanics.</li>
+</ol>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 26 Student Doc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+pre code .hljs-string, pre code .hljs-attr { color: #FFB86C !important; }
+pre code .hljs-number, pre code .hljs-literal { color: #FF79C6 !important; }
+pre code .hljs-keyword, pre code .hljs-built_in { color: #BD93F9 !important; }
+pre code .hljs-comment { color: #6272A4 !important; font-style: italic; }
+pre code .hljs-title.function_, pre code .hljs-built_in { color: #8BE9FD !important; }
+pre code { color: #F8F8F2 !important; }
+pre { background: #282A36 !important; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0D0D14; color: #F1F5F9; max-width: 900px; margin: auto; padding: 20px; line-height: 1.55; }
+h1 { color: #F5C518; border-bottom: 3px solid #F5C518; padding-bottom: 8px; }
+h2 { color: #F5C518; margin-top: 28px; border-left: 4px solid #F5C518; padding-left: 10px; }
+h3 { color: #F1F5F9; margin-top: 20px; }
+p, li, td, th { color: #E2E8F0; }
+code { background: #1E1E2E; padding: 2px 6px; border-radius: 3px; font-size: 0.92em; color: #A6E3A1; }
+pre { background: #12121A !important; color: #CDD6F4 !important; padding: 16px; border-radius: 6px; font-size: 1em; font-weight: 500; line-height: 1.6; border: 1px solid #2E2E42; overflow-x: auto; margin: 14px 0; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: #16161F; }
+th { background: #F5C518; color: #0D0D14; padding: 10px 12px; text-align: left; font-size: 0.9em; font-weight: 700; }
+td { padding: 10px 12px; border-bottom: 1px solid #2E2E42; font-size: 0.92em; color: #E2E8F0; }
+tr:nth-child(even) td { background: #1A1A26; }
+.part-banner { background: rgba(245,197,24,0.15); color: #F5C518; text-align: center; padding: 10px; border-radius: 4px; font-weight: 700; font-size: 0.9em; letter-spacing: 1px; margin: 25px 0 15px; border: 1px solid #F5C518; }
+.part-orange { background: rgba(255,140,66,0.15); color: #FF8C42; border-color: #FF8C42; }
+.part-mint { background: rgba(45,212,191,0.15); color: #2DD4BF; border-color: #2DD4BF; }
+.part-purple { background: rgba(192,132,252,0.15); color: #C084FC; border-color: #C084FC; }
+.topic { background: #F5C518; color: #0D0D14; padding: 12px 16px; border-radius: 6px; margin: 24px 0 15px; font-weight: 700; }
+.topic .n { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-size: 0.85em; color: #F1F5F9; }
+.topic .sub { float: right; opacity: 0.85; font-weight: 400; font-size: 0.88em; }
+.section-pill { display: inline-block; padding: 6px 14px; border-radius: 3px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; margin: 18px 0 12px; color: #0D0D14; }
+.sp-orange { background: #FF8C42; } .sp-yellow { background: #F5C518; }
+.card { background: #16161F; border: 1px solid #2E2E42; border-radius: 6px; padding: 14px; margin: 10px 0; }
+.card.yellow { border-left: 4px solid #F5C518; }
+.card.red { border-left: 4px solid #FF4D6D; }
+.think-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: start; margin: 10px 0; }
+.think-row .code { background: #12121A; padding: 12px 14px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #CDD6F4; border: 1px solid #2E2E42; line-height: 1.5; }
+.think-row .arrow { text-align: center; color: #F5C518; font-weight: 700; font-size: 1.2em; padding-top: 12px; }
+.think-row .blank { background: #0D0D14; padding: 12px 14px; border-radius: 4px; border: 1px dashed #4B5563; color: #6B7280; font-size: 0.85em; font-style: italic; min-height: 18px; }
+.task-card { background: #16161F; padding: 14px 18px; margin: 14px 0; border-radius: 4px; border-left: 4px solid #F5C518; }
+.task-card.blue { border-left-color: #4D9FFF; }
+.task-card.orange { border-left-color: #FF8C42; }
+.task-card.green { border-left-color: #00E5A0; }
+.task-card.purple { border-left-color: #C084FC; }
+.task-card .title { color: #F5C518; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.task-card.blue .title { color: #4D9FFF; }
+.task-card.orange .title { color: #FF8C42; }
+.task-card.green .title { color: #00E5A0; }
+.task-card.purple .title { color: #C084FC; }
+.task-card ul { margin: 8px 0; padding-left: 22px; }
+.task-card li { color: #E2E8F0; margin: 5px 0; line-height: 1.5; }
+.badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.78em; font-weight: 700; color: #0D0D14; margin-right: 8px; }
+.b-blue { background: #4D9FFF; } .b-orange { background: #FF8C42; } .b-green { background: #00E5A0; } .b-purple { background: #C084FC; }
+.cover { background: #16161F; padding: 35px 30px; border-left: 6px solid #F5C518; margin-bottom: 25px; border-radius: 4px; }
+.cover h1 { color: #F5C518; font-size: 2.4em; border: none; margin: 0; padding: 0; }
+.cover .sub { color: #9CA3AF; font-size: 1.05em; margin: 10px 0 12px; }
+.cover .end-badge { display: inline-block; background: #F5C518; color: #0D0D14; padding: 4px 12px; border-radius: 3px; font-size: 0.7em; font-weight: 700; letter-spacing: 1px; margin-bottom: 18px; }
+.meta-cards { display: flex; gap: 14px; flex-wrap: wrap; }
+.meta-cards > div { background: rgba(255,255,255,0.06); padding: 10px 18px; border-radius: 4px; min-width: 90px; }
+.meta-cards strong { color: #F5C518; font-size: 1.4em; display: block; }
+.meta-cards span { color: #9CA3AF; font-size: 0.72em; letter-spacing: 1px; }
+.hw-card { background: #16161F; padding: 16px 22px; border-left: 4px solid #C084FC; border-radius: 4px; margin: 14px 0; }
+.hw-card .title { color: #C084FC; font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+.hw-card ol { margin: 8px 0; padding-left: 22px; color: #E2E8F0; }
+.hw-card li { margin: 6px 0; line-height: 1.55; }
+hr { border: none; border-top: 1px solid #2E2E42; margin: 30px 0; }
+</style>
+<div class="cover">
+<h1>Advanced Day 14 — Design Patterns</h1>
+<div class="sub">Student Document · Advanced JS · Session 14 of 15</div>
+<div class="end-badge">★ ADVANCED JS — DAY 14 OF 15</div>
+<div class="meta-cards">
+<div><strong>60 min</strong><span>TOTAL</span></div>
+<div><strong>30 min</strong><span>TEACHING</span></div>
+<div><strong>15 min</strong><span>HANDS-ON</span></div>
+<div><strong>15 min</strong><span>Q&amp;A</span></div>
+</div>
+</div>
+<h3 id="todays-topics">Today's Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Why Patterns?</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Module Pattern</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Observer (Pub/Sub)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Factory Pattern</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Singleton</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ES6 Proxy</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Picking the Right Pattern</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner">PART 1 — FOLLOW ALONG WITH YOUR INSTRUCTOR</div>
+<div class="topic"><span class="n">Topic 1</span> Why Patterns? <span class="sub">Vocabulary for structure</span></div>
+<div class="card yellow">
+Patterns are recurring solutions to recurring problems. They give developers a SHARED VOCABULARY — saying "use pub-sub here" instantly conveys structural intent. They're idioms, not features.
+</div>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Don't force-fit</td>
+<td>Pattern serves problem, not vice versa</td>
+</tr>
+<tr>
+<td>Some are language-solved</td>
+<td>ES modules give Module + Singleton free</td>
+</tr>
+<tr>
+<td>Patterns evolve</td>
+<td>Classic Observer is now Redux/RxJS-shaped</td>
+</tr>
+</tbody>
+</table>
+<div class="topic"><span class="n">Topic 2</span> Module Pattern <span class="sub">Closures · ES modules</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// CLASSIC closure-based module (pre-ES6)</span>
+<span class="hljs-keyword">const</span> counter = (<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;                    <span class="hljs-comment">// private — captured in closure</span>
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) { count++; }
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>)       { <span class="hljs-keyword">return</span> count; }
+
+  <span class="hljs-keyword">return</span> { increment, get };        <span class="hljs-comment">// public API</span>
+})();
+
+counter.<span class="hljs-title function_">increment</span>();
+counter.<span class="hljs-title function_">increment</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-title function_">get</span>());         <span class="hljs-comment">// 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-property">count</span>);         <span class="hljs-comment">// undefined — count is private!</span>
+
+<span class="hljs-comment">// MODERN ES-module equivalent (Day 12 callback)</span>
+<span class="hljs-comment">// counter.js</span>
+<span class="hljs-comment">//   let count = 0;</span>
+<span class="hljs-comment">//   export function increment() { count++; }</span>
+<span class="hljs-comment">//   export function get()       { return count; }</span>
+<span class="hljs-comment">//   // count is NOT exported → private</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 3</span> Observer (Pub/Sub) <span class="sub">Subject notifies subscribers</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Tiny pub/sub from scratch</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createEmitter</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> listeners = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();      <span class="hljs-comment">// event → Set of callbacks (Day 10!)</span>
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-title function_">on</span>(<span class="hljs-params">event, callback</span>) {
+      <span class="hljs-keyword">if</span> (!listeners.<span class="hljs-title function_">has</span>(event)) listeners.<span class="hljs-title function_">set</span>(event, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>());
+      listeners.<span class="hljs-title function_">get</span>(event).<span class="hljs-title function_">add</span>(callback);
+    },
+    <span class="hljs-title function_">off</span>(<span class="hljs-params">event, callback</span>) {
+      listeners.<span class="hljs-title function_">get</span>(event)?.<span class="hljs-title function_">delete</span>(callback);
+    },
+    <span class="hljs-title function_">emit</span>(<span class="hljs-params">event, ...args</span>) {
+      listeners.<span class="hljs-title function_">get</span>(event)?.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">cb</span>) =&gt;</span> <span class="hljs-title function_">cb</span>(...args));
+    },
+  };
+}
+
+<span class="hljs-keyword">const</span> bus = <span class="hljs-title function_">createEmitter</span>();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onUserSignup</span>(<span class="hljs-params">user</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;welcome email →&quot;</span>, user.<span class="hljs-property">email</span>);
+}
+
+bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;user:signup&quot;</span>, onUserSignup);
+bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;user:signup&quot;</span>, <span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;audit log →&quot;</span>, user.<span class="hljs-property">id</span>));
+
+<span class="hljs-comment">// Some service emits the event</span>
+bus.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&quot;user:signup&quot;</span>, { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;priya@example.com&quot;</span> });
+<span class="hljs-comment">// Both listeners fire:</span>
+<span class="hljs-comment">//   welcome email → priya@example.com</span>
+<span class="hljs-comment">//   audit log → 1</span>
+</div></code></pre>
+<p><span class="section-pill sp-orange">FOLLOW ALONG</span></p>
+<div class="think-row">
+<div class="code">
+const bus = createEmitter();<br>
+const f = () =&gt; console.log("a");<br>
+bus.on("x", f);<br>
+bus.on("x", () =&gt; console.log("b"));<br>
+bus.emit("x");<br>
+bus.off("x", f);<br>
+bus.emit("x");
+</div>
+<div class="arrow">→</div>
+<div class="blank">first emit?<br>second emit?</div>
+</div>
+<div class="topic"><span class="n">Topic 4</span> Factory <span class="sub">Function returns objects</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Without factory — caller picks the class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span>   { <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">kind</span> = <span class="hljs-string">&quot;car&quot;</span>; } }
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Bike</span>  { <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">kind</span> = <span class="hljs-string">&quot;bike&quot;</span>; } }
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Truck</span> { <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">kind</span> = <span class="hljs-string">&quot;truck&quot;</span>; } }
+
+<span class="hljs-comment">// Factory — caller asks for what they need by name</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">vehicleFactory</span>(<span class="hljs-params">type</span>) {
+  <span class="hljs-keyword">switch</span> (type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;car&quot;</span>:   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>();
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;bike&quot;</span>:  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bike</span>();
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;truck&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Truck</span>();
+    <span class="hljs-attr">default</span>:      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Unknown vehicle: <span class="hljs-subst">${type}</span>`</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> v1 = <span class="hljs-title function_">vehicleFactory</span>(<span class="hljs-string">&quot;car&quot;</span>);
+<span class="hljs-keyword">const</span> v2 = <span class="hljs-title function_">vehicleFactory</span>(<span class="hljs-string">&quot;bike&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v1.<span class="hljs-property">kind</span>, v2.<span class="hljs-property">kind</span>);   <span class="hljs-comment">// &quot;car&quot; &quot;bike&quot;</span>
+
+<span class="hljs-comment">// Closure-based factory (no class needed)</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createUser</span>(<span class="hljs-params">name, role = <span class="hljs-string">&quot;user&quot;</span></span>) {
+  <span class="hljs-keyword">return</span> {
+    name,
+    role,
+    <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) { <span class="hljs-keyword">return</span> <span class="hljs-string">`Hi, I&#x27;m <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span> (<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.role}</span>)`</span>; },
+  };
+}
+
+<span class="hljs-keyword">const</span> u1 = <span class="hljs-title function_">createUser</span>(<span class="hljs-string">&quot;Priya&quot;</span>);
+<span class="hljs-keyword">const</span> u2 = <span class="hljs-title function_">createUser</span>(<span class="hljs-string">&quot;Aarav&quot;</span>, <span class="hljs-string">&quot;admin&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(u1.<span class="hljs-title function_">greet</span>());         <span class="hljs-comment">// &quot;Hi, I&#x27;m Priya (user)&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(u2.<span class="hljs-title function_">greet</span>());         <span class="hljs-comment">// &quot;Hi, I&#x27;m Aarav (admin)&quot;</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 5</span> Singleton <span class="sub">Exactly one instance</span></div>
+<pre class="hljs"><code><div><span class="hljs-comment">// Classic singleton class (works, but rare in modern JS)</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Logger</span> {
+  <span class="hljs-keyword">static</span> #instance = <span class="hljs-literal">null</span>;       <span class="hljs-comment">// private static field</span>
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Logger</span>.#instance) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Logger</span>.#instance;   <span class="hljs-comment">// hand back existing</span>
+    <span class="hljs-title class_">Logger</span>.#instance = <span class="hljs-variable language_">this</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">logs</span> = [];
+  }
+
+  <span class="hljs-title function_">log</span>(<span class="hljs-params">msg</span>) { <span class="hljs-variable language_">this</span>.<span class="hljs-property">logs</span>.<span class="hljs-title function_">push</span>(msg); <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;[LOG]&quot;</span>, msg); }
+}
+
+<span class="hljs-keyword">const</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Logger</span>();
+<span class="hljs-keyword">const</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Logger</span>();
+a.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a === b);            <span class="hljs-comment">// true — same instance</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b.<span class="hljs-property">logs</span>);             <span class="hljs-comment">// [&quot;hello&quot;]</span>
+
+<span class="hljs-comment">// MODERN equivalent — just export an instance</span>
+<span class="hljs-comment">// logger.js</span>
+<span class="hljs-comment">//   class Logger { ... }</span>
+<span class="hljs-comment">//   export default new Logger();</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Anywhere:</span>
+<span class="hljs-comment">//   import logger from &quot;./logger.js&quot;;</span>
+<span class="hljs-comment">//   logger.log(&quot;hi&quot;);</span>
+<span class="hljs-comment">//   // every importer shares the same instance — modules are evaluated ONCE</span>
+</div></code></pre>
+<div class="card red">
+<strong>⚠️ Singletons hurt testability</strong> — hidden global state is hard to mock and reset. Use sparingly — for true app-wide things.
+</div>
+<div class="topic"><span class="n">Topic 6</span> ES6 Proxy <span class="sub">Trap reads/writes</span></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> target = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Priya&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">25</span> };
+
+<span class="hljs-keyword">const</span> handler = {
+  <span class="hljs-title function_">get</span>(<span class="hljs-params">obj, prop</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`reading <span class="hljs-subst">${prop}</span>`</span>);
+    <span class="hljs-keyword">return</span> prop <span class="hljs-keyword">in</span> obj ? obj[prop] : <span class="hljs-string">`?? unknown: <span class="hljs-subst">${prop}</span>`</span>;
+  },
+  <span class="hljs-title function_">set</span>(<span class="hljs-params">obj, prop, value</span>) {
+    <span class="hljs-keyword">if</span> (prop === <span class="hljs-string">&quot;age&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> value !== <span class="hljs-string">&quot;number&quot;</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&quot;age must be a number&quot;</span>);
+    }
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`setting <span class="hljs-subst">${prop}</span> = <span class="hljs-subst">${value}</span>`</span>);
+    obj[prop] = value;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;                  <span class="hljs-comment">// signal success — required</span>
+  },
+};
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(target, handler);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(user.<span class="hljs-property">name</span>);            <span class="hljs-comment">// logs &quot;reading name&quot;, returns &quot;Priya&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(user.<span class="hljs-property">unknown</span>);         <span class="hljs-comment">// &quot;reading unknown&quot;, returns &quot;?? unknown: unknown&quot;</span>
+user.<span class="hljs-property">age</span> = <span class="hljs-number">26</span>;                     <span class="hljs-comment">// logs &quot;setting age = 26&quot;</span>
+<span class="hljs-comment">// user.age = &quot;old&quot;;               // throws TypeError</span>
+
+<span class="hljs-comment">// Practical: build a tiny reactive system</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reactive</span>(<span class="hljs-params">obj, onChange</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(obj, {
+    <span class="hljs-title function_">set</span>(<span class="hljs-params">target, prop, value</span>) {
+      target[prop] = value;
+      <span class="hljs-title function_">onChange</span>(prop, value);       <span class="hljs-comment">// notify on every write</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    },
+  });
+}
+
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }, <span class="hljs-function">(<span class="hljs-params">key, val</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`state.<span class="hljs-subst">${key}</span> changed to <span class="hljs-subst">${val}</span>`</span>);
+});
+
+state.<span class="hljs-property">count</span> = <span class="hljs-number">1</span>;                   <span class="hljs-comment">// &quot;state.count changed to 1&quot;</span>
+state.<span class="hljs-property">count</span> = <span class="hljs-number">5</span>;                   <span class="hljs-comment">// &quot;state.count changed to 5&quot;</span>
+</div></code></pre>
+<div class="topic"><span class="n">Topic 7</span> Pick Your Pattern <span class="sub">Decision matrix</span></div>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group code, hide internals</td>
+<td>Module (or ES module)</td>
+</tr>
+<tr>
+<td>Many parts react to changes</td>
+<td>Observer / pub-sub</td>
+</tr>
+<tr>
+<td>Choose object type at runtime</td>
+<td>Factory</td>
+</tr>
+<tr>
+<td>Exactly one shared instance</td>
+<td>Singleton (or exported instance)</td>
+</tr>
+<tr>
+<td>Intercept reads/writes</td>
+<td>Proxy</td>
+</tr>
+<tr>
+<td>Replace inheritance</td>
+<td>Plain functions + objects</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-orange">PART 2 — HANDS-ON EXERCISE (15 MIN)</div>
+<div class="task-card blue">
+<div class="title"><span class="badge b-blue">Task 1</span> Tiny EventEmitter</div>
+<ul>
+<li>Build <code>createEmitter()</code> returning <code>{ on, off, emit }</code>.</li>
+<li>Test: register two listeners on event <code>"hello"</code>. Emit it. Both should fire.</li>
+<li>Then <code>off</code> one listener. Emit again. Only one fires.</li>
+</ul>
+</div>
+<div class="task-card orange">
+<div class="title"><span class="badge b-orange">Task 2</span> User Factory</div>
+<ul>
+<li>Write a <code>createUser(name, role)</code> factory. Default <code>role</code> to <code>"user"</code>.</li>
+<li>The returned object has <code>name</code>, <code>role</code>, and a method <code>canEdit()</code> that returns <code>true</code> only if <code>role === "admin"</code>.</li>
+<li>Test with two users — one default, one admin.</li>
+</ul>
+</div>
+<div class="task-card green">
+<div class="title"><span class="badge b-green">Task 3</span> Module-Singleton Cache</div>
+<ul>
+<li>Build a <code>createCache()</code> factory that returns <code>{ get, set, has, size }</code> with private <code>Map</code> storage.</li>
+<li>Show that two separate calls give TWO independent caches.</li>
+<li>Then show how exporting <code>default createCache()</code> from a module makes ONE shared cache.</li>
+</ul>
+</div>
+<div class="task-card purple">
+<div class="title"><span class="badge b-purple">Bonus</span> Reactive Counter with Proxy</div>
+<ul>
+<li>Build <code>reactive(obj, onChange)</code> that wraps <code>obj</code> in a Proxy and calls <code>onChange(prop, value)</code> on every set.</li>
+<li>Wrap <code>{ count: 0 }</code>. Every <code>state.count = X</code> should log "count → X".</li>
+<li>Try setting a non-existent property — confirm the trap fires for that too.</li>
+</ul>
+</div>
+<hr>
+<div class="part-banner part-mint">PART 3 — VISUAL SUMMARY</div>
+<h3 id="pattern-quick">Pattern Quick</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>One-line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module</td>
+<td>Bundle code, hide internals</td>
+</tr>
+<tr>
+<td>Observer</td>
+<td>Subject notifies many</td>
+</tr>
+<tr>
+<td>Factory</td>
+<td>Function returns objects</td>
+</tr>
+<tr>
+<td>Singleton</td>
+<td>One shared instance</td>
+</tr>
+<tr>
+<td>Proxy</td>
+<td>Intercept property ops</td>
+</tr>
+</tbody>
+</table>
+<h3 id="js-native-equivalents">JS-Native Equivalents</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>JS gives you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module</td>
+<td>ES modules</td>
+</tr>
+<tr>
+<td>Singleton</td>
+<td>Exported instance</td>
+</tr>
+<tr>
+<td>Observer</td>
+<td>EventTarget, EventEmitter</td>
+</tr>
+<tr>
+<td>Factory</td>
+<td>Functions returning objects</td>
+</tr>
+<tr>
+<td>Proxy</td>
+<td><code>new Proxy(target, handler)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="real-frameworks">Real Frameworks</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Pattern(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redux</td>
+<td>Observer + pure reducers</td>
+</tr>
+<tr>
+<td>Vue 3 reactivity</td>
+<td>Proxy</td>
+</tr>
+<tr>
+<td>jQuery</td>
+<td>Module</td>
+</tr>
+<tr>
+<td>Node <code>events</code></td>
+<td>Observer</td>
+</tr>
+<tr>
+<td>Express middleware</td>
+<td>Pipe / Composition</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proxy-traps">Proxy Traps</h3>
+<table>
+<thead>
+<tr>
+<th>Trap</th>
+<th>Triggered by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get</code></td>
+<td>Read property</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>Write property</td>
+</tr>
+<tr>
+<td><code>has</code></td>
+<td><code>in</code> operator</td>
+</tr>
+<tr>
+<td><code>deleteProperty</code></td>
+<td><code>delete</code> keyword</td>
+</tr>
+<tr>
+<td><code>ownKeys</code></td>
+<td><code>Object.keys</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="part-banner part-purple">HOMEWORK</div>
+<div class="hw-card">
+<div class="title">Practice tasks before next class · Advanced Day 14</div>
+<ol>
+<li>Take the <code>createEmitter</code> from Task 1 and add a <code>once(event, fn)</code> method that auto-unsubscribes after the first emit.</li>
+<li>Build a <code>cacheFactory</code> that returns a cache with a configurable TTL (time-to-live). Each entry expires after its TTL.</li>
+<li>Wrap an array in a Proxy that logs every read/write/delete. Useful for debugging mystery mutations.</li>
+<li>Read about MVC / MVVM patterns and write 1 paragraph on how React's component state model relates.</li>
+<li>Read: <code>javascript.info/proxy</code> (chapter) and skim <code>refactoring.guru/design-patterns/javascript</code>.</li>
+<li><em>(Bonus)</em> Look at how Vue's reactivity uses Proxy in their source — <code>reactivity/src/reactive.ts</code> on GitHub.</li>
+</ol>
+</div>
+
+</body>
+</html>
